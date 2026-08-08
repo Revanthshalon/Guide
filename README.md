@@ -32,6 +32,10 @@ Integration & data-flow patterns:
 - Change Data Capture — [learning](architecture-patterns/change-data-capture/learning.md) · [reference](architecture-patterns/change-data-capture/reference.md)
 - Caching Strategies — [learning](architecture-patterns/caching-strategies/learning.md) · [reference](architecture-patterns/caching-strategies/reference.md)
 
+Security:
+
+- Encryption & Key Management — [learning](architecture-patterns/encryption-and-key-management/learning.md) · [reference](architecture-patterns/encryption-and-key-management/reference.md)
+
 Resilience & traffic management:
 
 - Circuit Breaker — [learning](architecture-patterns/circuit-breaker/learning.md) · [reference](architecture-patterns/circuit-breaker/reference.md)

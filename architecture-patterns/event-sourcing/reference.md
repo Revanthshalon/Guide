@@ -23,6 +23,7 @@ Core model: `state = fold(apply, initial, events)` — the append-only log is tr
 | Aggregate too big / too small | Boundary = smallest cluster enforcing a real invariant | Signals: version-conflict rate (too big); invariants leaking into sagas (too small) |
 | Unbounded streams | Close the books: end stream per period, successor seeded with summary event | Under-specified closing event = silent data loss |
 | GDPR vs. immutability | Crypto-shredding (destroy per-user key) or PII outside events | Decide before the first PII-bearing event; remember backups |
+| Encrypted payloads done naively | Encrypt identity fields, not decision fields; metadata stays plaintext; AAD = (stream, version) | Plaintext-holding projections must re-project on shred; upcasting inside ciphertext needs the key |
 | Version conflict under concurrency | `append(stream, expected_version)` + rehydrate-and-retry loop | Re-validate after retry — the command may now be invalid |
 
 ## Production Checklist
