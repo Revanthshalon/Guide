@@ -53,7 +53,7 @@ Templates: [_template-learning.md](oss-tools/_template-learning.md) · [_templat
 Tools you actually operate also get a **runbook**: annotated configs, ordered ceremonies, day-2 procedures, and a dev→production checklist.
 
 - OpenBao (alternative to Vault) — [learning](oss-tools/openbao/learning.md) · [reference](oss-tools/openbao/reference.md) · [runbook](oss-tools/openbao/runbook.md)
-- OpenTofu (alternative to Terraform) — [learning](oss-tools/opentofu/learning.md) · [reference](oss-tools/opentofu/reference.md)
+- OpenTofu (alternative to Terraform) — [learning](oss-tools/opentofu/learning.md) · [reference](oss-tools/opentofu/reference.md) · [runbook](oss-tools/opentofu/runbook.md)
 
 ## Language Best Practices
 
