@@ -77,3 +77,15 @@ Roughly in study order — measurement first, then hardware fundamentals, then t
 - NUMA Awareness — [learning](performance-optimization/numa-awareness/learning.md) · [reference](performance-optimization/numa-awareness/reference.md)
 - Async & I/O — [learning](performance-optimization/async-and-io/learning.md) · [reference](performance-optimization/async-and-io/reference.md)
 - Compiler Optimizations — [learning](performance-optimization/compiler-optimizations/learning.md) · [reference](performance-optimization/compiler-optimizations/reference.md)
+
+## Deferred Topics
+
+Deliberately not scaffolded yet — pick these up after the current sets are learned. When starting one, scaffold it from the category's templates and move it into the index above.
+
+| Topic | Target category | Why deferred | Pick up when |
+| --- | --- | --- | --- |
+| Distributed Tracing & Observability | architecture-patterns | Leans operations more than architecture | Running a multi-service system and debugging cross-service latency/failures |
+| API Gateway & BFF | architecture-patterns | Infrastructure choice more than a pattern | Exposing multiple services to multiple client types |
+| Service Mesh | architecture-patterns | Infrastructure choice; assumes microservices maturity | Cross-cutting concerns (mTLS, retries, traffic shifting) outgrow per-service code |
+| Formal Methods (TLA+) | architecture-patterns | Only pays off when verifying non-trivial designs | Designing custom consensus/replication logic where bugs are catastrophic |
+| GPU Compute | performance-optimization | Different discipline from CPU performance | A workload is provably compute-bound beyond what SIMD + parallelism deliver |

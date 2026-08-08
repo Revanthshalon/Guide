@@ -29,6 +29,7 @@ When adding content, put depth in `learning.md` and distill the actionable summa
 - Keep documentation concrete and production-focused (real failure modes, real mitigations, real migration gotchas, real benchmarking pitfalls) rather than abstract textbook/marketing descriptions — the user is building this to reference back when actually implementing these patterns, adopting these tools, or optimizing real code.
 - `architecture-patterns/event-sourcing/` covers Event Sourcing and CQRS together, since the user treats them as one combined topic.
 - Update `README.md`'s index whenever a new entry is added.
+- `README.md` ends with a "Deferred Topics" table — topics intentionally not scaffolded yet, with the reason and the trigger for picking them up. When the user starts one, scaffold it from the category's templates, move it from that table into the index, and add newly-identified future topics to the table rather than scaffolding them immediately.
 
 ## Cross-linking convention
 
