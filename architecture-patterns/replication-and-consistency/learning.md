@@ -126,6 +126,22 @@ t=800ms replica B reaches 1042 — too late, user already saw stale data
 
 **The unifying frame for this repo:** event-sourcing projections, CDC pipelines, cache invalidation, and search-index feeds are all *asynchronous single-leader replication* — the event log or WAL is the leader, derived stores are followers, and every question ("can I read my write?", "is this current?") is answered with the vocabulary in this document.
 
+## Exercises & Self-Test
+
+Answer from the model, then check against the doc:
+
+1. Classify these reads — decision, own-data display, or anyone's display — and route each: checking a coupon hasn't been used; showing a user their just-edited bio; a product page's review count; "is this username taken?"
+2. State PACELC in one sentence, then use it to explain why strong consistency costs latency *even with no partition anywhere*.
+3. A user sees their comment appear, refresh, disappear, refresh, reappear. Which anomaly is this, and what is the cheapest fix that doesn't touch the leader?
+4. Why does W=2, R=2, N=3 not give linearizability? Name two concrete anomalies that survive quorum overlap.
+5. Your failover promoted a replica and lost 400 ms of acknowledged writes. Which replication setting was this decided by, who should have decided it, and what would zero-loss have cost?
+6. Why is LWW with physical timestamps not merely lossy but *wrongly* lossy under clock skew?
+
+Build exercises:
+
+- Set up Postgres primary + replica with `recovery_min_apply_delay = 5s`; write an app that saves then immediately reads from the replica. Watch read-your-writes break, then fix it with LSN tracking (`pg_current_wal_lsn()` / `pg_last_wal_replay_lsn()`) and verify.
+- Simulate the classification audit on a real schema you know: list its top 20 queries, classify each, and find at least one decision-read currently hitting a replica (there's almost always one).
+
 ## Open Questions
 
 - Postgres specifics: how exactly does `synchronous_standby_names` quorum syntax behave when a standby stalls — does write availability drop immediately?

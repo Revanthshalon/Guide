@@ -25,11 +25,29 @@ Why anyone accepts this complexity:
 
 What it costs: eventual consistency between write and read sides, schema evolution of immutable data, and a mental model most teams haven't operated before. This is the trade the whole document is about.
 
+The whole machine on one screen:
+
+```mermaid
+flowchart LR
+    C[Command] --> D{"decide(state, cmd)"}
+    R["rehydrate: fold(apply, events)"] --> D
+    D -- "Err — rejected, nothing written" --> X[Caller]
+    D -- "events" --> ES[("Event Store\nappend(stream, expected_version)")]
+    ES -- "read stream" --> R
+    ES -- "ordered global feed ($all)" --> P1[Projection: SQL summaries]
+    ES -- " " --> P2[Projection: search index]
+    ES -- " " --> RELAY[Relay / CDC] --> BROKER[Broker: integration events]
+    P1 --> Q[Queries]
+    P2 --> Q
+```
+
+The left half (command → decide → append) is strongly consistent per stream; everything right of the store is a lagging, rebuildable derivative — which is where all the interesting failure modes live.
+
 ## Core Concepts
 
 ### Event
 
-- **What it is:** An immutable record of something that happened, named in past tense from the business domain: `OrderPlaced`, `PaymentCaptured`, `ShipmentDelayed`. Carries the data that describes the fact, plus metadata (event id, stream id, version number, timestamp, correlation/causation ids).
+- **What it is:** An immutable record of something that happened, named in past tense from the business domain: `OrderPlaced`, `PaymentCaptured`, `ShipmentDelayed`. Carries the data that describes the fact, plus metadata: event id, stream id, version number, timestamp — and two ids that earn their keep the first time you debug anything: **correlation id** (one id stamped on everything a single business flow touches, across every service — "show me all events for this checkout" is one query) and **causation id** (the id of the specific event/command that *directly triggered* this one — following the chain backward reconstructs *why* anything happened). Stamp both from day one; they cost nothing and cannot be retrofitted onto old events.
 - **Why it exists:** Events are the atoms of truth. Past tense is not a style preference — it enforces that events record decisions already made and validated. An event can never be rejected or rolled back, only compensated by a later event.
 - **Example:** `MoneyWithdrawn { account_id, amount: 30, withdrawn_at, event_id, version: 3 }`. Note what it is *not*: it is not `WithdrawMoney` (that's a command, a request that may be refused) and not `BalanceChanged { new_balance: 90 }` (that's state leakage — it records the *effect*, losing the *intent*).
 
@@ -73,7 +91,12 @@ What it costs: eventual consistency between write and read sides, schema evoluti
 
 - **What it is:** Sensitive fields inside events are stored as ciphertext, encrypted with a per-subject (usually per-user) data key under the [envelope pattern](../encryption-and-key-management/learning.md): `UserRegistered{user_id, name_enc, email_enc}`. The event's *envelope metadata* — stream id, version, event type, timestamp, correlation ids — stays plaintext, because the store and every subscriber need it to route, order, and checkpoint without holding decryption rights.
 - **Why it exists:** Two forces meet in an event store: the log is immutable and endlessly copied (replicas, backups, projections, downstream topics), and regulations demand erasure and breach containment. Encrypting payload fields per subject solves both at once — a stolen backup of the store yields metadata skeletons, and destroying one user's key (crypto-shredding) erases them from every copy simultaneously, which is the only workable GDPR answer for an append-only log (see the GDPR pitfall below).
-- **Example:** The write path: command handler encrypts `name`/`email` with user 42's DEK (fetched/unwrapped via the keyring) *before* the event is appended; `apply` folds ciphertext straight into state only if the aggregate never branches on it, otherwise the handler decrypts on rehydration. Design consequences that follow: **fields the domain logic must read** (amounts, statuses) stay plaintext or the fold pays a decrypt per event — encrypt identity data, not decision data. **Projections** that need plaintext (a search-by-name screen) decrypt at projection time and now hold derived plaintext — so a shred must also trigger those projections to delete/re-project, making the keyring deletion an event of its own (`UserErased`) that flows down the same pipeline. **Upcasters** run on the plaintext envelope + ciphertext blobs; a schema change *inside* an encrypted field means decrypt-transform-reencrypt, which requires the key — so field-level schema stability is worth extra design care up front. **Replay/rebuild cost** grows by one unwrap per subject (cached) plus one AEAD open per event — measurable but fine with per-user DEK caching; benchmark before assuming otherwise. Bind the AAD to `(stream_id, version)` so an event's ciphertext can't be transplanted into another stream undetected.
+- **Example:** The write path: command handler encrypts `name`/`email` with user 42's DEK (fetched/unwrapped via the keyring) *before* the event is appended. The design consequences, each worth holding separately:
+  - **Encrypt identity data, not decision data.** Fields the domain logic branches on (amounts, statuses) stay plaintext, or every fold pays a decrypt per event. If `apply` never reads a field, ciphertext can flow straight into state.
+  - **Projections holding derived plaintext are part of the erasure surface.** A search-by-name screen decrypts at projection time and now *stores* plaintext — so a shred must trigger those projections to delete/re-project. Make the keyring deletion an event (`UserErased`) that flows down the same pipeline as everything else.
+  - **Upcasters can't see inside ciphertext.** Envelope metadata upcasts normally; a schema change *within* an encrypted field means decrypt-transform-reencrypt, which requires the key. Spend extra design care on the encrypted fields' schema up front.
+  - **Replay cost grows, boundedly.** One key-unwrap per subject (cacheable) plus one AEAD open per event. Fine with DEK caching; benchmark rather than assume.
+  - **Bind the AAD to `(stream_id, version)`** so an event's ciphertext can't be transplanted into another stream undetected.
 
 ## Worked Example
 
@@ -121,6 +144,8 @@ fn decide(state: &Account, cmd: Withdraw) -> Result<Vec<AccountEvent>, Error> {
 
 `apply` must never fail and never decide anything (events are settled facts); `decide` holds every invariant. All domain tests are: given events → when command → expect events/error. No mocks, no database.
 
+One modeling detail the sketch above glosses: before `AccountOpened`, there *is no* `Account` — the honest fold is over `Option<Account>` (`fold: Option<Account> × Event → Option<Account>`), where the creation event is the `None → Some` transition and `decide` on `None` accepts only creation commands. Collapsing this into a default-initialized struct (as the sketch does) works but smuggles "an account that was never opened" into the type space; the `Option` shape makes illegal states unrepresentable and is the idiomatic Rust answer.
+
 **3. A race, resolved by optimistic concurrency.**
 
 Two clients withdraw simultaneously from acc-42 (balance 70):
@@ -147,9 +172,11 @@ MoneyWithdrawn{50}          UPDATE ... balance = balance-50               104
 
 `GET /accounts/acc-42` reads `summaries` — cheap, indexed, shaped for the query. It may briefly lag the write side (say, event 104 written but not yet projected): that lag is the price, and handling it is a pitfall below.
 
-**5. Time travel, because the log is truth.**
+**5. Time travel, because the log is truth — with one honest caveat.**
 
 "Balance on March 3rd?" → fold only events with `timestamp ≤ March 3`. "Why did this account go to zero?" → read the stream; the answer is literally written there.
+
+The caveat is **bi-temporality**: every event actually has *two* timestamps — when the fact happened in the world (**valid time**) and when the system recorded it (**transaction time**) — and they diverge whenever reality is reported late: a backdated deposit keyed in on March 5th *effective* March 1st, a correction event fixing last month's error. "Fold by timestamp" silently picks one axis, and the two axes answer different questions: *"what was the balance on March 3rd?"* (valid time — include the backdated deposit) vs. *"what did we believe the balance was, as of March 3rd?"* (transaction time — exclude it; this is the auditor's and the bug-reproduction question). If the domain has late-arriving or corrective facts — most financial and legal domains do — put both timestamps on events from the start and make each temporal query declare which axis it means. Retrofitting valid time onto events that never carried it is reconstruction, not querying.
 
 ## Pitfalls in Depth
 
@@ -257,6 +284,24 @@ MoneyWithdrawn{50}          UPDATE ... balance = balance-50               104
 **Snapshot policy.** None until measured need; then every-N-events, stored separately, treated as disposable. Closing-the-books beats snapshots when the domain has a natural period.
 
 **CQRS without event sourcing.** A read-heavy CRUD context can still split models (write model + denormalized read tables fed by [CDC](../change-data-capture/learning.md) or triggers). Keep the two tools independent in your head; conflating them causes both to be over-applied.
+
+## Exercises & Self-Test
+
+Answer from the model, then check against the doc:
+
+1. Why can a projection never be used to validate a command, even a projection that is "usually only milliseconds behind"?
+2. Why must every projection be idempotent? Name the two-writes gap that forces it, and the two mechanisms that close it.
+3. A client retries a `Withdraw` that actually succeeded. Explain why `expected_version` does not catch it, and what does.
+4. Two commands race on one aggregate. Walk the version-conflict timeline, including why the loser must *re-validate* after rehydrating.
+5. Why is Kafka not an event store for the write side? Two specific missing properties.
+6. What breaks if a read model joins three streams via three subscriptions with three checkpoints? Why does one `$all` cursor fix it structurally?
+7. Where does the GDPR erasure actually "happen" in a crypto-shredded design, and what must projections holding derived plaintext do?
+
+Build exercises:
+
+- Implement the bank account in Rust: `decide`/`apply` as pure functions + a given/when/then test suite, then a Postgres events table with `(stream_id, version)` unique index. Drive two concurrent writers at one stream and verify the conflict-retry loop holds the invariant.
+- Break your own projection: run it without transactional checkpointing, kill it mid-batch repeatedly, and measure the drift. Then fix it with same-transaction checkpoints and verify drift is zero across 100 kills.
+- Time the fold: generate streams of 100 / 10k / 1M events and measure rehydration. Find where *your* hardware needs snapshots — compare against the "dozens of events never need them" claim.
 
 ## Open Questions
 

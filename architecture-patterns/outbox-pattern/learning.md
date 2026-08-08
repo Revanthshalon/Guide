@@ -15,6 +15,24 @@ Both failure modes are silent, rare, and corrosive — downstream systems slowly
 
 The outbox insight: **turn the two writes into one.** In the *same local transaction* that changes business state, insert the message into an `outbox` table in the same database. The transaction commits or doesn't — state change and intent-to-publish are now atomically inseparable. A separate **relay** process then reads committed outbox rows and publishes them to the broker, retrying until acknowledged. The relay can crash anywhere and nothing is lost — the message is durably parked in the database until delivery succeeds.
 
+```mermaid
+sequenceDiagram
+    participant App
+    participant DB as Database (one txn)
+    participant Relay
+    participant Broker
+    participant Consumer
+    App->>DB: BEGIN: INSERT orders + INSERT outbox; COMMIT
+    Note over DB: state change and intent-to-publish<br/>are now atomically inseparable
+    Relay->>DB: SELECT ... WHERE published_at IS NULL
+    Relay->>Broker: publish (key = aggregate_id)
+    Broker-->>Relay: ack
+    Relay->>DB: UPDATE outbox SET published_at
+    Note over Relay: crash before the UPDATE → republish<br/>(duplicate, never loss)
+    Broker->>Consumer: deliver (at-least-once)
+    Consumer->>Consumer: inbox dedup + effect, one txn
+```
+
 What you've really built is a small, local event log feeding an asynchronous publisher — the same "derive the second write from the first" move as [event sourcing](../event-sourcing/learning.md) (where the log *is* the primary write) and [CDC](../change-data-capture/learning.md) (where the database's own WAL plays the outbox). The price, and it's non-negotiable: the relay retries, so delivery is **at-least-once** — every consumer must be idempotent ([delivery semantics](../idempotency-and-delivery-semantics/learning.md)). Guaranteed delivery is bought by accepting duplicates.
 
 ## Core Concepts
@@ -81,7 +99,7 @@ UPDATE outbox SET published_at = now() WHERE id = 4711;
 
 Crash matrix: before publish → row waits, retried next pass (delayed, not lost). After publish, before update → republished next pass (duplicated, not lost). Every path degrades to *duplicate or delay* — never loss. That asymmetry is the entire point.
 
-**4. The consumer closes the loop.**
+**4. The consumer closes the loop — the inbox pattern.**
 
 ```
 warehouse, one transaction:
@@ -89,6 +107,8 @@ warehouse, one transaction:
   INSERT INTO shipment_jobs(order_id) VALUES ('ord-991');
 COMMIT; then ack Kafka offset
 ```
+
+This consumer-side mirror image has its own name in the literature — the **inbox pattern**: a dedup table in the consumer's database, written in the same transaction as the effect. Outbox on the producer (never lose intent), inbox on the consumer (never apply twice); the pair is how "effectively-once across services" is actually spelled. Knowing the name matters for recognizing it in other material and in framework features (e.g. MassTransit's inbox/outbox middleware).
 
 **5. Steady state:** monitor two numbers — unpublished outbox depth (relay health) and oldest-unpublished age (delivery lag). Prune published rows. That's the whole operational surface.
 
@@ -140,6 +160,22 @@ COMMIT; then ack Kafka offset
 **Scope honestly.** The outbox guarantees *this service's committed changes get published, at least once, in per-aggregate order*. It does not orchestrate multi-service workflows (that's [sagas](../saga-pattern/learning.md), which *use* it as their reliable-messaging substrate), doesn't dedup for consumers, and doesn't replace an event store (it records undelivered intent, not history). Most "outbox didn't work" stories are one of these misassignments.
 
 **When is it overkill?** When the database's own change feed is genuinely sufficient (pure cache-invalidation/search-indexing pipelines with no intent semantics — direct [CDC](../change-data-capture/learning.md) is less machinery), or when loss is truly acceptable (metrics). The moment a *business process* hangs on the message, the outbox is the floor, not gold-plating.
+
+## Exercises & Self-Test
+
+Answer from the model, then check against the doc:
+
+1. Draw the two crash windows of the naive dual write (commit-then-publish and publish-then-commit) and name each one's failure mode. Which is worse, and why is "neither" the outbox's answer?
+2. The relay itself has a publish-then-mark gap. Why is that one acceptable when the original dual write wasn't?
+3. Four relay workers pull rows with `SKIP LOCKED`. What ordering property dies, why can't Kafka restore it, and what sharding rule fixes it?
+4. Why must the poll predicate stay `published_at IS NULL` rather than `id > last_seen`? Walk the exact interleaving that loses a row.
+5. What does the outbox *not* guarantee that consumers must handle, and what mechanism (by name) handles it on their side?
+6. When is direct CDC on business tables the better choice than an outbox — and what is lost the moment a consumer needs the *why* of a change?
+
+Build exercises:
+
+- Build the full loop in Rust: business insert + outbox insert in one sqlx transaction, a batched polling relay, and a consumer with an inbox-style dedup table. Kill the relay at every line (before publish, after publish, after mark) and verify: duplicates and delays, never loss.
+- Convert the relay to `id > last_seen` polling deliberately, run two concurrent writers with an artificial pre-commit sleep, and catch the skipped row. Then explain it in one paragraph as if to a reviewer proposing the "optimization."
 
 ## Open Questions
 

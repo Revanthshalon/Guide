@@ -12,6 +12,27 @@ Inside one database, "reserve inventory AND charge the card AND create the shipm
 
 The crucial mental shift: **compensation is not rollback.** Rollback erases history — as if nothing happened. Compensation is a *new action* that reverses the business effect while the history stands: the charge happened, then the refund happened; the customer's statement shows both. Between a step and its compensation, the intermediate state was *visible to the world* — other transactions may have read it, emails may have been sent. A saga therefore doesn't restore the ACID guarantee; it trades **isolation** away and keeps a weaker but workable promise: *the system ends in either the success state or a deliberately-designed "undone" state — never stranded halfway.*
 
+The shape of every saga, as a state machine (travel-booking example from the worked section):
+
+```mermaid
+stateDiagram-v2
+    [*] --> ReservingFlight
+    ReservingFlight --> ReservingHotel: FlightReserved
+    ReservingFlight --> Aborted: FlightUnavailable
+    ReservingHotel --> Charging: HotelReserved
+    ReservingHotel --> CompensatingFlight: HotelUnavailable
+    Charging --> IssuingTickets: CardCharged (PIVOT crossed)
+    Charging --> CompensatingHotel: CardDeclined
+    CompensatingHotel --> CompensatingFlight: HotelHoldCancelled
+    CompensatingFlight --> Aborted: FlightHoldCancelled
+    IssuingTickets --> Complete: TicketsIssued
+    IssuingTickets --> IssuingTickets: retry (un-refusable, only delayable)
+    Complete --> [*]
+    Aborted --> [*]
+```
+
+Left of the pivot, every failure walks back down the compensation chain; right of it, the only arrow is retry. Every `awaiting` state additionally needs a timeout transition (omitted here for legibility — see the stuck-saga pitfall).
+
 This is the pattern's true nature: less a technical trick than a **business-design discipline**. "What's the compensation for a shipped package?" is not an engineering question — it's a question about what the business does when the ship has sailed (recall it? eat the cost? bill anyway?). Sagas force those answers to be designed up front rather than improvised during incidents. The infrastructure underneath is exactly the two previous topics: steps and their triggers ride on [outbox-grade messaging](../outbox-pattern/learning.md), and every step must be idempotent because everything retries ([delivery semantics](../idempotency-and-delivery-semantics/learning.md)).
 
 ## Core Concepts
@@ -134,6 +155,10 @@ Customer never charged; flight hold released (and would have expired anyway — 
 
 **Choreography vs. orchestration.** Short and stable → choreography (no new infrastructure; the outbox events you already publish are the mechanism). Long, branching, timeout-laden, or business-critical-to-observe → orchestration. The honest default for anything with money in it is orchestration: the workflow gets an address, a state you can query, and durable timers. Migrating choreography→orchestration later is routine; start simple *knowing* the line.
 
+**Parallel branches (fork/join) — and partial compensation.** Real workflows aren't chains: reserve the flight *and* the hotel concurrently (they're independent — serializing them just adds latency), join, then charge. The orchestrator forks commands, tracks per-branch state, and proceeds when all branches confirm. The hard part is failure with the fork half-done: flight reserved, hotel refused, courier still *in flight*. Rules that keep it sane: a join fires compensation only after every branch has *resolved* (confirmed or failed — an in-flight branch must be awaited or cancelled first, so cancellation becomes another command participants support, with its own race against the just-completed reply); compensations for completed branches run as normal (reverse order matters only for branches with data dependencies — independent branches compensate concurrently); and the pivot must sit *after* the join — forking irreversible work in parallel with refusable work is the design error, since a refusal then strands a completed irreversible branch. Choreographed fork/join is markedly worse (the join state must live somewhere, and "somewhere" becomes a de-facto orchestrator nobody designed) — parallel sagas are the strongest single argument for orchestration.
+
+**Saga vs. process manager — the terminology, pinned down.** Used loosely as synonyms; the useful distinction: a **saga** (strictly) is the transaction-with-compensations concept — steps, pivot, undo chain. A **process manager** is the broader stateful component that listens to events and decides what commands to send next — a policy engine ("when `OrderPlaced` and `PaymentCaptured`, send `ShipOrder`") that may run many concurrent instances, react to timeouts, and encode arbitrary workflow logic. Every orchestrated saga is executed *by* a process manager; not every process manager runs a saga (many never compensate anything — they just coordinate). When the [event-sourcing notes](../event-sourcing/learning.md) say cross-aggregate workflows are handled by "sagas or process managers," read it as: the compensation discipline when you need undo, the plain event-driven coordinator when you don't.
+
 **Build vs. framework vs. workflow engine.** A hand-rolled orchestrator is a persisted state machine + outbox + timeout scanner — genuinely buildable, and the exercise teaches the pattern (see Open Questions). Frameworks (Axon, Eventuate, MassTransit sagas) give the state-machine scaffolding inside your app. Durable-execution engines (Temporal, Restate) go further: saga state persistence, timers, and retries become the platform, and your workflow is ordinary code — at the cost of a serious new infrastructure dependency and its failure modes. Choose by how many sagas you'll run: one saga → build; a product full of them → engine.
 
 **Step ordering is risk ordering.** Beyond the pivot rule: order compensatable steps *cheapest-to-compensate first* and most-likely-to-fail *early* (fail before spending). Validation-ish steps (can this card even be charged? — an auth, not a capture) front-load failure discovery. The reserve/confirm pattern (auth-then-capture, hold-then-book) exists to *push the pivot as late as possible* — adopt it wherever a counterpart offers it.
@@ -141,6 +166,22 @@ Customer never charged; flight hold released (and would have expired anyway — 
 **Observability is not optional.** Minimum: correlation id (`saga_id`) stamped through every command, event, and log line; a queryable state per saga instance (orchestrator table or choreography projection); dashboards of saga age/state distribution; alerts on stuck-past-SLA. During incidents, "show me all sagas touching order-991" is the question — build for it on day one.
 
 **What sagas do not give you.** No isolation (countermeasures approximate it), no atomic visibility (observers see intermediates), no exactly-once (idempotency absorbs retries), and no escape from designing failure states with the business. A saga is *eventual consistency with a designed apology path* — that framing keeps expectations honest.
+
+## Exercises & Self-Test
+
+Answer from the model, then check against the doc:
+
+1. Compensation vs. rollback: what does compensation leave behind that rollback wouldn't, and why does that difference force isolation countermeasures?
+2. Zone the steps of a food-delivery order (validate card, reserve courier, charge, notify restaurant, deliver): compensatable / pivot / retriable. Defend the pivot's position, then argue where it moves if the restaurant can refuse.
+3. Why must post-pivot steps be *un-refusable* rather than merely retriable? Construct the stranded state that a refusable post-pivot step creates.
+4. Two sagas race for the last unit of stock. Show why read-then-reserve across two steps double-sells, and why an atomic claim inside one local transaction doesn't.
+5. A participant never replies. Why is there no built-in place where this fails, and what two mechanisms (state-machine level and resource level) bound the damage?
+6. Your system has 14 sagas. What question should you ask about the service boundaries before writing the 15th?
+
+Build exercises:
+
+- Implement the travel-booking orchestrator as a persisted state machine in Rust (sqlx; commands/replies via the outbox loop from that topic's exercise). Then run the crash matrix: kill the orchestrator between every pair of transitions and verify resume-retry-converge, never stranded.
+- Add a timeout to one awaiting state with a late-reply race: fire the compensation, *then* deliver the delayed success reply, and make the state machine handle it (compensate the newly-confirmed step). This is the exercise that reveals whether the model actually landed.
 
 ## Open Questions
 

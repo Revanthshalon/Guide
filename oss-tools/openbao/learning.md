@@ -157,6 +157,21 @@ From Vault OSS to OpenBao, the shape that works:
 
 Rollback plan at every step = the mount still existing on Vault until its consumers are verified on OpenBao.
 
+## Exercises & Self-Test
+
+Answer from the model, then check against the doc:
+
+1. Why does OpenBao start sealed after every restart, and what are the two unseal designs with their respective 3 a.m. costs?
+2. What makes a leaked dynamic DB credential categorically different from a leaked static one? Which engine + mechanism produces that difference?
+3. Your root token was used for setup last quarter and still exists. What's the risk, the correct lifecycle, and the break-glass replacement?
+4. Why is "we moved all passwords into KV" barely a security improvement? What single metric measures whether the migration actually changed the posture?
+5. A 3-node Raft cluster loses two nodes. What still works, what doesn't, and why is the recovery procedure deliberately manual?
+
+Build exercises:
+
+- Run the Hands-On Notes sequence, then: enable the file audit device, perform one secret read, and annotate every field of the audit line — that's the compliance artifact, understood.
+- Cluster drill: 3 containers with Raft, kill the leader mid-write, watch the election; then take a Raft snapshot, destroy the cluster, restore it, and verify a secret survives — the backup story, rehearsed once before it matters.
+
 ## Open Questions
 
 - Current state check (docs move fast): which Vault 1.15+ features have OpenBao equivalents now, what's the K8s injector/CSI story maturity, and what does the official support matrix list for storage backends and plugins?

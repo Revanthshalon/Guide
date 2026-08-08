@@ -134,6 +134,22 @@ The ledger shape is the event-sourcing insight in miniature: store the *fact* ke
 
 **API contract:** mutating endpoints accept an idempotency key, return the original response on repeat (indistinguishable to the caller), `409`-or-wait on concurrent duplicates, and *document* the endpoint's semantics. An endpoint whose duplicate behavior is unspecified is unspecified, period.
 
+## Exercises & Self-Test
+
+Answer from the model, then check against the doc:
+
+1. A request times out. Enumerate the two possible world-states, and explain why no protocol over that channel can collapse them into one.
+2. Why must an idempotency key be minted at the *source of intent* rather than per attempt? What exactly does a per-attempt key fail to deduplicate?
+3. Dedup via Redis check → Postgres effect → Redis record. List every crash/race window and say which failure (loss or duplication) each produces.
+4. Why does a two-state dedup model (seen / not-seen) duplicate precisely the slowest operations? What's the third state, and what claims it atomically?
+5. "We enabled Kafka exactly-once, so consumers don't need dedup." Name three paths that still deliver duplicates.
+6. `points += 10` vs `points = 170` vs a ledger row keyed by `order_id` — give the failure mode of each of the first two and why the third escapes both.
+
+Build exercises:
+
+- Build the three-state idempotency-key table in Postgres (unique-constraint claim, `in_progress`/`done`, stored response) behind a toy payment endpoint. Attack it with a concurrent duplicate racer and a kill-mid-flight test; verify one charge in every interleaving.
+- Write a consumer with deliberate ack-before-process, kill it under load, and count the lost messages — then flip to process-then-ack with an idempotent handler and repeat. Seeing loss vs. duplication in real counts cements which side you're on.
+
 ## Open Questions
 
 - What's the storage/latency cost of an idempotency-key table at real volume (row per write op) — and the right pruning policy given the operational-replay window?

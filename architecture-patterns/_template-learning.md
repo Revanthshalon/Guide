@@ -35,6 +35,10 @@
 
 <!-- The big forks in the road when adopting this pattern, and how to reason about each. -->
 
+## Exercises & Self-Test
+
+<!-- Retrieval practice: 4-6 questions answerable from the mental model without rereading, plus 1-3 small build exercises that make the failure modes observable. -->
+
 ## Open Questions
 
 <!-- Things not yet understood or verified — revisit these on the next study session. -->

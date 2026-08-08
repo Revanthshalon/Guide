@@ -10,6 +10,14 @@ Follow that recursion and the whole field unfolds:
 2. So encrypt the DEK with another key — a **key encryption key (KEK)**. That's **envelope encryption**: the data wrapped in a key, the key wrapped in another key, like a letter in an envelope. Now the stolen disk yields ciphertext plus a *wrapped* (useless) DEK.
 3. What protects the KEK? Another KEK, perhaps — a **key hierarchy** — but this can't recurse forever. It terminates at a **root of trust**: a key that is never written down anywhere software can casually read — held in a hardware security module (HSM), split among humans (Shamir's secret sharing), or provided by a cloud KMS whose own root lives in *their* HSMs.
 
+```mermaid
+flowchart TD
+    ROT["Root of trust\n(HSM / Shamir quorum / cloud KMS)"] -- "protects" --> KEK["KEK — lives only in KMS/OpenBao\nnever exported, only used"]
+    KEK -- "wraps (encrypts)" --> DEK["DEK — 32 bytes, per user/object\nexists in plaintext only in app memory, briefly"]
+    DEK -- "encrypts locally (AEAD)" --> DATA["Data — any size\nstored anywhere, copied freely"]
+    DATA -. "stored beside" .-> WD["wrapped DEK + kek_version\n(inert without the KMS)"]
+```
+
 The payoff of this structure is not just theft-resistance — it's that it makes the three operationally impossible things possible:
 
 - **Rotation without re-encryption:** to rotate, re-wrap the 32-byte DEKs under a new KEK. The 10 GB of data is never touched. Without envelopes, rotating a key means re-encrypting everything it ever protected.
@@ -178,6 +186,23 @@ DELETE FROM user_keys WHERE user_id = 42        -- audited, tombstoned
 **Searchability, the honest version.** Encrypted fields can't be `WHERE email = ?`'d. The workable answer is **blind indexing** (a keyed HMAC of the normalized value in a separate indexed column — equality lookups only, and the index key is itself KMS-managed); deterministic encryption gives the same and leaks equality patterns more broadly. Range/like/full-text over encrypted data means either searchable-encryption research territory or admitting that field shouldn't be encrypted at this layer. Deciding *which queries the ciphertext must support* belongs in the same design meeting as the threat model.
 
 **In Rust specifically:** `aws-lc-rs`/`ring` or RustCrypto's `aes-gcm`/`chacha20poly1305` for AEAD, `argon2` for password-derived keys, `zeroize` for scrubbing DEKs after use, `secrecy` types to keep keys out of `Debug`/logs by construction, and the OpenBao/Vault HTTP API is plain enough that `reqwest` + a thin typed client suffices. The type system is genuinely useful here: a `SecretBox<Dek>` that can't be logged or cloned casually is the kind of misuse-resistance this domain rewards.
+
+## Exercises & Self-Test
+
+Answer from the model, then check against the doc:
+
+1. "Encryption never eliminates a secret — it exchanges one." Unpack this, and show how the envelope pattern is the recursion it starts.
+2. Full-disk encryption is on. Enumerate three attackers it stops and three it doesn't; say which mechanism handles each of the latter.
+3. Why does rotating a KEK touch zero bytes of data? What *does* get rewritten, and what ratchet makes the rotation real rather than theater?
+4. Why is a fresh DEK per object also a *nonce-safety* mechanism, not just a blast-radius one?
+5. Your "deleted" user's data must be provably unreadable — walk the shred, then list the three places the key might survive if the keyring's lifecycle wasn't designed.
+6. The KMS is down for 20 minutes. Which operations break, which keep working, and what design choice decided that split?
+
+Build exercises:
+
+- Implement the worked example in Rust against `bao server -dev`: `aes-gcm` for local AEAD (AAD = `user:{id}:{field}`), transit for wrap/unwrap, `zeroize` on the DEK, a keyring table, and the erasure path. Verify a "stolen" database dump (pg_dump) is useless without OpenBao.
+- Run rotation for real: rotate the transit key, write the re-wrap job with a progress metric, raise `min_decryption_version`, and prove old ciphertexts now fail loudly — then restore one from before the ratchet and watch the failure you'd get in production.
+- Demonstrate the nonce catastrophe safely: encrypt two messages with the same key+nonce with `aes-gcm`, XOR the ciphertexts, and observe plaintext structure leaking. Ten lines, permanent respect.
 
 ## Open Questions
 

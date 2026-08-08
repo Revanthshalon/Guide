@@ -127,6 +127,22 @@ Per-row ordering holds because the event key is the PK: all of p-77's history si
 
 **The one page to write before production:** slot-lag alert thresholds, `max_slot_wal_keep_size` value and the re-snapshot runbook for an invalidated slot, schema-registry compatibility mode, and per-pipeline answer to "what happens during a 6-hour connector outage?" (WAL pinning on the primary + catch-up burst on recovery — both need headroom).
 
+## Exercises & Self-Test
+
+Answer from the model, then check against the doc:
+
+1. Why does polling on `updated_at` miss deletes *structurally* (not as an implementation bug)? What else does it miss?
+2. A CDC event says `{op:u, before:{price:90}, after:{price:75}}`. Give three different business meanings this could have, and conclude what kind of consumer may react to it directly.
+3. Explain how an abandoned replication slot takes down the *primary*, and the three-layer defense (alert / bound / lifecycle).
+4. A warehouse shows an order header with no lines for 3 seconds. Where in the pipeline did the transaction's atomicity die, and what are the two honest responses?
+5. Why must sinks upsert by key rather than blindly insert — name both sources of redelivery/overlap (connector restarts, and what else?).
+6. Your team wants to rename a column on a CDC-captured table. What has that table become, and what process should the rename now go through?
+
+Build exercises:
+
+- Stand up Postgres + Debezium (or a Rust logical-replication client) on a toy `products` table feeding a search-index sink. Verify insert/update/delete flow end to end, then kill and restart the connector mid-stream and confirm the sink converges (idempotent upserts doing their job).
+- Fill the disk in miniature: create a slot, stop its consumer, write continuously, and watch `pg_replication_slots` lag grow; then set `max_slot_wal_keep_size` and watch the slot get invalidated instead. Write the runbook line for each alert you'd set.
+
 ## Open Questions
 
 - Postgres logical replication protocol details: what exactly does `pgoutput` emit per operation, and what do failover slots (PG 17) change about connector HA?
