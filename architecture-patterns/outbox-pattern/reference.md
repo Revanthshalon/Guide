@@ -17,6 +17,7 @@ Core model: no transaction spans DB + broker (dual write). So: insert the messag
 | --- | --- | --- |
 | Direct publish "just this once" | Only the relay holds producer credentials; publish API = outbox insert; lint for broker imports | Fails only under crash timing — invisible in tests |
 | Polling load vs. latency trade | CDC/log-tailing relay (~ms, zero query load); else partial index on unpublished + batching + adaptive interval | Postgres replication slot abandoned → WAL fills disk |
+| Poll by `id > last_seen` skips rows | Keep the `published_at IS NULL` shape — re-sees everything unpublished | Sequence ids commit out of order; a skipped in-flight row is lost forever |
 | Parallel relay breaks per-aggregate order | Shard workers by `hash(aggregate_id)`; measure single-threaded batching first | `SKIP LOCKED` has no affinity; Kafka can't fix arrival order |
 | Unbounded table growth | Decide retention day one: delete-on-publish / TTL job / partition drops; CDC same-txn delete trick | No functional symptom until the operational cliff |
 | Payload = serialized domain object | Explicit versioned integration-event schema, mapped at write time | Internal refactors silently break other teams |

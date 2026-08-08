@@ -26,6 +26,9 @@ Core model: `state = fold(apply, initial, events)` — the append-only log is tr
 | Encrypted payloads done naively | Encrypt identity fields, not decision fields; metadata stays plaintext; AAD = (stream, version) | Plaintext-holding projections must re-project on shred; upcasting inside ciphertext needs the key |
 | Version conflict under concurrency | `append(stream, expected_version)` + rehydrate-and-retry loop | Re-validate after retry — the command may now be invalid |
 | Hot-aggregate retry storm | Bounded jittered retries → single-writer routing (actor/partition per aggregate) → shard commutative state | Quadratic collapse appears suddenly at peak load |
+| Retried command duplicates legitimately | Command idempotency key, deduped in the append transaction | `expected_version` can't catch it — no conflict, just a second valid command |
+| Zombie projector (two instances, one projection) | CAS checkpoint (`WHERE position = $expected`) in the projection transaction as fence | Stale instance's writes must abort loudly → alert |
+| Rebuild serves partial state / never catches live head | Blue/green read model: build v2 alongside, converge to lag threshold, atomic alias/view swap | Install the serving indirection on day one; gate swap on read-your-writes position |
 | Multi-cursor projection (torn reads) | One read model = one cursor: single `$all` subscription, single checkpoint | Independent per-stream cursors show states that never coexisted |
 | Cross-stream causal order (missing reference) | Placeholder upserts or park-and-retry; or self-contained events (denormalize at write) | Zero-row UPDATE is silent; monitor parked events |
 
