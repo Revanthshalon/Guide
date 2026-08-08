@@ -16,14 +16,31 @@ Every topic folder has two docs, scaffolded from its category's templates:
 
 Templates: [_template-learning.md](architecture-patterns/_template-learning.md) · [_template-reference.md](architecture-patterns/_template-reference.md)
 
-- Event Sourcing & CQRS — [learning](architecture-patterns/event-sourcing/learning.md) · [reference](architecture-patterns/event-sourcing/reference.md)
+Distributed-systems fundamentals:
+
+- Replication & Consistency Models — [learning](architecture-patterns/replication-and-consistency/learning.md) · [reference](architecture-patterns/replication-and-consistency/reference.md)
+- Consensus & Leader Election — [learning](architecture-patterns/consensus-and-leader-election/learning.md) · [reference](architecture-patterns/consensus-and-leader-election/reference.md)
+- Idempotency & Delivery Semantics — [learning](architecture-patterns/idempotency-and-delivery-semantics/learning.md) · [reference](architecture-patterns/idempotency-and-delivery-semantics/reference.md)
+- Sharding — [learning](architecture-patterns/sharding/learning.md) · [reference](architecture-patterns/sharding/reference.md)
+
+Integration & data-flow patterns:
+
 - Event-Driven Architecture — [learning](architecture-patterns/event-driven-architecture/learning.md) · [reference](architecture-patterns/event-driven-architecture/reference.md)
+- Event Sourcing & CQRS — [learning](architecture-patterns/event-sourcing/learning.md) · [reference](architecture-patterns/event-sourcing/reference.md)
 - Saga Pattern — [learning](architecture-patterns/saga-pattern/learning.md) · [reference](architecture-patterns/saga-pattern/reference.md)
 - Outbox Pattern — [learning](architecture-patterns/outbox-pattern/learning.md) · [reference](architecture-patterns/outbox-pattern/reference.md)
-- Circuit Breaker — [learning](architecture-patterns/circuit-breaker/learning.md) · [reference](architecture-patterns/circuit-breaker/reference.md)
-- Strangler Fig — [learning](architecture-patterns/strangler-fig/learning.md) · [reference](architecture-patterns/strangler-fig/reference.md)
-- Sharding — [learning](architecture-patterns/sharding/learning.md) · [reference](architecture-patterns/sharding/reference.md)
+- Change Data Capture — [learning](architecture-patterns/change-data-capture/learning.md) · [reference](architecture-patterns/change-data-capture/reference.md)
 - Caching Strategies — [learning](architecture-patterns/caching-strategies/learning.md) · [reference](architecture-patterns/caching-strategies/reference.md)
+
+Resilience & traffic management:
+
+- Circuit Breaker — [learning](architecture-patterns/circuit-breaker/learning.md) · [reference](architecture-patterns/circuit-breaker/reference.md)
+- Backpressure & Rate Limiting — [learning](architecture-patterns/backpressure-and-rate-limiting/learning.md) · [reference](architecture-patterns/backpressure-and-rate-limiting/reference.md)
+- Load Balancing & Service Discovery — [learning](architecture-patterns/load-balancing-and-service-discovery/learning.md) · [reference](architecture-patterns/load-balancing-and-service-discovery/reference.md)
+
+Migration:
+
+- Strangler Fig — [learning](architecture-patterns/strangler-fig/learning.md) · [reference](architecture-patterns/strangler-fig/reference.md)
 
 ## OSS Tools
 
@@ -51,8 +68,12 @@ Roughly in study order — measurement first, then hardware fundamentals, then t
 - Data-Oriented Design — [learning](performance-optimization/data-oriented-design/learning.md) · [reference](performance-optimization/data-oriented-design/reference.md)
 - Allocation Strategies — [learning](performance-optimization/allocation-strategies/learning.md) · [reference](performance-optimization/allocation-strategies/reference.md)
 - SIMD — [learning](performance-optimization/simd/learning.md) · [reference](performance-optimization/simd/reference.md)
+- Batching & Amortization — [learning](performance-optimization/batching-and-amortization/learning.md) · [reference](performance-optimization/batching-and-amortization/reference.md)
 - Zero-Copy — [learning](performance-optimization/zero-copy/learning.md) · [reference](performance-optimization/zero-copy/reference.md)
+- Serialization & Encoding — [learning](performance-optimization/serialization-and-encoding/learning.md) · [reference](performance-optimization/serialization-and-encoding/reference.md)
+- Parallelism & Work Stealing — [learning](performance-optimization/parallelism-and-work-stealing/learning.md) · [reference](performance-optimization/parallelism-and-work-stealing/reference.md)
 - False Sharing — [learning](performance-optimization/false-sharing/learning.md) · [reference](performance-optimization/false-sharing/reference.md)
 - Lock-Free Concurrency — [learning](performance-optimization/lock-free-concurrency/learning.md) · [reference](performance-optimization/lock-free-concurrency/reference.md)
+- NUMA Awareness — [learning](performance-optimization/numa-awareness/learning.md) · [reference](performance-optimization/numa-awareness/reference.md)
 - Async & I/O — [learning](performance-optimization/async-and-io/learning.md) · [reference](performance-optimization/async-and-io/reference.md)
 - Compiler Optimizations — [learning](performance-optimization/compiler-optimizations/learning.md) · [reference](performance-optimization/compiler-optimizations/reference.md)
