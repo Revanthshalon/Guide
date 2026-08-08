@@ -26,6 +26,10 @@
 
 <!-- How to measure honestly: harness setup, noise sources, warm-up, what counters/tools to look at (perf, cachegrind, criterion...). -->
 
+## Exercises & Self-Test
+
+<!-- Retrieval practice: 4-6 questions answerable from the mental model without rereading, plus 1-3 measurement exercises run on real hardware. -->
+
 ## Open Questions
 
 <!-- Things not yet understood or verified — revisit on the next study session. -->
