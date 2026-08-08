@@ -25,6 +25,9 @@ Core model: `state = fold(apply, initial, events)` — the append-only log is tr
 | GDPR vs. immutability | Crypto-shredding (destroy per-user key) or PII outside events | Decide before the first PII-bearing event; remember backups |
 | Encrypted payloads done naively | Encrypt identity fields, not decision fields; metadata stays plaintext; AAD = (stream, version) | Plaintext-holding projections must re-project on shred; upcasting inside ciphertext needs the key |
 | Version conflict under concurrency | `append(stream, expected_version)` + rehydrate-and-retry loop | Re-validate after retry — the command may now be invalid |
+| Hot-aggregate retry storm | Bounded jittered retries → single-writer routing (actor/partition per aggregate) → shard commutative state | Quadratic collapse appears suddenly at peak load |
+| Multi-cursor projection (torn reads) | One read model = one cursor: single `$all` subscription, single checkpoint | Independent per-stream cursors show states that never coexisted |
+| Cross-stream causal order (missing reference) | Placeholder upserts or park-and-retry; or self-contained events (denormalize at write) | Zero-row UPDATE is silent; monitor parked events |
 
 ## Production Checklist
 
