@@ -8,8 +8,8 @@ This is a personal reference knowledge base — not a software project with a bu
 
 - `architecture-patterns/` — system architecture patterns (e.g. `event-sourcing/` for Event Sourcing & CQRS): what the pattern is, its pitfalls, and how to handle those pitfalls in a production environment.
 - `oss-tools/` — open source software the user is evaluating or adopting, especially open-source alternatives to vendor/licensed tools (e.g. `openbao/` as an alternative to Vault, `opentofu/` as an alternative to Terraform): what it is, how it compares to the tool it replaces, its pitfalls, and migration considerations.
-- `language-best-practices/` — per-language conventions and idioms (e.g. `rust/`): best practices, anti-patterns, and tooling.
-- `performance-optimization/` — techniques for building high-performance applications (e.g. `cache-locality/`, `memory-layout/`, `simd/`): what the technique exploits, when it helps vs. hurts, implementation notes, and how to benchmark it.
+- `language-best-practices/` — per-language conventions and idioms (e.g. `rust/`): best practices, anti-patterns, and tooling. Rust is the primary language of focus.
+- `performance-optimization/` — techniques for building high-performance applications (e.g. `cache-locality/`, `memory-layout/`, `simd/`): what the technique exploits, when it helps vs. hurts, implementation notes, and how to benchmark it. Code examples, crates, and tooling in this category should be Rust-first (other languages only when illustrating something Rust can't).
 
 There is no code to build or run here. Work in this repo is writing/organizing Markdown documentation.
 
