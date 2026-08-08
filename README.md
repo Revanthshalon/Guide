@@ -48,9 +48,11 @@ Migration:
 
 ## OSS Tools
 
-Templates: [_template-learning.md](oss-tools/_template-learning.md) · [_template-reference.md](oss-tools/_template-reference.md)
+Templates: [_template-learning.md](oss-tools/_template-learning.md) · [_template-reference.md](oss-tools/_template-reference.md) · [_template-runbook.md](oss-tools/_template-runbook.md)
 
-- OpenBao (alternative to Vault) — [learning](oss-tools/openbao/learning.md) · [reference](oss-tools/openbao/reference.md)
+Tools you actually operate also get a **runbook**: annotated configs, ordered ceremonies, day-2 procedures, and a dev→production checklist.
+
+- OpenBao (alternative to Vault) — [learning](oss-tools/openbao/learning.md) · [reference](oss-tools/openbao/reference.md) · [runbook](oss-tools/openbao/runbook.md)
 - OpenTofu (alternative to Terraform) — [learning](oss-tools/opentofu/learning.md) · [reference](oss-tools/opentofu/reference.md)
 
 ## Language Best Practices

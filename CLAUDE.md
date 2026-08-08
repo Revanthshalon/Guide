@@ -15,12 +15,16 @@ There is no code to build or run here. Work in this repo is writing/organizing M
 
 ## Doc structure: learning vs. reference
 
-Every topic folder contains exactly two documents serving different purposes:
+Every topic folder contains at least two documents serving different purposes:
 
 - `learning.md` — study material, written to be read top-to-bottom and understood: mental models, mechanisms, worked examples, the "why" behind everything. This is where new material lands when the user is learning a topic.
 - `reference.md` — quick-reference cheat sheet, scannable in under a minute: tables, checklists, rules of thumb, commands. Distilled from `learning.md`, never explanatory prose.
 
-When adding content, put depth in `learning.md` and distill the actionable summary into `reference.md`. Don't duplicate explanations across both.
+`oss-tools/` entries may add a third document when the tool is something the user will actually operate:
+
+- `runbook.md` — procedural setup and operations: annotated config files, ordered ceremonies, day-2 procedures (backup/restore, upgrades, rotation), a monitoring-signals table, a dev→production checklist, and a "common mistakes → what actually happens" table. Scaffold it from `oss-tools/_template-runbook.md`.
+
+When adding content, put depth in `learning.md`, procedure in `runbook.md`, and distill the actionable summary into `reference.md`. Don't duplicate explanations across them — the runbook states *what to run and what it prevents*, and links to `learning.md` for *why*.
 
 ## Working in this repo
 

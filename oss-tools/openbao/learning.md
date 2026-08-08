@@ -107,6 +107,8 @@ bao write auth/approle/role/orders token_policies=orders-svc token_ttl=15m
 
 Things to actually try when studying: kill and restart the server to *feel* sealed-by-default; run a 3-node Raft cluster in containers and kill the leader mid-write; enable the file audit device and read what a `kv get` actually logs; wire the transit calls into the [envelope-encryption worked example](../../architecture-patterns/encryption-and-key-management/learning.md) from a small Rust client.
 
+**For an actual deployment, use [runbook.md](runbook.md)** — annotated production config, the one-time init ceremony, policy authoring, secure introduction (Kubernetes auth / response-wrapped AppRole), backup-restore and upgrade procedures, monitoring signals, and a dev→production checklist. This section is for building intuition; the runbook is for not making mistakes.
+
 ## Pitfalls in Depth
 
 ### Pitfall: The root token that never died
