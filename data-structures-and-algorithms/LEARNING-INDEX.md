@@ -38,9 +38,9 @@ Everything else assumes these two. They're short but non-skippable.
 
 | Topic | Folder | Prereq | Covers |
 | --- | --- | --- | --- |
-| Binary Search | `binary-search/` | 1 | The predicate/monotone-boundary generalization (far more useful than "find in sorted array"); lower/upper bound; `partition_point`; binary search on the *answer*; the off-by-one taxonomy; branchless and interpolation variants |
-| Sorting | `sorting/` | 1, binary search | Merge/quick/heap; pdqsort (what `sort_unstable` actually runs); stability and when it matters; sort keys and decorate-sort-undecorate; non-comparison sorts (counting, radix, bucket) and their preconditions; external merge sort; the lower bound and how to escape it |
-| Selection & Order Statistics | `selection-and-order-statistics/` | sorting | Quickselect, median-of-medians, `select_nth_unstable`; top-k via heap vs. partial sort vs. quickselect; streaming quantiles as the preview of Stage 8 |
+| Binary Search ✅ | [learning](binary-search/learning.md) · [reference](binary-search/reference.md) | 1 | The predicate/monotone-boundary generalization (far more useful than "find in sorted array"); lower/upper bound; `partition_point`; binary search on the *answer*; the off-by-one taxonomy; branchless and interpolation variants |
+| Sorting ✅ | [learning](sorting/learning.md) · [reference](sorting/reference.md) | 1, binary search | Merge/quick/heap; pdqsort (what `sort_unstable` actually runs); stability and when it matters; sort keys and decorate-sort-undecorate; non-comparison sorts (counting, radix, bucket) and their preconditions; external merge sort; the lower bound and how to escape it |
+| Selection & Order Statistics ✅ | [learning](selection-and-order-statistics/learning.md) · [reference](selection-and-order-statistics/reference.md) | sorting | Quickselect, median-of-medians, `select_nth_unstable`; top-k via heap vs. partial sort vs. quickselect; streaming quantiles as the preview of Stage 8 |
 
 ## Stage 3 — Hashing
 

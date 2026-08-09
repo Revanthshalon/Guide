@@ -71,7 +71,7 @@ v.sort_unstable(); v.dedup();             // dedup alone = CONSECUTIVE only
 - Know n → `with_capacity`. About to add k → `reserve`.
 - `remove(0)` in a loop is Θ(n²) — use `VecDeque`, `swap_remove`, `retain`, or push-then-`reverse`.
 - `clear()` never frees; only `shrink_to_fit`/`shrink_to` does.
-- Below a few hundred elements a linear scan beats binary search and hashing — measure your crossover.
+- Linear scan beats `binary_search` only below n≈24 (measured, `u32`) — not the "few hundred" folklore claims.
 - Sorted `Vec` + `binary_search` beats `BTreeMap` for small, read-heavy, build-once maps.
 
 ## Implementation Checklist

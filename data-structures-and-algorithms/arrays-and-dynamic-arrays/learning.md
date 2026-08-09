@@ -88,7 +88,14 @@ Two measured details: `Option<Vec<T>>` is also 24 bytes (the null-pointer niche 
 | Search (sorted) | Θ(log n) | Θ(log n) | — | — |
 | Whole structure | — | — | — | Θ(cap), ≤ 2n after growth |
 
-**Where the table misleads.** The Θ(n) scan and the Θ(log n) binary search are not comparable at face value. A linear scan of a contiguous `Vec<u32>` runs at ~10 GB/s with perfect prefetching; a binary search does ~log₂ n *unpredictable* jumps, each a potential cache miss and a mispredicted branch. Below roughly a few hundred elements — a handful of cache lines — the "worse" linear scan wins. This is the n₀ escape hatch from [complexity analysis](../complexity-analysis/learning.md) made concrete, and it's why small maps are often best represented as a sorted `Vec<(K, V)>` scanned linearly.
+**Where the table misleads.** The Θ(n) scan and the Θ(log n) binary search are not comparable at face value: a linear scan is prefetched and branch-predictable, while a binary search does ~log₂ n *unpredictable* jumps. But the crossover is much earlier than folklore suggests — measured on this machine, `Vec<u32>` lookups (ns per lookup, ~50% hit rate):
+
+| n | 8 | 16 | **32** | 128 | 1024 | 4096 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Linear (`iter().any`) | **11.0** | **21.6** | 52.1 | 108.6 | 416.4 | 1040.9 |
+| `binary_search` | 13.2 | 25.7 | **31.2** | **28.2** | **25.2** | **21.8** |
+
+**Binary search wins from about n = 24.** The linear scan's advantage is real but narrow — it applies to tiny lookup tables, not to the "few hundred elements" the rule of thumb usually claims. What *does* survive at larger n is the sorted-`Vec`-versus-`BTreeMap`/`HashMap` comparison, which is about allocation and pointer chasing rather than about scanning. Measure your own crossover for your element type; this is the n₀ escape hatch from [complexity analysis](../complexity-analysis/learning.md) made concrete, and it cuts both ways.
 
 **Memory overhead.** Right after a doubling, up to half the allocation is unused — a `Vec` holding n elements can occupy 2n slots. For a few large `Vec`s this is invisible; for a million small ones it's a doubling of your memory bill, and `into_boxed_slice`/`shrink_to_fit` is the fix.
 
@@ -233,7 +240,7 @@ Build exercises:
 
 ## Open Questions
 
-- What's the real crossover between linear scan and `binary_search` on this machine for `u32`, `u64`, and a 32-byte struct? Three numbers, measured.
+- The `u32` crossover is measured (~24). Still open: the same number for `u64`, for a 32-byte struct, and for `String` keys where comparison itself is Θ(k).
 - Does `smallvec` actually win for the typical "0–3 elements, millions of instances" case here, or does the larger inline size hurt more than the avoided allocation helps? Measure against `Vec` and `Box<[T]>`.
 - How much do bounds checks cost on a hot scan in practice, given that LLVM elides most of them? Compare an indexed loop, an iterator loop, and `get_unchecked`.
 - `shrink_to_fit` on a 500 MB `Vec` — does the allocator actually return the pages to the OS, or does RSS stay flat? Test with the system allocator and with `mimalloc`/`jemalloc`.

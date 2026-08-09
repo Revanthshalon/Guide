@@ -107,6 +107,12 @@ Stage 1 — linear structures:
 - Stacks & Queues — [learning](data-structures-and-algorithms/stacks-and-queues/learning.md) · [reference](data-structures-and-algorithms/stacks-and-queues/reference.md)
 - Strings & Text — [learning](data-structures-and-algorithms/strings-and-text/learning.md) · [reference](data-structures-and-algorithms/strings-and-text/reference.md)
 
+Stage 2 — searching & sorting:
+
+- Binary Search — [learning](data-structures-and-algorithms/binary-search/learning.md) · [reference](data-structures-and-algorithms/binary-search/reference.md)
+- Sorting — [learning](data-structures-and-algorithms/sorting/learning.md) · [reference](data-structures-and-algorithms/sorting/reference.md)
+- Selection & Order Statistics — [learning](data-structures-and-algorithms/selection-and-order-statistics/learning.md) · [reference](data-structures-and-algorithms/selection-and-order-statistics/reference.md)
+
 ## Deferred Topics
 
 Deliberately not scaffolded yet — pick these up after the current sets are learned. When starting one, scaffold it from the category's templates and move it into the index above.
