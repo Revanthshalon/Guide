@@ -53,12 +53,12 @@ Everything else assumes these two. They're short but non-skippable.
 
 | Topic | Folder | Prereq | Covers |
 | --- | --- | --- | --- |
-| Binary Search Trees & Balancing | `binary-search-trees/` | 2 | The BST invariant; degeneration; rotations; AVL vs. red-black vs. treap vs. splay — what each optimizes; augmented BSTs (order statistics, interval trees); why Rust pushes you to arenas here |
-| B-Trees | `b-trees/` | BSTs | Why `BTreeMap` beats a red-black tree on real hardware; node fanout as a cache/page decision; B+ trees and range scans; the bridge to on-disk indexes and Stage 9 |
-| Heaps & Priority Queues | `heaps-and-priority-queues/` | 2 | Binary heap as implicit tree; sift up/down; heapify in O(n); `BinaryHeap` and the `Reverse` trick; d-ary, pairing, Fibonacci heaps and why the last one loses in practice; decrease-key and its Dijkstra consequence; indexed heaps |
-| Tries & Radix Trees | `tries-and-radix-trees/` | 1, strings | Prefix trees; compressed/PATRICIA radix trees; ART; memory blowup and the map-per-node question; autocomplete, routing tables, IP lookup |
-| Range Query Structures | `range-query-structures/` | heaps, arrays | Prefix sums → Fenwick (BIT) → segment tree; lazy propagation; sparse tables for idempotent queries; sqrt decomposition; choosing among them by update/query mix |
-| Disjoint Set Union | `disjoint-set-union/` | 1 | Union by rank/size + path compression; the inverse-Ackermann bound; the "merge equivalence classes" problem shape; Kruskal, connectivity, offline dynamic connectivity |
+| Binary Search Trees & Balancing ✅ | [learning](binary-search-trees/learning.md) · [reference](binary-search-trees/reference.md) | 2 | The BST invariant; degeneration; rotations; AVL vs. red-black vs. treap vs. splay — what each optimizes; augmented BSTs (order statistics, interval trees); why Rust pushes you to arenas here |
+| B-Trees ✅ | [learning](b-trees/learning.md) · [reference](b-trees/reference.md) | BSTs | Why `BTreeMap` beats a red-black tree on real hardware; node fanout as a cache/page decision; B+ trees and range scans; the bridge to on-disk indexes and Stage 9 |
+| Heaps & Priority Queues ✅ | [learning](heaps-and-priority-queues/learning.md) · [reference](heaps-and-priority-queues/reference.md) | 2 | Binary heap as implicit tree; sift up/down; heapify in O(n); `BinaryHeap` and the `Reverse` trick; d-ary, pairing, Fibonacci heaps and why the last one loses in practice; decrease-key and its Dijkstra consequence; indexed heaps |
+| Tries & Radix Trees ✅ | [learning](tries-and-radix-trees/learning.md) · [reference](tries-and-radix-trees/reference.md) | 1, strings | Prefix trees; compressed/PATRICIA radix trees; ART; memory blowup and the map-per-node question; autocomplete, routing tables, IP lookup |
+| Range Query Structures ✅ | [learning](range-query-structures/learning.md) · [reference](range-query-structures/reference.md) | heaps, arrays | Prefix sums → Fenwick (BIT) → segment tree; lazy propagation; sparse tables for idempotent queries; sqrt decomposition; choosing among them by update/query mix |
+| Disjoint Set Union ✅ | [learning](disjoint-set-union/learning.md) · [reference](disjoint-set-union/reference.md) | 1 | Union by rank/size + path compression; the inverse-Ackermann bound; the "merge equivalence classes" problem shape; Kruskal, connectivity, offline dynamic connectivity |
 
 ## Stage 5 — Graphs
 

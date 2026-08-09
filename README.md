@@ -120,6 +120,15 @@ Stage 3 — hashing:
 - Hash Tables — [learning](data-structures-and-algorithms/hash-tables/learning.md) · [reference](data-structures-and-algorithms/hash-tables/reference.md)
 - Hashing Techniques — [learning](data-structures-and-algorithms/hashing-techniques/learning.md) · [reference](data-structures-and-algorithms/hashing-techniques/reference.md)
 
+Stage 4 — trees & priority structures:
+
+- Binary Search Trees & Balancing — [learning](data-structures-and-algorithms/binary-search-trees/learning.md) · [reference](data-structures-and-algorithms/binary-search-trees/reference.md)
+- B-Trees — [learning](data-structures-and-algorithms/b-trees/learning.md) · [reference](data-structures-and-algorithms/b-trees/reference.md)
+- Heaps & Priority Queues — [learning](data-structures-and-algorithms/heaps-and-priority-queues/learning.md) · [reference](data-structures-and-algorithms/heaps-and-priority-queues/reference.md)
+- Tries & Radix Trees — [learning](data-structures-and-algorithms/tries-and-radix-trees/learning.md) · [reference](data-structures-and-algorithms/tries-and-radix-trees/reference.md)
+- Range Query Structures — [learning](data-structures-and-algorithms/range-query-structures/learning.md) · [reference](data-structures-and-algorithms/range-query-structures/reference.md)
+- Disjoint Set Union — [learning](data-structures-and-algorithms/disjoint-set-union/learning.md) · [reference](data-structures-and-algorithms/disjoint-set-union/reference.md)
+
 ## Deferred Topics
 
 Deliberately not scaffolded yet — pick these up after the current sets are learned. When starting one, scaffold it from the category's templates and move it into the index above.
