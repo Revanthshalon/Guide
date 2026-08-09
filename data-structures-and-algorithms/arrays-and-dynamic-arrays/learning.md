@@ -103,7 +103,16 @@ Two measured details: `Option<Vec<T>>` is also 24 bytes (the null-pointer niche 
 | `BTreeMap` | **6.6** | 11.2 | 16.7 | 23.0 | 33.8 | 45.1 |
 | `HashMap` | 8.8 | **8.6** | **8.8** | **8.7** | **7.8** | **7.7** |
 
-`HashMap` is flat at ~8 ns and wins from n = 32; the sorted `Vec` loses to `BTreeMap` at *every* size measured. So the folklore that contiguity carries a flat array past the hash map for small maps does not survive contact with a `u32` key and a cache-resident table. Measure your own crossover for your key type — this is the n₀ escape hatch from [complexity analysis](../complexity-analysis/learning.md) made concrete, and it cuts against the flat array here.
+`HashMap` wins from n = 32; the sorted `Vec` loses to `BTreeMap` at *every* size measured. So the folklore that contiguity carries a flat array past the hash map does not survive contact with a `u32` key.
+
+Those numbers reused 1,000 query keys, which keeps the touched buckets cache-warm. Re-run with **2M distinct queries in a single pass** — no key revisited — and the picture gets *worse* for the array, not better:
+
+| n | 1,000 | 10⁵ | 10⁶ | 10⁷ |
+| --- | --- | --- | --- | --- |
+| Sorted `Vec` + `binary_search` | 17.4 | 24.1 | 59.9 | **217.8** |
+| `HashMap` | **7.8** | **6.9** | **19.6** | **35.1** |
+
+Both degrade once the table exceeds cache, but binary search degrades far faster — it pays ~log₂ n *dependent* misses per lookup while the hash map pays one or two. The intuitive hypothesis ("hashing's random probe should suffer more as n grows") is exactly backwards, and this is a good reminder that a plausible cache argument is not evidence. Measure your own key type — this is the n₀ escape hatch from [complexity analysis](../complexity-analysis/learning.md) made concrete, and it cuts against the flat array in both cache regimes.
 
 **Memory overhead.** Right after a doubling, up to half the allocation is unused — a `Vec` holding n elements can occupy 2n slots. For a few large `Vec`s this is invisible; for a million small ones it's a doubling of your memory bill, and `into_boxed_slice`/`shrink_to_fit` is the fix.
 
@@ -257,7 +266,7 @@ Build exercises:
 ## Open Questions
 
 - The `u32` crossovers are measured (linear→binary ≈ 24; linear→`HashSet` ≈ 12; sorted `Vec`→`HashMap` ≈ 32). Still open: the same numbers for a 32-byte struct and for `String` keys where comparison and hashing are both Θ(k) — the case most likely to move the answer back toward the flat array.
-- All of the above used tables small enough to stay cache-resident. Re-run the map comparison at 10⁶ and 10⁷ entries, where `HashMap`'s random probe should start missing cache and the gap should narrow.
+- ~~Re-run the map comparison out of cache, where the gap should narrow~~ **measured, and the hypothesis was wrong**: at 10⁷ entries with non-repeating queries the gap *widens* to 217.8 ns vs 35.1 ns, because binary search pays ~log₂ n dependent cache misses to the hash map's one or two. Still open: the same sweep for `String` keys, where hashing cost grows with the key and comparison does too.
 - Does `smallvec` actually win for the typical "0–3 elements, millions of instances" case here, or does the larger inline size hurt more than the avoided allocation helps? Measure against `Vec` and `Box<[T]>`.
 - How much do bounds checks cost on a hot scan in practice, given that LLVM elides most of them? Compare an indexed loop, an iterator loop, and `get_unchecked`.
 - `shrink_to_fit` on a 500 MB `Vec` — does the allocator actually return the pages to the OS, or does RSS stay flat? Test with the system allocator and with `mimalloc`/`jemalloc`.

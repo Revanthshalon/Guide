@@ -182,8 +182,17 @@ Two cautions: start above the cache-resident sizes or the first few ratios measu
 
 - **What goes wrong:** "Hash map lookup is O(1)" gets written into a design doc. In production, a user-controlled key space collides — or an attacker constructs colliding keys — and every lookup degrades to a linear scan of one bucket. p99 goes from 200 µs to 40 ms and the service falls over under load it handled yesterday.
 - **Why it happens (the mechanism):** O(1) for hashing is an *average over a random hash function*, not a worst case. Adversarial keys make the bucket distribution arbitrarily bad. The 2011 hash-collision DoS wave broke PHP, Java, Python, Ruby and Node simultaneously for exactly this reason.
-- **How to handle it in production, and why that works:** Rust's default is already the fix — `HashMap` uses SipHash-1-3 with a per-process random seed, so an attacker cannot precompute collisions. Keep it for anything touching user input. Swap to `FxHashMap`/`aHash` (often 2–3× faster) **only** for keys you generate yourself: node indices, interned IDs, enum discriminants.
-- **Trade-offs of the fix:** SipHash costs ~1 ns/byte, which genuinely dominates lookup time for small keys — this is a real 2–3× on hot internal maps. The rule is per-map, not global: classify each map by whether its keys are attacker-reachable.
+- **How to handle it in production, and why that works:** Rust's default is already the fix — `HashMap` uses SipHash-1-3 with a per-process random seed, so an attacker cannot precompute collisions. Keep it for anything touching user input. Swap to `FxHashMap`/`aHash` **only** for keys you generate yourself: node indices, interned IDs, enum discriminants. Measured here (ns per lookup), the win depends entirely on key size:
+
+| Key | n = 100 | n = 10⁴ | n = 10⁶ |
+| --- | --- | --- | --- |
+| `u32`, std SipHash | 28.9 | 23.2 | 10.9 |
+| `u32`, Fx-style | **4.9** | **3.9** | **2.4** |
+| ratio | **5.9×** | **6.0×** | **4.6×** |
+| 16-char `String`, std | 21.6 | 25.8 | 31.7 |
+| 16-char `String`, Fx-style | 16.7 | 21.5 | 26.6 |
+| ratio | 1.29× | 1.20× | 1.19× |
+- **Trade-offs of the fix:** The size dependence above is the whole story: for a 4-byte key the hash *is* the lookup, so a cheap hasher is a 5–6× win; for a 16-byte key the hash is amortized against the memory access and the comparison, and the win collapses to ~1.2×. So the swap is worth real effort on maps keyed by small integers and barely worth the dependency on maps keyed by strings — which is the opposite of where people usually reach for it. The rule stays per-map, not global: classify each map by whether its keys are attacker-reachable *first*, then by key size.
 
 ### Pitfall: Treating "amortized O(1)" as a latency guarantee
 
@@ -263,7 +272,7 @@ Build exercises:
 - `BTreeMap`'s node fanout in std is tuned to ~11 (B=6) rather than to a full cache line. Read the source and find out why that beat larger fanouts in their benchmarks.
 - Is there a practical Rust harness that *fits* a complexity curve automatically from a doubling run (log-log regression), rather than eyeballing ratios?
 - The potential-method analysis of splay trees — work through it once properly rather than accepting the result.
-- How much does the SipHash → FxHash swap actually buy on a realistic internal map (u32 keys, 100k entries) on Apple Silicon? Measure rather than repeat the folklore 2–3×.
+- ~~SipHash → FxHash swap~~ **measured**: 4.6–6.0× for `u32` keys, only 1.19–1.29× for 16-char `String` keys. Still open: where the crossover sits by key length, and whether `aHash` (SIMD-assisted, DoS-resistant) gets most of Fx's win without giving up the security property.
 
 ## References
 

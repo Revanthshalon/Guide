@@ -66,7 +66,7 @@ let [a, b] = arr.get_disjoint_mut([i, j]).unwrap();   // 1.86+
 | `Vec<T>` = 24 B, `Box<[T]>` = 16 B | Freeze built arrays |
 | `HashMap` = hashbrown SwissTable | SIMD probe; good constant |
 | Default hasher = SipHash-1-3 + random seed | ~1 ns/byte; DoS-resistant |
-| `FxHashMap`/`aHash` | 2–3× faster — **self-generated keys only** |
+| `FxHashMap`/`aHash` | **4.6–6.0×** faster for `u32` keys, only ~1.2× for 16-char `String` — **self-generated keys only** |
 | `BinaryHeap` is a max-heap | `BinaryHeap<Reverse<T>>` for min |
 | `Entry` API | One hash instead of two |
 | `String: Borrow<str>` | `map.get("x")` on `HashMap<String,V>` |

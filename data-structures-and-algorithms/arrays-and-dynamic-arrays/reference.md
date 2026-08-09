@@ -72,7 +72,7 @@ v.sort_unstable(); v.dedup();             // dedup alone = CONSECUTIVE only
 - `remove(0)` in a loop is Θ(n²) — use `VecDeque`, `swap_remove`, `retain`, or push-then-`reverse`.
 - `clear()` never frees; only `shrink_to_fit`/`shrink_to` does.
 - Linear scan beats `binary_search` only below n≈24 (measured, `u32`) — not the "few hundred" folklore claims.
-- Sorted `Vec` as a map is for ordering/footprint/one-allocation — **not** speed. Measured (`u32`): `HashMap` beats it from n ≈ 32, `HashSet` beats a linear scan from n ≈ 12.
+- Sorted `Vec` as a map is for ordering/footprint/one-allocation — **not** speed. Measured (`u32`): `HashMap` beats it from n ≈ 32, `HashSet` beats a linear scan from n ≈ 12, and the gap **widens** out of cache (10⁷ entries: 217.8 ns vs 35.1 ns).
 
 ## Implementation Checklist
 

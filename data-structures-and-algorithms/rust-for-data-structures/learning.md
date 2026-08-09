@@ -164,7 +164,7 @@ Miri is not optional for hand-written `unsafe` data structures. It catches the a
 ### The std facts that change your constants
 
 - **`HashMap` is SwissTable** (`hashbrown`), with SIMD probing of 16 control bytes at a time — its constant is far better than a textbook chaining table.
-- **The default hasher is SipHash-1-3 with a random per-instance seed.** That's DoS resistance, and it costs ~1 ns/byte. For internal keys you generate (node indices, interned IDs) `FxHashMap`/`aHash` is commonly 2–3× faster; for anything attacker-reachable, keep the default. See [complexity analysis](../complexity-analysis/learning.md) for why this is a security property, not a tuning knob.
+- **The default hasher is SipHash-1-3 with a random per-instance seed.** That's DoS resistance, and it isn't free. Measured: for `u32` keys a Fx-style hasher is **4.6–6.0× faster** end-to-end on lookup; for 16-char `String` keys only **1.2–1.3×**, because the hash is amortized against the comparison and the memory access. So the swap matters most exactly where arenas put you — maps keyed by small integer handles. For anything attacker-reachable, keep the default regardless. See [complexity analysis](../complexity-analysis/learning.md) for the full table and why this is a security property, not a tuning knob.
 - **`BinaryHeap` is a max-heap.** `BinaryHeap<Reverse<T>>` gives you a min-heap — the Dijkstra idiom.
 - **The `Entry` API exists to avoid double lookup**: `*map.entry(k).or_insert(0) += 1` hashes once, where `contains_key` + `insert` hashes twice.
 - **`Vec<T>` is 24 bytes** (ptr, len, cap); `Box<[T]>` is 16 — worth it for immutable-after-build arrays stored in bulk.
@@ -287,7 +287,7 @@ Build exercises:
 - Bounds-check cost in arenas: what does `get_unchecked` actually buy on a hot traversal, measured — and does the safe version autovectorize equally?
 - `slotmap` vs a hand-rolled generational arena: measure the API and performance difference on the LRU exercise before defaulting to the crate.
 - Polonius: which of the borrow-checker rejections in this doc does it actually fix, and what's its current status?
-- How much does `FxHashMap` really beat `RandomState` for `u32` keys at 100k entries on Apple Silicon? Measure rather than repeat the 2–3× folklore.
+- ~~`FxHashMap` vs `RandomState` for `u32` keys~~ **measured**: 4.6–6.0×, far more than the 2–3× folklore. Still open: does `aHash` recover most of that while keeping DoS resistance?
 - Is there a clean way to make arena handles type-safe across *multiple* arenas (a `Handle<Node>` that can't index an `Arena<Edge>`) without a phantom-type explosion?
 
 ## References
