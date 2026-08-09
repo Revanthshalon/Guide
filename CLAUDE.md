@@ -4,12 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Purpose
 
-This is a personal reference knowledge base — not a software project with a build/test/lint pipeline. It has four categories of reference documentation:
+This is a personal reference knowledge base — not a software project with a build/test/lint pipeline. It has five categories of reference documentation:
 
 - `architecture-patterns/` — system architecture patterns (e.g. `event-sourcing/` for Event Sourcing & CQRS): what the pattern is, its pitfalls, and how to handle those pitfalls in a production environment.
 - `oss-tools/` — open source software the user is evaluating or adopting, especially open-source alternatives to vendor/licensed tools (e.g. `openbao/` as an alternative to Vault, `opentofu/` as an alternative to Terraform): what it is, how it compares to the tool it replaces, its pitfalls, and migration considerations.
 - `language-best-practices/` — per-language conventions and idioms (e.g. `rust/`): best practices, anti-patterns, and tooling. Rust is the primary language of focus.
 - `performance-optimization/` — techniques for building high-performance applications (e.g. `cache-locality/`, `memory-layout/`, `simd/`): what the technique exploits, when it helps vs. hurts, implementation notes, and how to benchmark it. Code examples, crates, and tooling in this category should be Rust-first (other languages only when illustrating something Rust can't).
+- `data-structures-and-algorithms/` — the structures and paradigms themselves (e.g. `hash-tables/`, `dynamic-programming/`, `graph-traversal/`): the invariant each maintains, complexity tables, idiomatic Rust implementations with the ownership story made explicit, when to use which against competing structures, and the transformation lenses that let a reader *derive* variants rather than memorize them. Rust-first, like `performance-optimization/`.
 
 There is no code to build or run here. Work in this repo is writing/organizing Markdown documentation.
 
@@ -33,6 +34,7 @@ When adding content, put depth in `learning.md`, procedure in `runbook.md`, and 
 - Keep documentation concrete and production-focused (real failure modes, real mitigations, real migration gotchas, real benchmarking pitfalls) rather than abstract textbook/marketing descriptions — the user is building this to reference back when actually implementing these patterns, adopting these tools, or optimizing real code.
 - `architecture-patterns/event-sourcing/` covers Event Sourcing and CQRS together, since the user treats them as one combined topic.
 - Update `README.md`'s index whenever a new entry is added.
+- `architecture-patterns/`, `performance-optimization/`, and `data-structures-and-algorithms/` each have a `LEARNING-INDEX.md` giving the study order with a prerequisites column. When adding a topic to one of those categories, place it in that index too — the order is derived from what the docs actually cross-reference, so a new entry's prerequisites must all sit above it.
 - `README.md` ends with a "Deferred Topics" table — topics intentionally not scaffolded yet, with the reason and the trigger for picking them up. When the user starts one, scaffold it from the category's templates, move it from that table into the index, and add newly-identified future topics to the table rather than scaffolding them immediately.
 
 ## Cross-linking convention

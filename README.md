@@ -6,6 +6,7 @@ A personal reference library covering:
 - **Open source tools** — especially open-source alternatives to vendor/licensed tools, how they compare, and what to watch for when adopting them.
 - **Language best practices** — per-language conventions, idioms, and anti-patterns. Rust is the primary focus.
 - **Performance optimization** — techniques for building high-performance applications, applied primarily through Rust.
+- **Data structures & algorithms** — the structures and paradigms themselves: invariants, complexity, Rust implementations, and when to reach for which.
 
 Every topic folder has two docs, scaffolded from its category's templates:
 
@@ -87,6 +88,14 @@ In study order — measurement first, then hardware fundamentals, then technique
 - NUMA Awareness — [learning](performance-optimization/numa-awareness/learning.md) · [reference](performance-optimization/numa-awareness/reference.md)
 - Async & I/O — [learning](performance-optimization/async-and-io/learning.md) · [reference](performance-optimization/async-and-io/reference.md)
 - Compiler Optimizations — [learning](performance-optimization/compiler-optimizations/learning.md) · [reference](performance-optimization/compiler-optimizations/reference.md)
+
+## Data Structures & Algorithms
+
+Templates: [_template-learning.md](data-structures-and-algorithms/_template-learning.md) · [_template-reference.md](data-structures-and-algorithms/_template-reference.md)
+
+**Full curriculum: [LEARNING-INDEX.md](data-structures-and-algorithms/LEARNING-INDEX.md)** — every topic needed for mastery across 11 stages, with prerequisites, shorter paths by goal, and the transformation lenses each doc closes with. Topic folders are scaffolded as they're started; the index is the roadmap.
+
+Nothing scaffolded yet — start at Stage 0 (`complexity-analysis/`, `rust-for-data-structures/`).
 
 ## Deferred Topics
 
