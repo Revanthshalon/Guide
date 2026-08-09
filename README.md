@@ -7,6 +7,7 @@ A personal reference library covering:
 - **Language best practices** — per-language conventions, idioms, and anti-patterns. Rust is the primary focus.
 - **Performance optimization** — techniques for building high-performance applications, applied primarily through Rust.
 - **Data structures & algorithms** — the structures and paradigms themselves: invariants, complexity, Rust implementations, and when to reach for which.
+- **Developer tooling** — the CLI tools used daily (git, ripgrep, sed): the mental model that makes them predictable, plus task-oriented recipes.
 
 Every topic folder has two docs, scaffolded from its category's templates:
 
@@ -57,6 +58,8 @@ Tools you actually operate also get a **runbook**: annotated configs, ordered ce
 
 - OpenBao (alternative to Vault) — [learning](oss-tools/openbao/learning.md) · [reference](oss-tools/openbao/reference.md) · [runbook](oss-tools/openbao/runbook.md)
 - OpenTofu (alternative to Terraform) — [learning](oss-tools/opentofu/learning.md) · [reference](oss-tools/opentofu/reference.md) · [runbook](oss-tools/opentofu/runbook.md)
+- PostgreSQL (alternative to Oracle/SQL Server) — [learning](oss-tools/postgres/learning.md) · [reference](oss-tools/postgres/reference.md) · [runbook](oss-tools/postgres/runbook.md)
+- Docker & Docker Compose — [learning](oss-tools/docker/learning.md) · [reference](oss-tools/docker/reference.md) · [runbook](oss-tools/docker/runbook.md)
 
 ## Language Best Practices
 
@@ -176,6 +179,16 @@ Stage 10 — limits & the mathematical toolkit:
 - Number Theory & Combinatorics — [learning](data-structures-and-algorithms/number-theory-and-combinatorics/learning.md) · [reference](data-structures-and-algorithms/number-theory-and-combinatorics/reference.md)
 - Intractability & Approximation — [learning](data-structures-and-algorithms/intractability-and-approximation/learning.md) · [reference](data-structures-and-algorithms/intractability-and-approximation/reference.md)
 - Streaming & Online Algorithms — [learning](data-structures-and-algorithms/streaming-and-online-algorithms/learning.md) · [reference](data-structures-and-algorithms/streaming-and-online-algorithms/reference.md)
+
+## Developer Tooling
+
+Templates: [_template-learning.md](developer-tooling/_template-learning.md) · [_template-reference.md](developer-tooling/_template-reference.md) · [_template-recipes.md](developer-tooling/_template-recipes.md)
+
+CLI tools you *use* rather than *operate*, so they get **recipes** (a task-oriented cookbook) instead of a runbook — there is no install/harden/backup lifecycle for `sed`.
+
+- Git — [learning](developer-tooling/git/learning.md) · [reference](developer-tooling/git/reference.md) · [recipes](developer-tooling/git/recipes.md)
+- ripgrep & grep — [learning](developer-tooling/ripgrep-and-grep/learning.md) · [reference](developer-tooling/ripgrep-and-grep/reference.md) · [recipes](developer-tooling/ripgrep-and-grep/recipes.md)
+- sed & Text Processing — [learning](developer-tooling/sed-and-text-processing/learning.md) · [reference](developer-tooling/sed-and-text-processing/reference.md) · [recipes](developer-tooling/sed-and-text-processing/recipes.md)
 
 ## Deferred Topics
 

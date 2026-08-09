@@ -4,12 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Purpose
 
-This is a personal reference knowledge base — not a software project with a build/test/lint pipeline. It has five categories of reference documentation:
+This is a personal reference knowledge base — not a software project with a build/test/lint pipeline. It has six categories of reference documentation:
 
 - `architecture-patterns/` — system architecture patterns (e.g. `event-sourcing/` for Event Sourcing & CQRS): what the pattern is, its pitfalls, and how to handle those pitfalls in a production environment.
 - `oss-tools/` — open source software the user is evaluating or adopting, especially open-source alternatives to vendor/licensed tools (e.g. `openbao/` as an alternative to Vault, `opentofu/` as an alternative to Terraform): what it is, how it compares to the tool it replaces, its pitfalls, and migration considerations.
 - `language-best-practices/` — per-language conventions and idioms (e.g. `rust/`): best practices, anti-patterns, and tooling. Rust is the primary language of focus.
 - `performance-optimization/` — techniques for building high-performance applications (e.g. `cache-locality/`, `memory-layout/`, `simd/`): what the technique exploits, when it helps vs. hurts, implementation notes, and how to benchmark it. Code examples, crates, and tooling in this category should be Rust-first (other languages only when illustrating something Rust can't).
+- `developer-tooling/` — CLI tools the user *uses* daily rather than *operates* (e.g. `git/`, `ripgrep-and-grep/`, `sed-and-text-processing/`): the mental model that makes the tool predictable, portability/variant differences (GNU vs BSD, versions — state what *this machine* has), and pitfalls. These get `recipes.md` instead of a runbook, because CLI tools have tasks rather than an install/harden/backup lifecycle.
 - `data-structures-and-algorithms/` — the structures and paradigms themselves (e.g. `hash-tables/`, `dynamic-programming/`, `graph-traversal/`): the invariant each maintains, complexity tables, idiomatic Rust implementations with the ownership story made explicit, when to use which against competing structures, and the transformation lenses that let a reader *derive* variants rather than memorize them. Rust-first, like `performance-optimization/`.
 
 There is no code to build or run here. Work in this repo is writing/organizing Markdown documentation.
@@ -24,6 +25,10 @@ Every topic folder contains at least two documents serving different purposes:
 `oss-tools/` entries may add a third document when the tool is something the user will actually operate:
 
 - `runbook.md` — procedural setup and operations: annotated config files, ordered ceremonies, day-2 procedures (backup/restore, upgrades, rotation), a monitoring-signals table, a dev→production checklist, and a "common mistakes → what actually happens" table. Scaffold it from `oss-tools/_template-runbook.md`.
+
+`developer-tooling/` entries use a third document instead of a runbook:
+
+- `recipes.md` — a task-oriented cookbook ("I want to do X" → the command), copy-pasteable, ending with a **recovery** section for destructive tools. Scaffold from `developer-tooling/_template-recipes.md`.
 
 `language-best-practices/` entries may add **practice docs** for a language the user actually ships — procedural companions rather than idiom guides, scaffolded from `language-best-practices/_template-practices.md`:
 
