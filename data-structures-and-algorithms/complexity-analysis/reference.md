@@ -108,7 +108,7 @@ Start above cache-resident sizes; `black_box` the result.
 | Random DRAM access | ~100 ns |
 | Sequential scan | ~10 GB/s |
 | Simple ops/sec | ~10⁹ |
-| SipHash cost | ~1 ns/byte |
+| SipHash-1-3 | ~12 ns fixed for a 4 B key; ~0.31 ns/byte asymptotically (measured) |
 | `sort_unstable` insertion-sort cutoff | ~20 elements |
 | B-tree fanout 100, n=10⁹ | ~4.5 block reads vs ~30 for a BST |
 

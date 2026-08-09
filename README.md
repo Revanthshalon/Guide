@@ -115,6 +115,11 @@ Stage 2 — searching & sorting:
 - Sorting — [learning](data-structures-and-algorithms/sorting/learning.md) · [reference](data-structures-and-algorithms/sorting/reference.md)
 - Selection & Order Statistics — [learning](data-structures-and-algorithms/selection-and-order-statistics/learning.md) · [reference](data-structures-and-algorithms/selection-and-order-statistics/reference.md)
 
+Stage 3 — hashing:
+
+- Hash Tables — [learning](data-structures-and-algorithms/hash-tables/learning.md) · [reference](data-structures-and-algorithms/hash-tables/reference.md)
+- Hashing Techniques — [learning](data-structures-and-algorithms/hashing-techniques/learning.md) · [reference](data-structures-and-algorithms/hashing-techniques/reference.md)
+
 ## Deferred Topics
 
 Deliberately not scaffolded yet — pick these up after the current sets are learned. When starting one, scaffold it from the category's templates and move it into the index above.

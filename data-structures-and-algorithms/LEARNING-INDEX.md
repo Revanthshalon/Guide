@@ -46,8 +46,8 @@ Everything else assumes these two. They're short but non-skippable.
 
 | Topic | Folder | Prereq | Covers |
 | --- | --- | --- | --- |
-| Hash Tables | `hash-tables/` | 1 | Chaining vs. open addressing; linear/quadratic probing and Robin Hood; SwissTable (hashbrown, and therefore `HashMap`) with its SIMD probe; load factor, resizing, tombstones; iteration-order non-determinism; why a hash map's constant is not the asymptotic story |
-| Hashing Techniques | `hashing-techniques/` | hash tables | What a good hash function is; SipHash vs. aHash/FxHash and the HashDoS trade-off; the `Hash`/`Eq` contract and how to break it; rolling hashes (Rabin-Karp); fingerprinting; consistent hashing (see [sharding](../architecture-patterns/sharding/learning.md)); perfect hashing |
+| Hash Tables ✅ | [learning](hash-tables/learning.md) · [reference](hash-tables/reference.md) | 1 | Chaining vs. open addressing; linear/quadratic probing and Robin Hood; SwissTable (hashbrown, and therefore `HashMap`) with its SIMD probe; load factor, resizing, tombstones; iteration-order non-determinism; why a hash map's constant is not the asymptotic story |
+| Hashing Techniques ✅ | [learning](hashing-techniques/learning.md) · [reference](hashing-techniques/reference.md) | hash tables | What a good hash function is; SipHash vs. aHash/FxHash and the HashDoS trade-off; the `Hash`/`Eq` contract and how to break it; rolling hashes (Rabin-Karp); fingerprinting; consistent hashing (see [sharding](../architecture-patterns/sharding/learning.md)); perfect hashing |
 
 ## Stage 4 — Trees & priority structures
 
