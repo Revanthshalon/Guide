@@ -149,6 +149,12 @@ Stage 6 — algorithm design paradigms:
 - Bit Manipulation — [learning](data-structures-and-algorithms/bit-manipulation/learning.md) · [reference](data-structures-and-algorithms/bit-manipulation/reference.md)
 - Intervals & Sweep Line — [learning](data-structures-and-algorithms/intervals-and-sweep-line/learning.md) · [reference](data-structures-and-algorithms/intervals-and-sweep-line/reference.md)
 
+Stage 7 — string algorithms:
+
+- String Matching — [learning](data-structures-and-algorithms/string-matching/learning.md) · [reference](data-structures-and-algorithms/string-matching/reference.md)
+- Suffix Structures — [learning](data-structures-and-algorithms/suffix-structures/learning.md) · [reference](data-structures-and-algorithms/suffix-structures/reference.md)
+- Edit Distance & Alignment — [learning](data-structures-and-algorithms/edit-distance-and-alignment/learning.md) · [reference](data-structures-and-algorithms/edit-distance-and-alignment/reference.md)
+
 ## Deferred Topics
 
 Deliberately not scaffolded yet — pick these up after the current sets are learned. When starting one, scaffold it from the category's templates and move it into the index above.

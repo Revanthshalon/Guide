@@ -90,9 +90,9 @@ This is the stage that converts "knows structures" into "solves new problems." I
 
 | Topic | Folder | Prereq | Covers |
 | --- | --- | --- | --- |
-| String Matching | `string-matching/` | strings, hashing | Naive → KMP (the failure function as the real lesson) → Z-algorithm → Rabin-Karp → Boyer-Moore; what `memmem`/`str::find` actually does; Aho-Corasick for multi-pattern |
-| Suffix Structures | `suffix-structures/` | string matching, sorting, tries | Suffix arrays + LCP (Kasai); suffix automaton; suffix trees and why you rarely build one; the problems these make trivial (longest repeated/common substring, distinct substrings) |
-| Edit Distance & Alignment | `edit-distance-and-alignment/` | DP, strings | Levenshtein and its variants; the DP table and its space reduction; Myers' bit-parallel algorithm; diff as an LCS problem; fuzzy matching in practice |
+| String Matching ✅ | [learning](string-matching/learning.md) · [reference](string-matching/reference.md) | strings, hashing | Naive → KMP (the failure function as the real lesson) → Z-algorithm → Rabin-Karp → Boyer-Moore; what `memmem`/`str::find` actually does; Aho-Corasick for multi-pattern |
+| Suffix Structures ✅ | [learning](suffix-structures/learning.md) · [reference](suffix-structures/reference.md) | string matching, sorting, tries | Suffix arrays + LCP (Kasai); suffix automaton; suffix trees and why you rarely build one; the problems these make trivial (longest repeated/common substring, distinct substrings) |
+| Edit Distance & Alignment ✅ | [learning](edit-distance-and-alignment/learning.md) · [reference](edit-distance-and-alignment/reference.md) | DP, strings | Levenshtein and its variants; the DP table and its space reduction; Myers' bit-parallel algorithm; diff as an LCS problem; fuzzy matching in practice |
 
 ## Stage 8 — Randomized & probabilistic
 
