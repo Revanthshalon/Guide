@@ -100,7 +100,7 @@ The same shape appears in operations: `git bisect` (monotone: "bug present" is f
 ### Variants worth knowing
 
 - **Branchless binary search.** Replace the `if` with arithmetic (`lo += (!pred) as usize * (mid - lo + 1)`) or use conditional moves so there's no mispredicted branch. Pays off when the data fits in cache and branch misses dominate.
-- **Eytzinger layout.** Store the array in BFS order of the implicit search tree, so each step's children are adjacent in memory and prefetchable. Beats sorted-order binary search substantially on large arrays — a Stage 9 topic, and one of the clearest examples that layout beats asymptotics.
+- **Eytzinger layout.** Store the array in BFS order of the implicit search tree, so each step's children are adjacent in memory and prefetchable. Measured (Stage 9): it beats sorted-order binary search by **1.88× at n=5×10⁷ — but only with an explicit prefetch**; without one it is *slower* than `binary_search` above n≈100k. The layout makes the next accesses predictable; the prefetch is what cashes that in.
 - **Interpolation search.** Guess the position by linear interpolation instead of halving. Θ(log log n) on *uniformly distributed* data, Θ(n) when the distribution is adversarial. Rarely worth the fragility.
 - **Exponential (galloping) search.** Double an index until you overshoot, then binary search the last range. Θ(log i) where i is the answer's position — better than Θ(log n) when the target is near the start, and the standard way to search an *unbounded* range (a stream, an infinite sequence, an unknown-length file).
 - **Ternary search.** For finding the extremum of a *unimodal* function, not a monotone predicate. Different tool, adjacent idea.
@@ -180,7 +180,7 @@ let min_capacity = {
 | Galloping / exponential | Target likely near the start; or the range has no known end. |
 | `HashMap` | Point lookups only, no ordering or range queries needed, n large. |
 | `BTreeMap` | Ordered *and* frequently mutated — sorted `Vec` insertion is Θ(n). |
-| Eytzinger layout | Huge read-only table, lookups dominate the profile (Stage 9). |
+| Eytzinger layout **+ prefetch** | Huge read-only table (n ≳ 10⁷), lookups dominate — see [cache-aware structures](../cache-aware-structures/learning.md). |
 | Interpolation search | Provably uniform data and you've measured a win. Rare. |
 
 ## Pitfalls in Depth
@@ -254,12 +254,12 @@ Build exercises:
 - Implement the boundary form, then build `lower_bound`, `upper_bound`, `contains`, `count`, and `equal_range` on top of it — all as one-liners. Property-test against a linear-scan reference on random arrays *with duplicates*, including n = 0 and n = 1. The duplicates and the empty case are where hand-rolled versions die.
 - Reproduce the crossover table: linear scan vs `partition_point` on sorted `Vec<u32>` at n = 8…4096. Then repeat with a 32-byte struct and with `String` keys, and explain why the crossover moves the way it does.
 - Binary search on the answer: solve "minimum ship capacity to deliver all packages within D days." Write the feasibility check first, prove its monotonicity in one sentence, then wrap it in the boundary form. The proof is the exercise; the code is four lines.
-- Implement Eytzinger layout (build the BFS-ordered array, then search it) and benchmark against `partition_point` at n = 10⁶ and 10⁷. Confirm the crossover where layout starts beating the standard version.
+- Implement Eytzinger layout (build the BFS-ordered array, then search it) and benchmark against `partition_point` at n = 10⁶, 10⁷, and 5×10⁷ — **first without a prefetch, then with one**. Reproducing the fact that the un-prefetched version *loses* is the point of the exercise.
 
 ## Open Questions
 
 - Why is the measured `binary_search` time non-monotone in n (31 ns at 32, 22 ns at 4096)? Branch-predictor training on the repeated key set is the suspect — verify with `perf stat` branch-miss counts.
-- Where exactly does Eytzinger start beating sorted-order binary search on this machine, and does prefetching the grandchildren move it?
+- ~~Where does Eytzinger start beating sorted-order binary search~~ **measured** (see [cache-aware structures](../cache-aware-structures/learning.md)): plain Eytzinger *loses* above n≈100k; **with** prefetching it wins from n≈10⁷, reaching **1.88×** at n=5×10⁷. The layout alone is not the win — the prefetch is.
 - Is std's `binary_search` branchless? Read the generated assembly and compare against a deliberately branchless version.
 - Galloping vs plain binary search for posting-list intersection at realistic size ratios — measure rather than assume.
 - Does `partition_point` on a `Vec<String>` benefit measurably from storing an inline 8-byte prefix for a cheap first comparison?
