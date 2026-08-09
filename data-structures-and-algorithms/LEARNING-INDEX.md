@@ -98,8 +98,8 @@ This is the stage that converts "knows structures" into "solves new problems." I
 
 | Topic | Folder | Prereq | Covers |
 | --- | --- | --- | --- |
-| Randomized Algorithms | `randomized-algorithms/` | 2, 3 | Las Vegas vs. Monte Carlo; randomized quicksort/quickselect; reservoir sampling; shuffling correctly (Fisher-Yates, and the biased version everyone writes); skip lists and treaps as "balancing by coin flip"; randomness as the defense against adversarial input |
-| Probabilistic Data Structures | `probabilistic-data-structures/` | hashing, randomized | Bloom and counting/cuckoo filters; Count-Min sketch; HyperLogLog; t-digest/quantile sketches; the accuracy-vs-space dial; false-positive math and how to size them; where these show up in [caching](../architecture-patterns/caching-strategies/learning.md) and LSM reads |
+| Randomized Algorithms ✅ | [learning](randomized-algorithms/learning.md) · [reference](randomized-algorithms/reference.md) | 2, 3 | Las Vegas vs. Monte Carlo; randomized quicksort/quickselect; reservoir sampling; shuffling correctly (Fisher-Yates, and the biased version everyone writes); skip lists and treaps as "balancing by coin flip"; randomness as the defense against adversarial input |
+| Probabilistic Data Structures ✅ | [learning](probabilistic-data-structures/learning.md) · [reference](probabilistic-data-structures/reference.md) | hashing, randomized | Bloom and counting/cuckoo filters; Count-Min sketch; HyperLogLog; t-digest/quantile sketches; the accuracy-vs-space dial; false-positive math and how to size them; where these show up in [caching](../architecture-patterns/caching-strategies/learning.md) and LSM reads |
 
 ## Stage 9 — Systems-scale structures
 
