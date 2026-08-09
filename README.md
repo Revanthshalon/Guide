@@ -16,6 +16,8 @@ Every topic folder has two docs, scaffolded from its category's templates:
 
 Templates: [_template-learning.md](architecture-patterns/_template-learning.md) · [_template-reference.md](architecture-patterns/_template-reference.md)
 
+**Study order: [LEARNING-INDEX.md](architecture-patterns/LEARNING-INDEX.md)** — the sequence to read these in, with prerequisites. The grouping below is by theme, not by order.
+
 Distributed-systems fundamentals:
 
 - Replication & Consistency Models — [learning](architecture-patterns/replication-and-consistency/learning.md) · [reference](architecture-patterns/replication-and-consistency/reference.md)
@@ -65,7 +67,9 @@ Templates: [_template-learning.md](language-best-practices/_template-learning.md
 
 Templates: [_template-learning.md](performance-optimization/_template-learning.md) · [_template-reference.md](performance-optimization/_template-reference.md)
 
-Roughly in study order — measurement first, then hardware fundamentals, then techniques built on them:
+**Study order: [LEARNING-INDEX.md](performance-optimization/LEARNING-INDEX.md)** — the sequence below, with prerequisites and shorter paths for specific symptoms.
+
+In study order — measurement first, then hardware fundamentals, then techniques built on them, then concurrency, then the compiler:
 
 - Profiling & Measurement — [learning](performance-optimization/profiling-and-measurement/learning.md) · [reference](performance-optimization/profiling-and-measurement/reference.md)
 - Cache Locality — [learning](performance-optimization/cache-locality/learning.md) · [reference](performance-optimization/cache-locality/reference.md)
@@ -77,8 +81,8 @@ Roughly in study order — measurement first, then hardware fundamentals, then t
 - Batching & Amortization — [learning](performance-optimization/batching-and-amortization/learning.md) · [reference](performance-optimization/batching-and-amortization/reference.md)
 - Zero-Copy — [learning](performance-optimization/zero-copy/learning.md) · [reference](performance-optimization/zero-copy/reference.md)
 - Serialization & Encoding — [learning](performance-optimization/serialization-and-encoding/learning.md) · [reference](performance-optimization/serialization-and-encoding/reference.md)
-- Parallelism & Work Stealing — [learning](performance-optimization/parallelism-and-work-stealing/learning.md) · [reference](performance-optimization/parallelism-and-work-stealing/reference.md)
 - False Sharing — [learning](performance-optimization/false-sharing/learning.md) · [reference](performance-optimization/false-sharing/reference.md)
+- Parallelism & Work Stealing — [learning](performance-optimization/parallelism-and-work-stealing/learning.md) · [reference](performance-optimization/parallelism-and-work-stealing/reference.md)
 - Lock-Free Concurrency — [learning](performance-optimization/lock-free-concurrency/learning.md) · [reference](performance-optimization/lock-free-concurrency/reference.md)
 - NUMA Awareness — [learning](performance-optimization/numa-awareness/learning.md) · [reference](performance-optimization/numa-awareness/reference.md)
 - Async & I/O — [learning](performance-optimization/async-and-io/learning.md) · [reference](performance-optimization/async-and-io/reference.md)
