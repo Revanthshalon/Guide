@@ -18,11 +18,11 @@ The outbox insight: **turn the two writes into one.** In the *same local transac
 ```mermaid
 sequenceDiagram
     participant App
-    participant DB as Database (one txn)
+    participant DB as "Database (one txn)"
     participant Relay
     participant Broker
     participant Consumer
-    App->>DB: BEGIN: INSERT orders + INSERT outbox; COMMIT
+    App->>DB: BEGIN — INSERT orders + INSERT outbox — COMMIT
     Note over DB: state change and intent-to-publish<br/>are now atomically inseparable
     Relay->>DB: SELECT ... WHERE published_at IS NULL
     Relay->>Broker: publish (key = aggregate_id)
