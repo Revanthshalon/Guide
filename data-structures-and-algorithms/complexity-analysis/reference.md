@@ -67,7 +67,7 @@ Treat any of these inside a loop as a defect:
 
 | Trap | Fix |
 | --- | --- |
-| `vec.contains(x)` | `HashSet` / `BTreeSet` (above ~30–100 elems) |
+| `vec.contains(x)` | `HashSet` / `BTreeSet` (above n ≈ 12, measured `u32`) |
 | `vec.remove(0)` | `VecDeque::pop_front` |
 | `vec.remove(i)` | `swap_remove` if order is free |
 | `vec.insert(0, x)` | `VecDeque::push_front` |

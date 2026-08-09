@@ -95,7 +95,15 @@ Two measured details: `Option<Vec<T>>` is also 24 bytes (the null-pointer niche 
 | Linear (`iter().any`) | **11.0** | **21.6** | 52.1 | 108.6 | 416.4 | 1040.9 |
 | `binary_search` | 13.2 | 25.7 | **31.2** | **28.2** | **25.2** | **21.8** |
 
-**Binary search wins from about n = 24.** The linear scan's advantage is real but narrow — it applies to tiny lookup tables, not to the "few hundred elements" the rule of thumb usually claims. What *does* survive at larger n is the sorted-`Vec`-versus-`BTreeMap`/`HashMap` comparison, which is about allocation and pointer chasing rather than about scanning. Measure your own crossover for your element type; this is the n₀ escape hatch from [complexity analysis](../complexity-analysis/learning.md) made concrete, and it cuts both ways.
+**Binary search wins from about n = 24.** The linear scan's advantage is real but narrow — it applies to tiny lookup tables, not to the "few hundred elements" the rule of thumb usually claims. And the same measurement run against maps is even less flattering to the flat array (`u32` keys → `u64`, ns per lookup):
+
+| n | 8 | 32 | 128 | 512 | 2048 | 8192 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Sorted `Vec` + `binary_search` | 14.3 | 23.7 | 31.3 | 37.2 | 39.0 | 44.2 |
+| `BTreeMap` | **6.6** | 11.2 | 16.7 | 23.0 | 33.8 | 45.1 |
+| `HashMap` | 8.8 | **8.6** | **8.8** | **8.7** | **7.8** | **7.7** |
+
+`HashMap` is flat at ~8 ns and wins from n = 32; the sorted `Vec` loses to `BTreeMap` at *every* size measured. So the folklore that contiguity carries a flat array past the hash map for small maps does not survive contact with a `u32` key and a cache-resident table. Measure your own crossover for your key type — this is the n₀ escape hatch from [complexity analysis](../complexity-analysis/learning.md) made concrete, and it cuts against the flat array here.
 
 **Memory overhead.** Right after a doubling, up to half the allocation is unused — a `Vec` holding n elements can occupy 2n slots. For a few large `Vec`s this is invisible; for a million small ones it's a doubling of your memory bill, and `into_boxed_slice`/`shrink_to_fit` is the fix.
 
@@ -140,7 +148,7 @@ let tail: Vec<_> = v.drain(k..).collect();
 ## Use Cases
 
 - **Everything, by default.** Every `Vec` in a codebase that doesn't need to be something else is a small win banked.
-- **Sorted `Vec` as a map.** For collections under a few hundred entries that are built once and read many times, a sorted `Vec<(K, V)>` beats `BTreeMap` and often `HashMap`: one allocation, perfect locality, binary search or even linear scan. This is what `phf`-style static maps and many compilers do.
+- **Sorted `Vec` as a map — for its *properties*, not its speed.** A sorted `Vec<(K, V)>` gives one allocation, a compact footprint, deterministic iteration order, and free range queries. It does **not** give faster lookups: measured below, `HashMap` beats it at every size from n = 32 upward, often by 3–4×. Reach for it when the footprint, the ordering, or the single allocation is what you want (`phf`-style static tables, embedded contexts, serialization) — not on the belief that it's faster to look up in.
 - **Struct-of-arrays.** Splitting `Vec<Entity>` into `Vec<Position>` + `Vec<Velocity>` so a system touching only positions doesn't drag velocities through cache — the [data-oriented design](../../performance-optimization/data-oriented-design/learning.md) move, and it's only possible because arrays are contiguous.
 - **Arenas.** The arena from [Rust for data structures](../rust-for-data-structures/learning.md) is a `Vec` with indices for links.
 - **Ring buffers, heaps, hash tables, Fenwick trees.** All of these are arrays plus arithmetic — no nodes, no pointers, no borrow-checker friction.
@@ -155,7 +163,7 @@ let tail: Vec<_> = v.drain(k..).collect();
 | `VecDeque<T>` | Need efficient push/pop at **both** ends — see [stacks & queues](../stacks-and-queues/learning.md). |
 | `SmallVec<[T; N]>` | Many instances, usually tiny — trades a size increase for zero allocation. |
 | `ArrayVec<T, N>` | Hard capacity bound, no allocator (embedded, hot paths). |
-| Sorted `Vec` as a map | Small (< ~500), read-heavy, build-once. Beats hash maps on locality. |
+| Sorted `Vec` as a map | You want ordered iteration, range queries, a compact footprint, or one allocation. **Not** for lookup speed — `HashMap` wins from n ≈ 32. |
 | `HashMap`/`BTreeMap` | Keyed lookup at scale, or frequent insertion in the middle. |
 
 ## Pitfalls in Depth
@@ -190,10 +198,18 @@ let tail: Vec<_> = v.drain(k..).collect();
 
 ### Pitfall: Reaching past `Vec` too early
 
-- **What goes wrong:** A profile shows a hot linear scan, so the `Vec` becomes a `HashMap` or a `BTreeMap` — and gets *slower*. At a few hundred elements the hash cost, the pointer chase, and the loss of prefetching outweigh the asymptotic win, and the code is now harder to read.
+- **What goes wrong:** Two mirror-image errors, and measurement says the *second* is far more common than the folklore admits. First: swapping a `Vec` for a `HashMap` at n = 10 and getting slower. Second — and this is the one that persists in codebases — keeping a linear scan or a sorted `Vec` well past the point where a hash map wins, on the widely-repeated belief that contiguity beats hashing until "a few hundred" elements. Measured here (`u32` keys, ns per lookup), that belief is wrong by an order of magnitude:
+
+| n | 8 | 16 | 32 | 128 | 512 | 1024 |
+| --- | --- | --- | --- | --- | --- | --- |
+| `Vec::contains` | **12.3** | 26.0 | 25.5 | 28.6 | 60.5 | 90.1 |
+| `binary_search` | 12.5 | 24.2 | 31.2 | 34.4 | 34.8 | 37.6 |
+| `HashSet::contains` | 20.0 | **14.0** | **14.2** | **11.5** | **9.9** | **9.8** |
+
+`HashSet` wins from about **n = 12**, and its cost is *flat* while the scan's grows linearly.
 - **Why it happens (the mechanism):** Θ(n) vs Θ(1) is a compelling argument that omits the constants. A contiguous scan of 200 `u32`s is 800 bytes — 13 cache lines, fully prefetched, a handful of nanoseconds. A `HashMap` lookup is a hash (~1 ns/byte with SipHash), a random probe into a table that isn't in cache, and a comparison.
-- **How to handle it in production, and why that works:** Measure the crossover for your element type and access pattern before switching, and prefer the sorted-`Vec`-plus-binary-search middle ground for small, read-heavy, build-once collections — it keeps one allocation and full locality while getting the log factor.
-- **Trade-offs of the fix:** A sorted `Vec` has Θ(n) insertion, so it's only right when writes are rare or batched (build, sort once, then read). If the collection can grow unboundedly or is write-heavy, the hash map's asymptotics do win and the crossover argument stops applying.
+- **How to handle it in production, and why that works:** Treat n ≈ 12–24 as the region where the choice is genuinely close and anything above it as hash-map territory for pure lookup. Choose a sorted `Vec` for what it actually provides — ordered iteration, range queries, footprint, one allocation — rather than for lookup speed, because on that axis it loses to `HashMap` from n ≈ 32. And measure with *your* key type: these numbers are `u32` with a cache-resident table, which is the case most favourable to hashing.
+- **Trade-offs of the fix:** The measured numbers favour hashing more than most workloads will: `u32` keys hash in a few nanoseconds and the whole table stayed in L1 up to 8192 entries. Expensive keys (long `String`s), tables far larger than cache, or iteration-dominated access all shift the answer back toward the flat array — which is exactly why the instruction is "measure your key type," not "always use a `HashMap`."
 
 ## Creative & Lateral Thinking
 
@@ -240,7 +256,8 @@ Build exercises:
 
 ## Open Questions
 
-- The `u32` crossover is measured (~24). Still open: the same number for `u64`, for a 32-byte struct, and for `String` keys where comparison itself is Θ(k).
+- The `u32` crossovers are measured (linear→binary ≈ 24; linear→`HashSet` ≈ 12; sorted `Vec`→`HashMap` ≈ 32). Still open: the same numbers for a 32-byte struct and for `String` keys where comparison and hashing are both Θ(k) — the case most likely to move the answer back toward the flat array.
+- All of the above used tables small enough to stay cache-resident. Re-run the map comparison at 10⁶ and 10⁷ entries, where `HashMap`'s random probe should start missing cache and the gap should narrow.
 - Does `smallvec` actually win for the typical "0–3 elements, millions of instances" case here, or does the larger inline size hurt more than the avoided allocation helps? Measure against `Vec` and `Box<[T]>`.
 - How much do bounds checks cost on a hot scan in practice, given that LLVM elides most of them? Compare an indexed loop, an iterator loop, and `get_unchecked`.
 - `shrink_to_fit` on a 500 MB `Vec` — does the allocator actually return the pages to the OS, or does RSS stay flat? Test with the system allocator and with `mimalloc`/`jemalloc`.

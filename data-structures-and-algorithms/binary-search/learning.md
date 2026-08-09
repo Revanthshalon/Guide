@@ -162,7 +162,7 @@ let min_capacity = {
 
 ## Use Cases
 
-- **Sorted `Vec` as a small map.** Build once, sort once, then `partition_point` for lookups and `Err(i)` for ordered insertion. One allocation, perfect locality — beats `BTreeMap` for read-heavy collections.
+- **Sorted `Vec` as a small map.** Build once, sort once, then `partition_point` for lookups and `Err(i)` for ordered insertion. Worth it for the ordered iteration, range queries, compact footprint and single allocation — **not** for lookup speed, where `HashMap` wins from n ≈ 32 (measured in [arrays](../arrays-and-dynamic-arrays/learning.md)).
 - **Range queries.** `lower_bound(a)..lower_bound(b)` gives every element in `[a, b)` as a contiguous slice. This is what makes sorted arrays good for time-series and interval work.
 - **Binary search on the answer.** Capacity planning, scheduling, resource allocation, "smallest k such that…" problems.
 - **`git bisect` and incident bisection.** Monotone predicate over commits or over time; the same algorithm applied to a version-control history or a log file.

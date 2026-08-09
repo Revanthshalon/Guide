@@ -26,7 +26,7 @@ Contiguity, not indexing, is the feature. `Vec<T>` = `(ptr, len, cap)` with geom
 | Default — any growable sequence | Need both ends → `VecDeque` |
 | Scanning, slicing, SIMD, FFI | Keyed lookup at scale → `HashMap` |
 | Built once, read many | Frequent middle insertion → `BTreeMap`/list |
-| Small map, read-heavy (sorted `Vec` + binary search) | Unbounded and write-heavy |
+| Want ordered iteration, range queries, compact footprint | **Lookup speed** at n ≳ 32 → `HashMap` |
 
 ## Rust
 
@@ -72,7 +72,7 @@ v.sort_unstable(); v.dedup();             // dedup alone = CONSECUTIVE only
 - `remove(0)` in a loop is Θ(n²) — use `VecDeque`, `swap_remove`, `retain`, or push-then-`reverse`.
 - `clear()` never frees; only `shrink_to_fit`/`shrink_to` does.
 - Linear scan beats `binary_search` only below n≈24 (measured, `u32`) — not the "few hundred" folklore claims.
-- Sorted `Vec` + `binary_search` beats `BTreeMap` for small, read-heavy, build-once maps.
+- Sorted `Vec` as a map is for ordering/footprint/one-allocation — **not** speed. Measured (`u32`): `HashMap` beats it from n ≈ 32, `HashSet` beats a linear scan from n ≈ 12.
 
 ## Implementation Checklist
 
