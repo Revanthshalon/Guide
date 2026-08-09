@@ -129,6 +129,14 @@ Stage 4 — trees & priority structures:
 - Range Query Structures — [learning](data-structures-and-algorithms/range-query-structures/learning.md) · [reference](data-structures-and-algorithms/range-query-structures/reference.md)
 - Disjoint Set Union — [learning](data-structures-and-algorithms/disjoint-set-union/learning.md) · [reference](data-structures-and-algorithms/disjoint-set-union/reference.md)
 
+Stage 5 — graphs:
+
+- Graph Representations — [learning](data-structures-and-algorithms/graph-representations/learning.md) · [reference](data-structures-and-algorithms/graph-representations/reference.md)
+- Graph Traversal — [learning](data-structures-and-algorithms/graph-traversal/learning.md) · [reference](data-structures-and-algorithms/graph-traversal/reference.md)
+- Shortest Paths — [learning](data-structures-and-algorithms/shortest-paths/learning.md) · [reference](data-structures-and-algorithms/shortest-paths/reference.md)
+- Minimum Spanning Trees — [learning](data-structures-and-algorithms/minimum-spanning-trees/learning.md) · [reference](data-structures-and-algorithms/minimum-spanning-trees/reference.md)
+- Advanced Graph Algorithms — [learning](data-structures-and-algorithms/advanced-graph-algorithms/learning.md) · [reference](data-structures-and-algorithms/advanced-graph-algorithms/reference.md)
+
 ## Deferred Topics
 
 Deliberately not scaffolded yet — pick these up after the current sets are learned. When starting one, scaffold it from the category's templates and move it into the index above.

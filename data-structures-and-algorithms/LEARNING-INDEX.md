@@ -64,11 +64,11 @@ Everything else assumes these two. They're short but non-skippable.
 
 | Topic | Folder | Prereq | Covers |
 | --- | --- | --- | --- |
-| Graph Representations | `graph-representations/` | 1, 3 | Adjacency list vs. matrix vs. CSR; when the representation *is* the optimization; index-based nodes in Rust; `petgraph`; implicit graphs (the grid/state-space you never materialize) |
-| Graph Traversal | `graph-traversal/` | representations, stacks/queues | BFS, DFS, iterative vs. recursive (and stack overflow); the DFS edge classification; topological sort (Kahn and DFS); cycle detection; connected components; bipartite check; multi-source and 0-1 BFS |
-| Shortest Paths | `shortest-paths/` | traversal, heaps | Dijkstra and why it needs non-negative weights; the lazy-deletion heap trick; Bellman-Ford and negative cycles; A* and admissible heuristics; Floyd-Warshall; DAG shortest path via topo order; bidirectional search |
-| Minimum Spanning Trees | `minimum-spanning-trees/` | DSU, heaps | Kruskal vs. Prim; the cut and cycle properties; Borůvka; MSTs as the exchange-argument teaching case for greedy |
-| Advanced Graph Algorithms | `advanced-graph-algorithms/` | all of Stage 5 | SCCs (Tarjan, Kosaraju) and condensation; bridges and articulation points; 2-SAT; LCA (binary lifting, Euler tour + RMQ); heavy-light decomposition; bipartite matching (Hopcroft-Karp); max-flow/min-cut (Dinic) and modeling problems as flow |
+| Graph Representations ✅ | [learning](graph-representations/learning.md) · [reference](graph-representations/reference.md) | 1, 3 | Adjacency list vs. matrix vs. CSR; when the representation *is* the optimization; index-based nodes in Rust; `petgraph`; implicit graphs (the grid/state-space you never materialize) |
+| Graph Traversal ✅ | [learning](graph-traversal/learning.md) · [reference](graph-traversal/reference.md) | representations, stacks/queues | BFS, DFS, iterative vs. recursive (and stack overflow); the DFS edge classification; topological sort (Kahn and DFS); cycle detection; connected components; bipartite check; multi-source and 0-1 BFS |
+| Shortest Paths ✅ | [learning](shortest-paths/learning.md) · [reference](shortest-paths/reference.md) | traversal, heaps | Dijkstra and why it needs non-negative weights; the lazy-deletion heap trick; Bellman-Ford and negative cycles; A* and admissible heuristics; Floyd-Warshall; DAG shortest path via topo order; bidirectional search |
+| Minimum Spanning Trees ✅ | [learning](minimum-spanning-trees/learning.md) · [reference](minimum-spanning-trees/reference.md) | DSU, heaps | Kruskal vs. Prim; the cut and cycle properties; Borůvka; MSTs as the exchange-argument teaching case for greedy |
+| Advanced Graph Algorithms ✅ | [learning](advanced-graph-algorithms/learning.md) · [reference](advanced-graph-algorithms/reference.md) | all of Stage 5 | SCCs (Tarjan, Kosaraju) and condensation; bridges and articulation points; 2-SAT; LCA (binary lifting, Euler tour + RMQ); heavy-light decomposition; bipartite matching (Hopcroft-Karp); max-flow/min-cut (Dinic) and modeling problems as flow |
 
 ## Stage 6 — Algorithm design paradigms
 
