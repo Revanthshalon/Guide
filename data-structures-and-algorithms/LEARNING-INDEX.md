@@ -117,10 +117,10 @@ Where this category and [performance-optimization](../performance-optimization/L
 
 | Topic | Folder | Prereq | Covers |
 | --- | --- | --- | --- |
-| Computational Geometry | `computational-geometry/` | sorting, sweep line | Orientation predicates and robustness (floating point *is* the hard part); convex hull (Andrew's monotone chain); segment intersection; polygon area and point-in-polygon; closest pair |
-| Number Theory & Combinatorics | `number-theory-and-combinatorics/` | 0 | GCD/extended Euclid; modular arithmetic and inverses; fast exponentiation; sieves; factorization; combinatorics and Pascal/Lucas; matrix exponentiation for linear recurrences; FFT/NTT for convolution |
-| Intractability & Approximation | `intractability-and-approximation/` | 5, 6 | P/NP/NP-complete without hand-waving; recognizing an NP-hard problem *before* burning a week on it; reductions; approximation ratios; heuristics that work (local search, simulated annealing, beam search); parameterized tractability; when to call an ILP/SAT solver instead |
-| Streaming & Online Algorithms | `streaming-and-online-algorithms/` | 8 | The streaming model (one pass, sublinear space); online algorithms and competitive ratio; the ski-rental and paging classics — LRU vs. LFU vs. ARC connect straight back to [caching strategies](../architecture-patterns/caching-strategies/learning.md) |
+| Computational Geometry ✅ | [learning](computational-geometry/learning.md) · [reference](computational-geometry/reference.md) | sorting, sweep line | Orientation predicates and robustness (floating point *is* the hard part); convex hull (Andrew's monotone chain); segment intersection; polygon area and point-in-polygon; closest pair |
+| Number Theory & Combinatorics ✅ | [learning](number-theory-and-combinatorics/learning.md) · [reference](number-theory-and-combinatorics/reference.md) | 0 | GCD/extended Euclid; modular arithmetic and inverses; fast exponentiation; sieves; factorization; combinatorics and Pascal/Lucas; matrix exponentiation for linear recurrences; FFT/NTT for convolution |
+| Intractability & Approximation ✅ | [learning](intractability-and-approximation/learning.md) · [reference](intractability-and-approximation/reference.md) | 5, 6 | P/NP/NP-complete without hand-waving; recognizing an NP-hard problem *before* burning a week on it; reductions; approximation ratios; heuristics that work (local search, simulated annealing, beam search); parameterized tractability; when to call an ILP/SAT solver instead |
+| Streaming & Online Algorithms ✅ | [learning](streaming-and-online-algorithms/learning.md) · [reference](streaming-and-online-algorithms/reference.md) | 8 | The streaming model (one pass, sublinear space); online algorithms and competitive ratio; the ski-rental and paging classics — LRU vs. LFU vs. ARC connect straight back to [caching strategies](../architecture-patterns/caching-strategies/learning.md) |
 
 ---
 

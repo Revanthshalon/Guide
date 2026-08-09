@@ -95,7 +95,9 @@ In study order — measurement first, then hardware fundamentals, then technique
 
 Templates: [_template-learning.md](data-structures-and-algorithms/_template-learning.md) · [_template-reference.md](data-structures-and-algorithms/_template-reference.md)
 
-**Full curriculum: [LEARNING-INDEX.md](data-structures-and-algorithms/LEARNING-INDEX.md)** — every topic needed for mastery across 11 stages, with prerequisites, shorter paths by goal, and the transformation lenses each doc closes with. Topic folders are scaffolded as they're started; the index is the roadmap.
+**Full curriculum: [LEARNING-INDEX.md](data-structures-and-algorithms/LEARNING-INDEX.md)** — every topic needed for mastery across 11 stages, with prerequisites, shorter paths by goal, and the transformation lenses each doc closes with. **All 45 topics are written.**
+
+Every claim that could be measured was measured on this machine, and where a measurement contradicted the folklore the doc says so — see the *Where the table misleads* section in each `learning.md`.
 
 Stage 0 — foundations:
 
@@ -167,6 +169,13 @@ Stage 9 — systems-scale structures:
 - Persistent & Immutable Structures — [learning](data-structures-and-algorithms/persistent-immutable-structures/learning.md) · [reference](data-structures-and-algorithms/persistent-immutable-structures/reference.md)
 - Concurrent Data Structures — [learning](data-structures-and-algorithms/concurrent-data-structures/learning.md) · [reference](data-structures-and-algorithms/concurrent-data-structures/reference.md)
 - Spatial Data Structures — [learning](data-structures-and-algorithms/spatial-data-structures/learning.md) · [reference](data-structures-and-algorithms/spatial-data-structures/reference.md)
+
+Stage 10 — limits & the mathematical toolkit:
+
+- Computational Geometry — [learning](data-structures-and-algorithms/computational-geometry/learning.md) · [reference](data-structures-and-algorithms/computational-geometry/reference.md)
+- Number Theory & Combinatorics — [learning](data-structures-and-algorithms/number-theory-and-combinatorics/learning.md) · [reference](data-structures-and-algorithms/number-theory-and-combinatorics/reference.md)
+- Intractability & Approximation — [learning](data-structures-and-algorithms/intractability-and-approximation/learning.md) · [reference](data-structures-and-algorithms/intractability-and-approximation/reference.md)
+- Streaming & Online Algorithms — [learning](data-structures-and-algorithms/streaming-and-online-algorithms/learning.md) · [reference](data-structures-and-algorithms/streaming-and-online-algorithms/reference.md)
 
 ## Deferred Topics
 
