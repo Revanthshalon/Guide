@@ -160,6 +160,14 @@ Stage 8 — randomized & probabilistic:
 - Randomized Algorithms — [learning](data-structures-and-algorithms/randomized-algorithms/learning.md) · [reference](data-structures-and-algorithms/randomized-algorithms/reference.md)
 - Probabilistic Data Structures — [learning](data-structures-and-algorithms/probabilistic-data-structures/learning.md) · [reference](data-structures-and-algorithms/probabilistic-data-structures/reference.md)
 
+Stage 9 — systems-scale structures:
+
+- Cache-Aware & Cache-Oblivious Structures — [learning](data-structures-and-algorithms/cache-aware-structures/learning.md) · [reference](data-structures-and-algorithms/cache-aware-structures/reference.md)
+- LSM Trees & Write-Optimized Structures — [learning](data-structures-and-algorithms/lsm-trees/learning.md) · [reference](data-structures-and-algorithms/lsm-trees/reference.md)
+- Persistent & Immutable Structures — [learning](data-structures-and-algorithms/persistent-immutable-structures/learning.md) · [reference](data-structures-and-algorithms/persistent-immutable-structures/reference.md)
+- Concurrent Data Structures — [learning](data-structures-and-algorithms/concurrent-data-structures/learning.md) · [reference](data-structures-and-algorithms/concurrent-data-structures/reference.md)
+- Spatial Data Structures — [learning](data-structures-and-algorithms/spatial-data-structures/learning.md) · [reference](data-structures-and-algorithms/spatial-data-structures/reference.md)
+
 ## Deferred Topics
 
 Deliberately not scaffolded yet — pick these up after the current sets are learned. When starting one, scaffold it from the category's templates and move it into the index above.
