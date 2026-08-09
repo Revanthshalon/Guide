@@ -137,6 +137,18 @@ Stage 5 — graphs:
 - Minimum Spanning Trees — [learning](data-structures-and-algorithms/minimum-spanning-trees/learning.md) · [reference](data-structures-and-algorithms/minimum-spanning-trees/reference.md)
 - Advanced Graph Algorithms — [learning](data-structures-and-algorithms/advanced-graph-algorithms/learning.md) · [reference](data-structures-and-algorithms/advanced-graph-algorithms/reference.md)
 
+Stage 6 — algorithm design paradigms:
+
+- Recursion & Backtracking — [learning](data-structures-and-algorithms/recursion-and-backtracking/learning.md) · [reference](data-structures-and-algorithms/recursion-and-backtracking/reference.md)
+- Divide & Conquer — [learning](data-structures-and-algorithms/divide-and-conquer/learning.md) · [reference](data-structures-and-algorithms/divide-and-conquer/reference.md)
+- Greedy Algorithms — [learning](data-structures-and-algorithms/greedy-algorithms/learning.md) · [reference](data-structures-and-algorithms/greedy-algorithms/reference.md)
+- Dynamic Programming — [learning](data-structures-and-algorithms/dynamic-programming/learning.md) · [reference](data-structures-and-algorithms/dynamic-programming/reference.md)
+- Two Pointers & Sliding Window — [learning](data-structures-and-algorithms/two-pointers-and-sliding-window/learning.md) · [reference](data-structures-and-algorithms/two-pointers-and-sliding-window/reference.md)
+- Prefix Sums & Difference Arrays — [learning](data-structures-and-algorithms/prefix-sums-and-difference-arrays/learning.md) · [reference](data-structures-and-algorithms/prefix-sums-and-difference-arrays/reference.md)
+- Monotonic Stack & Queue — [learning](data-structures-and-algorithms/monotonic-stack-and-queue/learning.md) · [reference](data-structures-and-algorithms/monotonic-stack-and-queue/reference.md)
+- Bit Manipulation — [learning](data-structures-and-algorithms/bit-manipulation/learning.md) · [reference](data-structures-and-algorithms/bit-manipulation/reference.md)
+- Intervals & Sweep Line — [learning](data-structures-and-algorithms/intervals-and-sweep-line/learning.md) · [reference](data-structures-and-algorithms/intervals-and-sweep-line/reference.md)
+
 ## Deferred Topics
 
 Deliberately not scaffolded yet — pick these up after the current sets are learned. When starting one, scaffold it from the category's templates and move it into the index above.
