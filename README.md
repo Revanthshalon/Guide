@@ -100,6 +100,13 @@ Stage 0 — foundations:
 - Complexity Analysis — [learning](data-structures-and-algorithms/complexity-analysis/learning.md) · [reference](data-structures-and-algorithms/complexity-analysis/reference.md)
 - Rust for Data Structures — [learning](data-structures-and-algorithms/rust-for-data-structures/learning.md) · [reference](data-structures-and-algorithms/rust-for-data-structures/reference.md)
 
+Stage 1 — linear structures:
+
+- Arrays & Dynamic Arrays — [learning](data-structures-and-algorithms/arrays-and-dynamic-arrays/learning.md) · [reference](data-structures-and-algorithms/arrays-and-dynamic-arrays/reference.md)
+- Linked Lists — [learning](data-structures-and-algorithms/linked-lists/learning.md) · [reference](data-structures-and-algorithms/linked-lists/reference.md)
+- Stacks & Queues — [learning](data-structures-and-algorithms/stacks-and-queues/learning.md) · [reference](data-structures-and-algorithms/stacks-and-queues/reference.md)
+- Strings & Text — [learning](data-structures-and-algorithms/strings-and-text/learning.md) · [reference](data-structures-and-algorithms/strings-and-text/reference.md)
+
 ## Deferred Topics
 
 Deliberately not scaffolded yet — pick these up after the current sets are learned. When starting one, scaffold it from the category's templates and move it into the index above.

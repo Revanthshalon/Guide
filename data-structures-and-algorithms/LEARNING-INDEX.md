@@ -29,10 +29,10 @@ Everything else assumes these two. They're short but non-skippable.
 
 | Topic | Folder | Prereq | Covers |
 | --- | --- | --- | --- |
-| Arrays & Dynamic Arrays | `arrays-and-dynamic-arrays/` | 0 | `Vec` growth and amortized push; capacity vs. length; slices; why contiguity beats everything at small n; small-vector optimization |
-| Linked Lists | `linked-lists/` | 0, arrays | Singly/doubly/circular; why they're rare in practice and hostile in Rust; the arena-and-indices rewrite; intrusive lists; where they still win (O(1) splice, stable addresses, LRU) |
-| Stacks & Queues | `stacks-and-queues/` | arrays | `Vec` as stack; `VecDeque` and the ring buffer; deques; bounded vs. unbounded, and the [backpressure](../architecture-patterns/backpressure-and-rate-limiting/learning.md) connection |
-| Strings & Text | `strings-and-text/` | arrays | UTF-8 as a data structure; `String` vs. `&str` vs. `Cow`; byte vs. char vs. grapheme indexing; interning; ropes and gap buffers for editable text |
+| Arrays & Dynamic Arrays ✅ | [learning](arrays-and-dynamic-arrays/learning.md) · [reference](arrays-and-dynamic-arrays/reference.md) | 0 | `Vec` growth and amortized push; capacity vs. length; slices; why contiguity beats everything at small n; small-vector optimization |
+| Linked Lists ✅ | [learning](linked-lists/learning.md) · [reference](linked-lists/reference.md) | 0, arrays | Singly/doubly/circular; why they're rare in practice and hostile in Rust; the arena-and-indices rewrite; intrusive lists; where they still win (O(1) splice, stable addresses, LRU) |
+| Stacks & Queues ✅ | [learning](stacks-and-queues/learning.md) · [reference](stacks-and-queues/reference.md) | arrays | `Vec` as stack; `VecDeque` and the ring buffer; deques; bounded vs. unbounded, and the [backpressure](../architecture-patterns/backpressure-and-rate-limiting/learning.md) connection |
+| Strings & Text ✅ | [learning](strings-and-text/learning.md) · [reference](strings-and-text/reference.md) | arrays | UTF-8 as a data structure; `String` vs. `&str` vs. `Cow`; byte vs. char vs. grapheme indexing; interning; ropes and gap buffers for editable text |
 
 ## Stage 2 — Searching & sorting
 
