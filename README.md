@@ -95,7 +95,10 @@ Templates: [_template-learning.md](data-structures-and-algorithms/_template-lear
 
 **Full curriculum: [LEARNING-INDEX.md](data-structures-and-algorithms/LEARNING-INDEX.md)** — every topic needed for mastery across 11 stages, with prerequisites, shorter paths by goal, and the transformation lenses each doc closes with. Topic folders are scaffolded as they're started; the index is the roadmap.
 
-Nothing scaffolded yet — start at Stage 0 (`complexity-analysis/`, `rust-for-data-structures/`).
+Stage 0 — foundations:
+
+- Complexity Analysis — [learning](data-structures-and-algorithms/complexity-analysis/learning.md) · [reference](data-structures-and-algorithms/complexity-analysis/reference.md)
+- Rust for Data Structures — [learning](data-structures-and-algorithms/rust-for-data-structures/learning.md) · [reference](data-structures-and-algorithms/rust-for-data-structures/reference.md)
 
 ## Deferred Topics
 

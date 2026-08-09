@@ -2,7 +2,7 @@
 
 The full curriculum for this category: every topic worth learning to reach mastery, in the order to learn it. Prerequisites for each entry are all *above* it.
 
-Topic folders are scaffolded as they're started (from [_template-learning.md](_template-learning.md) and [_template-reference.md](_template-reference.md)), not all at once — this index is the roadmap, and links go live as folders appear.
+Topic folders are scaffolded as they're started (from [_template-learning.md](_template-learning.md) and [_template-reference.md](_template-reference.md)), not all at once — this index is the roadmap, and links go live as folders appear. **✅ marks a written topic.**
 
 ## What "mastery" means here
 
@@ -22,8 +22,8 @@ Everything else assumes these two. They're short but non-skippable.
 
 | Topic | Folder | Covers |
 | --- | --- | --- |
-| Complexity Analysis | `complexity-analysis/` | Big-O/Θ/Ω honestly; worst vs. average vs. expected vs. amortized (and the three amortization methods); recurrences and the Master Theorem; why O(n log n) with a bad constant loses to O(n²) at real n; why asymptotics ignore the memory hierarchy and what to do about it |
-| Rust for Data Structures | `rust-for-data-structures/` | The ownership patterns every later topic reuses: arena + index handles vs. `Box` vs. `Rc<RefCell>`; generational indices; `Ord`/`Hash`/`Borrow` contracts; iterator and slice-splitting idioms; where `unsafe` is warranted and how to contain it; benchmarking with criterion |
+| Complexity Analysis ✅ | [learning](complexity-analysis/learning.md) · [reference](complexity-analysis/reference.md) | Big-O/Θ/Ω honestly; worst vs. average vs. expected vs. amortized (and the three amortization methods); recurrences and the Master Theorem; why O(n log n) with a bad constant loses to O(n²) at real n; why asymptotics ignore the memory hierarchy and what to do about it |
+| Rust for Data Structures ✅ | [learning](rust-for-data-structures/learning.md) · [reference](rust-for-data-structures/reference.md) | The ownership patterns every later topic reuses: arena + index handles vs. `Box` vs. `Rc<RefCell>`; generational indices; `Ord`/`Hash`/`Borrow` contracts; iterator and slice-splitting idioms; where `unsafe` is warranted and how to contain it; benchmarking with criterion |
 
 ## Stage 1 — Linear structures
 
