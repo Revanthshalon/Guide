@@ -25,6 +25,12 @@ Every topic folder contains at least two documents serving different purposes:
 
 - `runbook.md` — procedural setup and operations: annotated config files, ordered ceremonies, day-2 procedures (backup/restore, upgrades, rotation), a monitoring-signals table, a dev→production checklist, and a "common mistakes → what actually happens" table. Scaffold it from `oss-tools/_template-runbook.md`.
 
+`language-best-practices/` entries may add **practice docs** for a language the user actually ships — procedural companions rather than idiom guides, scaffolded from `language-best-practices/_template-practices.md`:
+
+- `releasing.md` — publishing a library (semver, features, MSRV, the publish checklist) and shipping a binary (build profiles, size, portability, reproducibility).
+- `testing.md` — unit vs. integration vs. doc tests and what each structurally catches, property tests, isolation, what not to test.
+- `benchmarking.md` — harness choice, defeating the optimizer, sweeps over single points, noise floors, CI regression gates.
+
 When adding content, put depth in `learning.md`, procedure in `runbook.md`, and distill the actionable summary into `reference.md`. Don't duplicate explanations across them — the runbook states *what to run and what it prevents*, and links to `learning.md` for *why*.
 
 ## Working in this repo

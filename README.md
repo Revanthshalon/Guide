@@ -60,9 +60,11 @@ Tools you actually operate also get a **runbook**: annotated configs, ordered ce
 
 ## Language Best Practices
 
-Templates: [_template-learning.md](language-best-practices/_template-learning.md) · [_template-reference.md](language-best-practices/_template-reference.md)
+Templates: [_template-learning.md](language-best-practices/_template-learning.md) · [_template-reference.md](language-best-practices/_template-reference.md) · [_template-practices.md](language-best-practices/_template-practices.md)
 
-- Rust — [learning](language-best-practices/rust/learning.md) · [reference](language-best-practices/rust/reference.md)
+Languages you actually ship also get **practice docs** — procedural companions covering release, test, and benchmark workflow rather than idioms.
+
+- Rust — [learning](language-best-practices/rust/learning.md) · [reference](language-best-practices/rust/reference.md) · [releasing](language-best-practices/rust/releasing.md) · [testing](language-best-practices/rust/testing.md) · [benchmarking](language-best-practices/rust/benchmarking.md)
 
 ## Performance Optimization
 

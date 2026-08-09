@@ -36,6 +36,26 @@ Core model: a function signature is a complete ownership contract (`T` takes, `&
 | `unsafe` to route around borrowck | Restructure (index arena, deliberate `Rc<RefCell<T>>`); if genuinely needed: minimal block + `// SAFETY:` + safe wrapper + miri in CI |
 | Reflexive `Rc<RefCell<T>>` at first friction | Try `&mut self` instead of `&self`, thread `&mut`, or split the type — shared mutability is the fallback |
 
+## Companion Docs
+
+| Doc | For |
+| --- | --- |
+| [releasing.md](releasing.md) | Publishing a lib (semver, features, MSRV) and shipping a bin (profiles, size, portability) |
+| [testing.md](testing.md) | Unit vs integration vs doc tests, property tests, isolation, what to actually test |
+| [benchmarking.md](benchmarking.md) | Harnesses, `black_box`, sweeps, noise, CI gates |
+
+## Numbers to Remember (measured)
+
+| Thing | Number |
+| --- | --- |
+| `dev` vs `release` runtime | **13×** slower |
+| `lto="fat"` + `codegen-units=1` | 25% smaller binary, 2.4× build time, runtime unchanged |
+| `+ panic="abort"` / `+ strip` | 31% / 40% smaller |
+| `opt-level="z"` (all of the above) | 51% smaller, **2× slower** |
+| Benchmark with result discarded | 0.04 ns/iter — the tell that it was deleted |
+| `black_box` in **and** out | +46% vs transparent (it blocks real optimizations too) |
+| Criterion `iter()` | Already black-boxes the **output** |
+
 ## Tooling
 
 | Tool | Command | Purpose |
@@ -48,7 +68,8 @@ Core model: a function signature is a complete ownership contract (`T` takes, `&
 | UB detection | `cargo +nightly miri test` | Mandatory alongside any `unsafe` |
 | Unsafe survey | `cargo geiger` | `unsafe` usage across the dependency tree |
 | Supply chain | `cargo audit` / `cargo deny check` | Vulnerabilities, licenses, duplicate versions |
-| Public API drift | `cargo public-api` | Catches unintended breaking changes |
+| Public API drift | `cargo semver-checks` | Mechanical breakage detection — see [releasing.md](releasing.md) |
+| Benchmarks | `criterion` / `iai-callgrind` | Wall time for answers, instruction counts for CI gates |
 | Missing docs | `#![warn(missing_docs)]` at crate root | Keeps the public surface documented |
 
 ## Key References
