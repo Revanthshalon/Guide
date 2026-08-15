@@ -1,0 +1,1064 @@
+{
+  "CLAUDE.md": {
+    "mtime": 1786299000.0039494,
+    "seen": 1786752659.2525618,
+    "ast_hash": "c3f63c3321eeb8fb1e6fce5c294321d3",
+    "semantic_hash": "c3f63c3321eeb8fb1e6fce5c294321d3"
+  },
+  "README.md": {
+    "mtime": 1786299000.003517,
+    "seen": 1786752659.252564,
+    "ast_hash": "869f324037d7eb24b212ea3549870be0",
+    "semantic_hash": "869f324037d7eb24b212ea3549870be0"
+  },
+  "architecture-patterns/LEARNING-INDEX.md": {
+    "mtime": 1786262459.174028,
+    "seen": 1786752659.252565,
+    "ast_hash": "c0bca4e25d8441ac552d28d9fb49fdd1",
+    "semantic_hash": "c0bca4e25d8441ac552d28d9fb49fdd1"
+  },
+  "architecture-patterns/_template-learning.md": {
+    "mtime": 1786177469.5085676,
+    "seen": 1786752659.252566,
+    "ast_hash": "f32e563bb9f9846dcb7bfcc95e613dbc",
+    "semantic_hash": "f32e563bb9f9846dcb7bfcc95e613dbc"
+  },
+  "architecture-patterns/_template-reference.md": {
+    "mtime": 1786172399.9350667,
+    "seen": 1786752659.252566,
+    "ast_hash": "4b9dc78f1c133a29d28a56ad1d552618",
+    "semantic_hash": "4b9dc78f1c133a29d28a56ad1d552618"
+  },
+  "architecture-patterns/backpressure-and-rate-limiting/learning.md": {
+    "mtime": 1786185386.4711528,
+    "seen": 1786752659.252567,
+    "ast_hash": "cd2d828c0ee066ca27eeb624a99ccf29",
+    "semantic_hash": "cd2d828c0ee066ca27eeb624a99ccf29"
+  },
+  "architecture-patterns/backpressure-and-rate-limiting/reference.md": {
+    "mtime": 1786185413.9168851,
+    "seen": 1786752659.252568,
+    "ast_hash": "ac09a843d1c34e1907b7975c054e82e0",
+    "semantic_hash": "ac09a843d1c34e1907b7975c054e82e0"
+  },
+  "architecture-patterns/caching-strategies/learning.md": {
+    "mtime": 1786184316.6163282,
+    "seen": 1786752659.252568,
+    "ast_hash": "ae29ab97ba2a2e8e7ffb8ad44977b5ff",
+    "semantic_hash": "ae29ab97ba2a2e8e7ffb8ad44977b5ff"
+  },
+  "architecture-patterns/caching-strategies/reference.md": {
+    "mtime": 1786184345.1649163,
+    "seen": 1786752659.2525692,
+    "ast_hash": "e8cb8ed975015b936e5f4b43e3688d40",
+    "semantic_hash": "e8cb8ed975015b936e5f4b43e3688d40"
+  },
+  "architecture-patterns/change-data-capture/learning.md": {
+    "mtime": 1786177546.7328043,
+    "seen": 1786752659.2525702,
+    "ast_hash": "3c1e76916dd75f886ca47130df2afc88",
+    "semantic_hash": "3c1e76916dd75f886ca47130df2afc88"
+  },
+  "architecture-patterns/change-data-capture/reference.md": {
+    "mtime": 1786174775.152525,
+    "seen": 1786752659.2525709,
+    "ast_hash": "3241a8d1494646a2bab7b7b7a435f76c",
+    "semantic_hash": "3241a8d1494646a2bab7b7b7a435f76c"
+  },
+  "architecture-patterns/circuit-breaker/learning.md": {
+    "mtime": 1786185579.2173417,
+    "seen": 1786752659.2525709,
+    "ast_hash": "e1c071f7d430a5a7480792834cd0ab34",
+    "semantic_hash": "e1c071f7d430a5a7480792834cd0ab34"
+  },
+  "architecture-patterns/circuit-breaker/reference.md": {
+    "mtime": 1786185607.6830933,
+    "seen": 1786752659.2525718,
+    "ast_hash": "fb00d51380d088a7a86b4261260e4bc1",
+    "semantic_hash": "fb00d51380d088a7a86b4261260e4bc1"
+  },
+  "architecture-patterns/consensus-and-leader-election/learning.md": {
+    "mtime": 1786177429.563688,
+    "seen": 1786752659.252573,
+    "ast_hash": "aae1fc7b4de39772e5fa74389fe14ccf",
+    "semantic_hash": "aae1fc7b4de39772e5fa74389fe14ccf"
+  },
+  "architecture-patterns/consensus-and-leader-election/reference.md": {
+    "mtime": 1786177457.3741543,
+    "seen": 1786752659.252573,
+    "ast_hash": "ee928745918c58b70ce033bc56d92587",
+    "semantic_hash": "ee928745918c58b70ce033bc56d92587"
+  },
+  "architecture-patterns/encryption-and-key-management/learning.md": {
+    "mtime": 1786177681.452296,
+    "seen": 1786752659.252574,
+    "ast_hash": "585de94d75697d917b364e39847f7829",
+    "semantic_hash": "585de94d75697d917b364e39847f7829"
+  },
+  "architecture-patterns/encryption-and-key-management/reference.md": {
+    "mtime": 1786175395.5546105,
+    "seen": 1786752659.252575,
+    "ast_hash": "7908db5267375c91d14c4c0190aa90df",
+    "semantic_hash": "7908db5267375c91d14c4c0190aa90df"
+  },
+  "architecture-patterns/event-driven-architecture/learning.md": {
+    "mtime": 1786186142.8172855,
+    "seen": 1786752659.252575,
+    "ast_hash": "74a2428222cae0e876910fa0bfc56a50",
+    "semantic_hash": "74a2428222cae0e876910fa0bfc56a50"
+  },
+  "architecture-patterns/event-driven-architecture/reference.md": {
+    "mtime": 1786186171.153181,
+    "seen": 1786752659.252576,
+    "ast_hash": "82d24f0b375db2ca05c6d34b6bd3e76b",
+    "semantic_hash": "82d24f0b375db2ca05c6d34b6bd3e76b"
+  },
+  "architecture-patterns/event-sourcing/learning.md": {
+    "mtime": 1786177740.1374383,
+    "seen": 1786752659.252577,
+    "ast_hash": "750346fd5821cef91b69694962a09830",
+    "semantic_hash": "750346fd5821cef91b69694962a09830"
+  },
+  "architecture-patterns/event-sourcing/reference.md": {
+    "mtime": 1786176775.7847793,
+    "seen": 1786752659.252577,
+    "ast_hash": "e90f20865893fbf1af01516bab911546",
+    "semantic_hash": "e90f20865893fbf1af01516bab911546"
+  },
+  "architecture-patterns/idempotency-and-delivery-semantics/learning.md": {
+    "mtime": 1786177520.4884653,
+    "seen": 1786752659.252578,
+    "ast_hash": "a7ccbdc015f82fa8c1e731fa60ed2789",
+    "semantic_hash": "a7ccbdc015f82fa8c1e731fa60ed2789"
+  },
+  "architecture-patterns/idempotency-and-delivery-semantics/reference.md": {
+    "mtime": 1786174254.0802102,
+    "seen": 1786752659.252579,
+    "ast_hash": "bb44222f465b3c01dbcc62a0af396094",
+    "semantic_hash": "bb44222f465b3c01dbcc62a0af396094"
+  },
+  "architecture-patterns/load-balancing-and-service-discovery/learning.md": {
+    "mtime": 1786185948.0929315,
+    "seen": 1786752659.252579,
+    "ast_hash": "6d8ce2c12d1e988953eed4fcfaa588d5",
+    "semantic_hash": "6d8ce2c12d1e988953eed4fcfaa588d5"
+  },
+  "architecture-patterns/load-balancing-and-service-discovery/reference.md": {
+    "mtime": 1786185973.5343375,
+    "seen": 1786752659.2525802,
+    "ast_hash": "1ca94fda2af28f33a1c3400203167224",
+    "semantic_hash": "1ca94fda2af28f33a1c3400203167224"
+  },
+  "architecture-patterns/outbox-pattern/learning.md": {
+    "mtime": 1786262049.1099308,
+    "seen": 1786752659.2525811,
+    "ast_hash": "bb514fd6f70f6ceadca7345387d409e3",
+    "semantic_hash": "bb514fd6f70f6ceadca7345387d409e3"
+  },
+  "architecture-patterns/replication-and-consistency/learning.md": {
+    "mtime": 1786177498.6599355,
+    "seen": 1786752659.2525811,
+    "ast_hash": "5b1f235328cafd75e00c8d398172e3de",
+    "semantic_hash": "5b1f235328cafd75e00c8d398172e3de"
+  },
+  "architecture-patterns/saga-pattern/learning.md": {
+    "mtime": 1786177758.7793365,
+    "seen": 1786752659.2525818,
+    "ast_hash": "50013d4bb2ca1ce15f2e3606ceeb21ee",
+    "semantic_hash": "50013d4bb2ca1ce15f2e3606ceeb21ee"
+  },
+  "architecture-patterns/sharding/learning.md": {
+    "mtime": 1786184121.710256,
+    "seen": 1786752659.252583,
+    "ast_hash": "722c86956d43173e76744d926276a9f9",
+    "semantic_hash": "722c86956d43173e76744d926276a9f9"
+  },
+  "architecture-patterns/strangler-fig/learning.md": {
+    "mtime": 1786186574.3041902,
+    "seen": 1786752659.252583,
+    "ast_hash": "50c0528b3d435fa687e11d4054332461",
+    "semantic_hash": "50c0528b3d435fa687e11d4054332461"
+  },
+  "data-structures-and-algorithms/LEARNING-INDEX.md": {
+    "mtime": 1786297837.6658835,
+    "seen": 1786752659.252584,
+    "ast_hash": "50c03603225cdd2b4d33b3a31d54f264",
+    "semantic_hash": "50c03603225cdd2b4d33b3a31d54f264"
+  },
+  "data-structures-and-algorithms/_template-learning.md": {
+    "mtime": 1786262855.888471,
+    "seen": 1786752659.252584,
+    "ast_hash": "41eaf764e37fda4aa8d1c760b8a5f623",
+    "semantic_hash": "41eaf764e37fda4aa8d1c760b8a5f623"
+  },
+  "data-structures-and-algorithms/_template-reference.md": {
+    "mtime": 1786262863.306274,
+    "seen": 1786752659.252585,
+    "ast_hash": "2a734e089ddda378c29acc1d22001862",
+    "semantic_hash": "2a734e089ddda378c29acc1d22001862"
+  },
+  "data-structures-and-algorithms/advanced-graph-algorithms/learning.md": {
+    "mtime": 1786293989.5199358,
+    "seen": 1786752659.252586,
+    "ast_hash": "c0fb183918f4502827cf429f7c1f54e7",
+    "semantic_hash": "c0fb183918f4502827cf429f7c1f54e7"
+  },
+  "data-structures-and-algorithms/arrays-and-dynamic-arrays/learning.md": {
+    "mtime": 1786268308.1169581,
+    "seen": 1786752659.252586,
+    "ast_hash": "b437e75e9e053b6a4768fa89a7fb028c",
+    "semantic_hash": "b437e75e9e053b6a4768fa89a7fb028c"
+  },
+  "data-structures-and-algorithms/b-trees/learning.md": {
+    "mtime": 1786276660.209461,
+    "seen": 1786752659.252587,
+    "ast_hash": "6b9a7e85cacdb287d826e8f48e223bbc",
+    "semantic_hash": "6b9a7e85cacdb287d826e8f48e223bbc"
+  },
+  "data-structures-and-algorithms/binary-search-trees/learning.md": {
+    "mtime": 1786276508.3645039,
+    "seen": 1786752659.252588,
+    "ast_hash": "bdd95370551352278439fa41fb0d4a74",
+    "semantic_hash": "bdd95370551352278439fa41fb0d4a74"
+  },
+  "data-structures-and-algorithms/binary-search-trees/reference.md": {
+    "mtime": 1786276534.0185852,
+    "seen": 1786752659.252588,
+    "ast_hash": "b12d8ea81d313f76b79ab7b64e48f0d8",
+    "semantic_hash": "b12d8ea81d313f76b79ab7b64e48f0d8"
+  },
+  "data-structures-and-algorithms/binary-search/learning.md": {
+    "mtime": 1786297206.1651568,
+    "seen": 1786752659.252589,
+    "ast_hash": "39a846815e243e1b1ef76c3f7f55704c",
+    "semantic_hash": "39a846815e243e1b1ef76c3f7f55704c"
+  },
+  "data-structures-and-algorithms/binary-search/reference.md": {
+    "mtime": 1786265209.9254925,
+    "seen": 1786752659.2525902,
+    "ast_hash": "913e250490fdb6b6e23fc2b54bf71ef3",
+    "semantic_hash": "913e250490fdb6b6e23fc2b54bf71ef3"
+  },
+  "data-structures-and-algorithms/bit-manipulation/learning.md": {
+    "mtime": 1786295301.5727918,
+    "seen": 1786752659.2525902,
+    "ast_hash": "0801510599654faf82cd9d1671a9c3ee",
+    "semantic_hash": "0801510599654faf82cd9d1671a9c3ee"
+  },
+  "data-structures-and-algorithms/bit-manipulation/reference.md": {
+    "mtime": 1786295301.575804,
+    "seen": 1786752659.2525911,
+    "ast_hash": "362191fbd3dbff27220a6c89a520d9a6",
+    "semantic_hash": "362191fbd3dbff27220a6c89a520d9a6"
+  },
+  "data-structures-and-algorithms/cache-aware-structures/learning.md": {
+    "mtime": 1786296658.527198,
+    "seen": 1786752659.2525911,
+    "ast_hash": "b21cc469f9c5efd661fde79542287191",
+    "semantic_hash": "b21cc469f9c5efd661fde79542287191"
+  },
+  "data-structures-and-algorithms/cache-aware-structures/reference.md": {
+    "mtime": 1786296771.8137488,
+    "seen": 1786752659.252592,
+    "ast_hash": "06137e14c5f076321289f67da089b339",
+    "semantic_hash": "06137e14c5f076321289f67da089b339"
+  },
+  "data-structures-and-algorithms/complexity-analysis/learning.md": {
+    "mtime": 1786266384.4345849,
+    "seen": 1786752659.2525928,
+    "ast_hash": "d0f3ca78c6ef10de71a5338ca852688e",
+    "semantic_hash": "d0f3ca78c6ef10de71a5338ca852688e"
+  },
+  "data-structures-and-algorithms/complexity-analysis/reference.md": {
+    "mtime": 1786268308.1165519,
+    "seen": 1786752659.2525928,
+    "ast_hash": "8e1d8b307b851c125ab0dec75364ca55",
+    "semantic_hash": "8e1d8b307b851c125ab0dec75364ca55"
+  },
+  "data-structures-and-algorithms/computational-geometry/learning.md": {
+    "mtime": 1786297455.2729366,
+    "seen": 1786752659.252594,
+    "ast_hash": "a3fc4bd9c7d74f7352e88e25ca6056ab",
+    "semantic_hash": "a3fc4bd9c7d74f7352e88e25ca6056ab"
+  },
+  "data-structures-and-algorithms/computational-geometry/reference.md": {
+    "mtime": 1786297564.9260535,
+    "seen": 1786752659.252595,
+    "ast_hash": "65643cd599cca211cc60a54053d68edf",
+    "semantic_hash": "65643cd599cca211cc60a54053d68edf"
+  },
+  "data-structures-and-algorithms/concurrent-data-structures/learning.md": {
+    "mtime": 1786297004.2612,
+    "seen": 1786752659.252595,
+    "ast_hash": "70cf24b0f272c3c07e62a9f3a8d0f00d",
+    "semantic_hash": "70cf24b0f272c3c07e62a9f3a8d0f00d"
+  },
+  "data-structures-and-algorithms/concurrent-data-structures/reference.md": {
+    "mtime": 1786297120.8065133,
+    "seen": 1786752659.252596,
+    "ast_hash": "3f3a9a60e25f7258f99a5ce921733db6",
+    "semantic_hash": "3f3a9a60e25f7258f99a5ce921733db6"
+  },
+  "data-structures-and-algorithms/disjoint-set-union/learning.md": {
+    "mtime": 1786279744.3255703,
+    "seen": 1786752659.252597,
+    "ast_hash": "c0cebf27e4c4a2eca2c32b4954e27881",
+    "semantic_hash": "c0cebf27e4c4a2eca2c32b4954e27881"
+  },
+  "data-structures-and-algorithms/disjoint-set-union/reference.md": {
+    "mtime": 1786279767.1690388,
+    "seen": 1786752659.252597,
+    "ast_hash": "10dc28339d40f4c029016305074202e3",
+    "semantic_hash": "10dc28339d40f4c029016305074202e3"
+  },
+  "data-structures-and-algorithms/divide-and-conquer/learning.md": {
+    "mtime": 1786294812.2806551,
+    "seen": 1786752659.252598,
+    "ast_hash": "d0597c7d6fde5eb253c28ab812f8d885",
+    "semantic_hash": "d0597c7d6fde5eb253c28ab812f8d885"
+  },
+  "data-structures-and-algorithms/divide-and-conquer/reference.md": {
+    "mtime": 1786294812.283974,
+    "seen": 1786752659.252599,
+    "ast_hash": "e79c2940cda58e9e261e3c46c6da4893",
+    "semantic_hash": "e79c2940cda58e9e261e3c46c6da4893"
+  },
+  "data-structures-and-algorithms/dynamic-programming/learning.md": {
+    "mtime": 1786294701.513186,
+    "seen": 1786752659.252599,
+    "ast_hash": "c2d866e22d941f1ce08398c77f9a7227",
+    "semantic_hash": "c2d866e22d941f1ce08398c77f9a7227"
+  },
+  "data-structures-and-algorithms/dynamic-programming/reference.md": {
+    "mtime": 1786294729.1032865,
+    "seen": 1786752659.2526,
+    "ast_hash": "c05b67702a012655b8b92b295209dd28",
+    "semantic_hash": "c05b67702a012655b8b92b295209dd28"
+  },
+  "data-structures-and-algorithms/edit-distance-and-alignment/learning.md": {
+    "mtime": 1786295971.5669196,
+    "seen": 1786752659.2526,
+    "ast_hash": "49a8731b4f639d47ea16ff18d7646f8e",
+    "semantic_hash": "49a8731b4f639d47ea16ff18d7646f8e"
+  },
+  "data-structures-and-algorithms/edit-distance-and-alignment/reference.md": {
+    "mtime": 1786295971.5695713,
+    "seen": 1786752659.2526011,
+    "ast_hash": "3c12d732d27d10c25999bc88b7efa6d6",
+    "semantic_hash": "3c12d732d27d10c25999bc88b7efa6d6"
+  },
+  "data-structures-and-algorithms/graph-representations/learning.md": {
+    "mtime": 1786293343.85982,
+    "seen": 1786752659.252602,
+    "ast_hash": "0243a09bcb79db1112767e38590f13e1",
+    "semantic_hash": "0243a09bcb79db1112767e38590f13e1"
+  },
+  "data-structures-and-algorithms/graph-representations/reference.md": {
+    "mtime": 1786293366.6343324,
+    "seen": 1786752659.252602,
+    "ast_hash": "8b71e402c2f5e86aa10fe093ce20a8de",
+    "semantic_hash": "8b71e402c2f5e86aa10fe093ce20a8de"
+  },
+  "data-structures-and-algorithms/graph-traversal/learning.md": {
+    "mtime": 1786293503.5615883,
+    "seen": 1786752659.2526028,
+    "ast_hash": "c060049854644ebfc81a0ea7439b30ee",
+    "semantic_hash": "c060049854644ebfc81a0ea7439b30ee"
+  },
+  "data-structures-and-algorithms/graph-traversal/reference.md": {
+    "mtime": 1786293529.6071823,
+    "seen": 1786752659.252604,
+    "ast_hash": "7042de1847f87af24445c8a1d9791b19",
+    "semantic_hash": "7042de1847f87af24445c8a1d9791b19"
+  },
+  "data-structures-and-algorithms/greedy-algorithms/learning.md": {
+    "mtime": 1786294913.4734488,
+    "seen": 1786752659.252604,
+    "ast_hash": "c10605e618a129880c642ac5f4315c16",
+    "semantic_hash": "c10605e618a129880c642ac5f4315c16"
+  },
+  "data-structures-and-algorithms/greedy-algorithms/reference.md": {
+    "mtime": 1786294913.4765344,
+    "seen": 1786752659.252605,
+    "ast_hash": "e25429f6339710226791b25e546134cf",
+    "semantic_hash": "e25429f6339710226791b25e546134cf"
+  },
+  "data-structures-and-algorithms/hash-tables/learning.md": {
+    "mtime": 1786268229.220591,
+    "seen": 1786752659.252605,
+    "ast_hash": "5b46607382e1810e6657b69e44f0c8d2",
+    "semantic_hash": "5b46607382e1810e6657b69e44f0c8d2"
+  },
+  "data-structures-and-algorithms/hash-tables/reference.md": {
+    "mtime": 1786268260.3003552,
+    "seen": 1786752659.252606,
+    "ast_hash": "482a00d2869b6bcc1ae39bf9100a72ac",
+    "semantic_hash": "482a00d2869b6bcc1ae39bf9100a72ac"
+  },
+  "data-structures-and-algorithms/hashing-techniques/learning.md": {
+    "mtime": 1786268442.92753,
+    "seen": 1786752659.2526069,
+    "ast_hash": "893a04e25d7b4208b5cbef803fc34c7f",
+    "semantic_hash": "893a04e25d7b4208b5cbef803fc34c7f"
+  },
+  "data-structures-and-algorithms/hashing-techniques/reference.md": {
+    "mtime": 1786268466.5147529,
+    "seen": 1786752659.2526069,
+    "ast_hash": "68dc915eccaca2def78087011951e8b1",
+    "semantic_hash": "68dc915eccaca2def78087011951e8b1"
+  },
+  "data-structures-and-algorithms/heaps-and-priority-queues/learning.md": {
+    "mtime": 1786276811.2385879,
+    "seen": 1786752659.252608,
+    "ast_hash": "6a16637e164593127b574023dd6fc3e6",
+    "semantic_hash": "6a16637e164593127b574023dd6fc3e6"
+  },
+  "data-structures-and-algorithms/heaps-and-priority-queues/reference.md": {
+    "mtime": 1786276834.6544986,
+    "seen": 1786752659.252608,
+    "ast_hash": "9861b904a99d532f91ed0d25978b3b7a",
+    "semantic_hash": "9861b904a99d532f91ed0d25978b3b7a"
+  },
+  "data-structures-and-algorithms/intervals-and-sweep-line/learning.md": {
+    "mtime": 1786295402.8650322,
+    "seen": 1786752659.252609,
+    "ast_hash": "3b2bbcda2546837ae0a72fe9c65a5100",
+    "semantic_hash": "3b2bbcda2546837ae0a72fe9c65a5100"
+  },
+  "data-structures-and-algorithms/intervals-and-sweep-line/reference.md": {
+    "mtime": 1786295402.8678162,
+    "seen": 1786752659.25261,
+    "ast_hash": "c76656eb60ec930c86288a6ff6630ad3",
+    "semantic_hash": "c76656eb60ec930c86288a6ff6630ad3"
+  },
+  "data-structures-and-algorithms/intractability-and-approximation/learning.md": {
+    "mtime": 1786297688.5902894,
+    "seen": 1786752659.25261,
+    "ast_hash": "0dcf33e334b7f6c30c1e5b9ebf11f720",
+    "semantic_hash": "0dcf33e334b7f6c30c1e5b9ebf11f720"
+  },
+  "data-structures-and-algorithms/intractability-and-approximation/reference.md": {
+    "mtime": 1786297801.2899299,
+    "seen": 1786752659.2526112,
+    "ast_hash": "a7c496dd0ad1b950867787c66618e327",
+    "semantic_hash": "a7c496dd0ad1b950867787c66618e327"
+  },
+  "data-structures-and-algorithms/linked-lists/learning.md": {
+    "mtime": 1786264488.3725293,
+    "seen": 1786752659.252612,
+    "ast_hash": "eaff8d1c4c7338653345d45aa2f39b56",
+    "semantic_hash": "eaff8d1c4c7338653345d45aa2f39b56"
+  },
+  "data-structures-and-algorithms/linked-lists/reference.md": {
+    "mtime": 1786264513.428296,
+    "seen": 1786752659.252612,
+    "ast_hash": "7f9fc5c6a47025e267e190976c70fcdf",
+    "semantic_hash": "7f9fc5c6a47025e267e190976c70fcdf"
+  },
+  "data-structures-and-algorithms/lsm-trees/learning.md": {
+    "mtime": 1786296771.8172386,
+    "seen": 1786752659.252613,
+    "ast_hash": "3341c8211353d222af319e944e3bfcbb",
+    "semantic_hash": "3341c8211353d222af319e944e3bfcbb"
+  },
+  "data-structures-and-algorithms/lsm-trees/reference.md": {
+    "mtime": 1786296883.6971443,
+    "seen": 1786752659.2526138,
+    "ast_hash": "b5b02d0fa2218bf4138410a9f20c8224",
+    "semantic_hash": "b5b02d0fa2218bf4138410a9f20c8224"
+  },
+  "data-structures-and-algorithms/minimum-spanning-trees/learning.md": {
+    "mtime": 1786294053.01876,
+    "seen": 1786752659.2526138,
+    "ast_hash": "75e25e6f21dd1cdd8f1e6b00518c08c3",
+    "semantic_hash": "75e25e6f21dd1cdd8f1e6b00518c08c3"
+  },
+  "data-structures-and-algorithms/minimum-spanning-trees/reference.md": {
+    "mtime": 1786293845.9935017,
+    "seen": 1786752659.252615,
+    "ast_hash": "00c4e1acdd401aa48eb5d50a8598f811",
+    "semantic_hash": "00c4e1acdd401aa48eb5d50a8598f811"
+  },
+  "data-structures-and-algorithms/monotonic-stack-and-queue/learning.md": {
+    "mtime": 1786295094.8004332,
+    "seen": 1786752659.252616,
+    "ast_hash": "8d71c1bd3643617ce6c871e3e9f7aee2",
+    "semantic_hash": "8d71c1bd3643617ce6c871e3e9f7aee2"
+  },
+  "data-structures-and-algorithms/monotonic-stack-and-queue/reference.md": {
+    "mtime": 1786295094.8041747,
+    "seen": 1786752659.252616,
+    "ast_hash": "cf74cec62d711871302081daa125069c",
+    "semantic_hash": "cf74cec62d711871302081daa125069c"
+  },
+  "data-structures-and-algorithms/number-theory-and-combinatorics/learning.md": {
+    "mtime": 1786297564.9291651,
+    "seen": 1786752659.252617,
+    "ast_hash": "05686ae93cbd3798afa5a78070e38d23",
+    "semantic_hash": "05686ae93cbd3798afa5a78070e38d23"
+  },
+  "data-structures-and-algorithms/persistent-immutable-structures/learning.md": {
+    "mtime": 1786296883.7002966,
+    "seen": 1786752659.252617,
+    "ast_hash": "9b57de9f62488c31fc2b22737b9490a7",
+    "semantic_hash": "9b57de9f62488c31fc2b22737b9490a7"
+  },
+  "data-structures-and-algorithms/prefix-sums-and-difference-arrays/learning.md": {
+    "mtime": 1786295193.4847293,
+    "seen": 1786752659.252618,
+    "ast_hash": "77216ba4e4db1be2da7346020b05e686",
+    "semantic_hash": "77216ba4e4db1be2da7346020b05e686"
+  },
+  "data-structures-and-algorithms/probabilistic-data-structures/learning.md": {
+    "mtime": 1786296377.7063303,
+    "seen": 1786752659.252619,
+    "ast_hash": "e54fa7148159b550d62a85cbe2e9a944",
+    "semantic_hash": "e54fa7148159b550d62a85cbe2e9a944"
+  },
+  "data-structures-and-algorithms/randomized-algorithms/learning.md": {
+    "mtime": 1786296191.8807309,
+    "seen": 1786752659.25262,
+    "ast_hash": "9fa05eb5f13a4c09b82d9eda3551860a",
+    "semantic_hash": "9fa05eb5f13a4c09b82d9eda3551860a"
+  },
+  "data-structures-and-algorithms/range-query-structures/learning.md": {
+    "mtime": 1786279594.1714122,
+    "seen": 1786752659.2526212,
+    "ast_hash": "8c293993bbeec672a67204bb6393f0bf",
+    "semantic_hash": "8c293993bbeec672a67204bb6393f0bf"
+  },
+  "data-structures-and-algorithms/recursion-and-backtracking/learning.md": {
+    "mtime": 1786294536.4871027,
+    "seen": 1786752659.2526212,
+    "ast_hash": "095017bcbbf6ca468332a73cb9367aa7",
+    "semantic_hash": "095017bcbbf6ca468332a73cb9367aa7"
+  },
+  "data-structures-and-algorithms/rust-for-data-structures/learning.md": {
+    "mtime": 1786266384.434979,
+    "seen": 1786752659.2526221,
+    "ast_hash": "4a67373f21b8812f91c577ae89f4854e",
+    "semantic_hash": "4a67373f21b8812f91c577ae89f4854e"
+  },
+  "data-structures-and-algorithms/selection-and-order-statistics/learning.md": {
+    "mtime": 1786265522.226303,
+    "seen": 1786752659.252623,
+    "ast_hash": "1aaa866eee2be08a6e4be23ddc6fccb4",
+    "semantic_hash": "1aaa866eee2be08a6e4be23ddc6fccb4"
+  },
+  "data-structures-and-algorithms/shortest-paths/learning.md": {
+    "mtime": 1786293664.8880723,
+    "seen": 1786752659.252623,
+    "ast_hash": "181d2663d1d56515d06c63189bb28c1c",
+    "semantic_hash": "181d2663d1d56515d06c63189bb28c1c"
+  },
+  "data-structures-and-algorithms/sorting/learning.md": {
+    "mtime": 1786265356.522131,
+    "seen": 1786752659.2526238,
+    "ast_hash": "a3a475d13d00e3f2694b0e275a8da206",
+    "semantic_hash": "a3a475d13d00e3f2694b0e275a8da206"
+  },
+  "data-structures-and-algorithms/sorting/reference.md": {
+    "mtime": 1786265381.5432014,
+    "seen": 1786752659.252625,
+    "ast_hash": "00cc2e4ef0c69f6e945c83a39fd4c996",
+    "semantic_hash": "00cc2e4ef0c69f6e945c83a39fd4c996"
+  },
+  "data-structures-and-algorithms/spatial-data-structures/learning.md": {
+    "mtime": 1786297120.8102055,
+    "seen": 1786752659.252625,
+    "ast_hash": "f6178d34a1bda49e7ec4c9eb2a74ed58",
+    "semantic_hash": "f6178d34a1bda49e7ec4c9eb2a74ed58"
+  },
+  "data-structures-and-algorithms/spatial-data-structures/reference.md": {
+    "mtime": 1786297157.5815778,
+    "seen": 1786752659.252626,
+    "ast_hash": "38bda88d7114ef4a273671a4d34e4cee",
+    "semantic_hash": "38bda88d7114ef4a273671a4d34e4cee"
+  },
+  "data-structures-and-algorithms/stacks-and-queues/learning.md": {
+    "mtime": 1786264646.9704337,
+    "seen": 1786752659.252626,
+    "ast_hash": "82bd005e78375987a18306293fe1073a",
+    "semantic_hash": "82bd005e78375987a18306293fe1073a"
+  },
+  "data-structures-and-algorithms/streaming-and-online-algorithms/learning.md": {
+    "mtime": 1786297801.2935402,
+    "seen": 1786752659.252627,
+    "ast_hash": "5304b117c28cde08415d6eb5a73787e6",
+    "semantic_hash": "5304b117c28cde08415d6eb5a73787e6"
+  },
+  "data-structures-and-algorithms/streaming-and-online-algorithms/reference.md": {
+    "mtime": 1786297837.6221135,
+    "seen": 1786752659.2526278,
+    "ast_hash": "7ccb5b748163882e5cb07f100050b2e3",
+    "semantic_hash": "7ccb5b748163882e5cb07f100050b2e3"
+  },
+  "data-structures-and-algorithms/string-matching/learning.md": {
+    "mtime": 1786295731.8367562,
+    "seen": 1786752659.2526278,
+    "ast_hash": "6513afe20248d751ebccaea625b96249",
+    "semantic_hash": "6513afe20248d751ebccaea625b96249"
+  },
+  "data-structures-and-algorithms/string-matching/reference.md": {
+    "mtime": 1786295841.6787617,
+    "seen": 1786752659.252629,
+    "ast_hash": "370eb4a10b87392c4a965b8760ae6102",
+    "semantic_hash": "370eb4a10b87392c4a965b8760ae6102"
+  },
+  "data-structures-and-algorithms/strings-and-text/learning.md": {
+    "mtime": 1786264815.0729501,
+    "seen": 1786752659.25263,
+    "ast_hash": "28c08f117f994551816e3e48cc59e53c",
+    "semantic_hash": "28c08f117f994551816e3e48cc59e53c"
+  },
+  "data-structures-and-algorithms/suffix-structures/learning.md": {
+    "mtime": 1786295841.6819916,
+    "seen": 1786752659.25263,
+    "ast_hash": "efb88222f50276a7c902f0446cc15d35",
+    "semantic_hash": "efb88222f50276a7c902f0446cc15d35"
+  },
+  "data-structures-and-algorithms/suffix-structures/reference.md": {
+    "mtime": 1786295971.5639153,
+    "seen": 1786752659.252631,
+    "ast_hash": "2682e061fbc01ff8dd4f76db31e12b90",
+    "semantic_hash": "2682e061fbc01ff8dd4f76db31e12b90"
+  },
+  "data-structures-and-algorithms/tries-and-radix-trees/learning.md": {
+    "mtime": 1786279437.7588785,
+    "seen": 1786752659.252631,
+    "ast_hash": "229eb6fe340ea5b122f0df815395744e",
+    "semantic_hash": "229eb6fe340ea5b122f0df815395744e"
+  },
+  "data-structures-and-algorithms/two-pointers-and-sliding-window/learning.md": {
+    "mtime": 1786295005.9749737,
+    "seen": 1786752659.2526321,
+    "ast_hash": "c3071d8627508341486ab3c79d9d44fd",
+    "semantic_hash": "c3071d8627508341486ab3c79d9d44fd"
+  },
+  "data-structures-and-algorithms/two-pointers-and-sliding-window/reference.md": {
+    "mtime": 1786295005.9778643,
+    "seen": 1786752659.252633,
+    "ast_hash": "cb9a98d50cd08adcdf0b5d503d5f42f7",
+    "semantic_hash": "cb9a98d50cd08adcdf0b5d503d5f42f7"
+  },
+  "developer-tooling/_template-learning.md": {
+    "mtime": 1786298606.9028718,
+    "seen": 1786752659.252633,
+    "ast_hash": "1c22ec4b6d71b600d67ba769cfdffeac",
+    "semantic_hash": "1c22ec4b6d71b600d67ba769cfdffeac"
+  },
+  "developer-tooling/_template-recipes.md": {
+    "mtime": 1786298606.909169,
+    "seen": 1786752659.252634,
+    "ast_hash": "0857eb266ada1c6a09227ea958f33308",
+    "semantic_hash": "0857eb266ada1c6a09227ea958f33308"
+  },
+  "developer-tooling/_template-reference.md": {
+    "mtime": 1786298606.9060962,
+    "seen": 1786752659.2526348,
+    "ast_hash": "b167771fb762aab7ce19b77c08466dc1",
+    "semantic_hash": "b167771fb762aab7ce19b77c08466dc1"
+  },
+  "developer-tooling/git/learning.md": {
+    "mtime": 1786298671.266908,
+    "seen": 1786752659.2526348,
+    "ast_hash": "090f3eb9ad1757c326ac24dc9a12a13c",
+    "semantic_hash": "090f3eb9ad1757c326ac24dc9a12a13c"
+  },
+  "developer-tooling/git/recipes.md": {
+    "mtime": 1786298740.5279517,
+    "seen": 1786752659.252636,
+    "ast_hash": "766d07abd9767c6e453c05e3f199ae89",
+    "semantic_hash": "766d07abd9767c6e453c05e3f199ae89"
+  },
+  "developer-tooling/git/reference.md": {
+    "mtime": 1786298740.5311599,
+    "seen": 1786752659.252636,
+    "ast_hash": "99b5c91bbf584f27da6198f5897e41d1",
+    "semantic_hash": "99b5c91bbf584f27da6198f5897e41d1"
+  },
+  "developer-tooling/ripgrep-and-grep/learning.md": {
+    "mtime": 1786298808.7244055,
+    "seen": 1786752659.252637,
+    "ast_hash": "ee8df904cf9d1938e4753c560dbf9f3c",
+    "semantic_hash": "ee8df904cf9d1938e4753c560dbf9f3c"
+  },
+  "developer-tooling/ripgrep-and-grep/recipes.md": {
+    "mtime": 1786298858.88966,
+    "seen": 1786752659.2526379,
+    "ast_hash": "d6db623c59ad08bb6f78a991d7f4d6f0",
+    "semantic_hash": "d6db623c59ad08bb6f78a991d7f4d6f0"
+  },
+  "developer-tooling/ripgrep-and-grep/reference.md": {
+    "mtime": 1786298858.8872674,
+    "seen": 1786752659.2526379,
+    "ast_hash": "58e51eae0db5f493d2f0dd1e2f460bfd",
+    "semantic_hash": "58e51eae0db5f493d2f0dd1e2f460bfd"
+  },
+  "developer-tooling/sed-and-text-processing/learning.md": {
+    "mtime": 1786298975.6065671,
+    "seen": 1786752659.252639,
+    "ast_hash": "20ac98f9d8cb2157aad9eb8e6fdce280",
+    "semantic_hash": "20ac98f9d8cb2157aad9eb8e6fdce280"
+  },
+  "developer-tooling/sed-and-text-processing/recipes.md": {
+    "mtime": 1786298975.6136363,
+    "seen": 1786752659.252639,
+    "ast_hash": "806026293ea548fe2136a4dc3041ae55",
+    "semantic_hash": "806026293ea548fe2136a4dc3041ae55"
+  },
+  "developer-tooling/sed-and-text-processing/reference.md": {
+    "mtime": 1786298975.6103313,
+    "seen": 1786752659.25264,
+    "ast_hash": "be07f0d52454d4cacdc3714f717f2ac2",
+    "semantic_hash": "be07f0d52454d4cacdc3714f717f2ac2"
+  },
+  "language-best-practices/_template-learning.md": {
+    "mtime": 1786172416.504595,
+    "seen": 1786752659.252641,
+    "ast_hash": "a15c4ffb5605fec90f3783de5779841d",
+    "semantic_hash": "a15c4ffb5605fec90f3783de5779841d"
+  },
+  "language-best-practices/_template-practices.md": {
+    "mtime": 1786267045.5091133,
+    "seen": 1786752659.252641,
+    "ast_hash": "83b94676c6ecd2181691f7814da72533",
+    "semantic_hash": "83b94676c6ecd2181691f7814da72533"
+  },
+  "language-best-practices/_template-reference.md": {
+    "mtime": 1786172419.3724349,
+    "seen": 1786752659.2526422,
+    "ast_hash": "bf78eb0b9a3d5f8b88e5ae4cc1a416f3",
+    "semantic_hash": "bf78eb0b9a3d5f8b88e5ae4cc1a416f3"
+  },
+  "language-best-practices/rust/benchmarking.md": {
+    "mtime": 1786267344.5867083,
+    "seen": 1786752659.2526422,
+    "ast_hash": "eb6eaa37ff4a16768363a0f0a7f6d126",
+    "semantic_hash": "eb6eaa37ff4a16768363a0f0a7f6d126"
+  },
+  "language-best-practices/rust/learning.md": {
+    "mtime": 1786183735.6516058,
+    "seen": 1786752659.252643,
+    "ast_hash": "26f206187fa52c4d7b91d27f5de9893b",
+    "semantic_hash": "26f206187fa52c4d7b91d27f5de9893b"
+  },
+  "language-best-practices/rust/reference.md": {
+    "mtime": 1786267374.1748753,
+    "seen": 1786752659.252644,
+    "ast_hash": "71284f9f3d8ef80e53a977418a9372ed",
+    "semantic_hash": "71284f9f3d8ef80e53a977418a9372ed"
+  },
+  "language-best-practices/rust/releasing.md": {
+    "mtime": 1786267151.0569627,
+    "seen": 1786752659.252644,
+    "ast_hash": "6a4469d8cf019ce5eacfe5a2459bb96b",
+    "semantic_hash": "6a4469d8cf019ce5eacfe5a2459bb96b"
+  },
+  "language-best-practices/rust/testing.md": {
+    "mtime": 1786267251.3787434,
+    "seen": 1786752659.252645,
+    "ast_hash": "a2c6270053beeb00348d4208b832e5a4",
+    "semantic_hash": "a2c6270053beeb00348d4208b832e5a4"
+  },
+  "oss-tools/_template-learning.md": {
+    "mtime": 1786172406.2152495,
+    "seen": 1786752659.252645,
+    "ast_hash": "159278fb06399dbb2ac205d439bf8ed6",
+    "semantic_hash": "159278fb06399dbb2ac205d439bf8ed6"
+  },
+  "oss-tools/_template-reference.md": {
+    "mtime": 1786172408.7824457,
+    "seen": 1786752659.252646,
+    "ast_hash": "8e46d516088d54d0608e8630dc658807",
+    "semantic_hash": "8e46d516088d54d0608e8630dc658807"
+  },
+  "oss-tools/_template-runbook.md": {
+    "mtime": 1786184631.0942194,
+    "seen": 1786752659.252647,
+    "ast_hash": "1244aac4bd74a687d81ca1f1b66413ce",
+    "semantic_hash": "1244aac4bd74a687d81ca1f1b66413ce"
+  },
+  "oss-tools/docker/learning.md": {
+    "mtime": 1786298471.5036838,
+    "seen": 1786752659.252647,
+    "ast_hash": "707ee12953c7342922bbeb49c74ce69e",
+    "semantic_hash": "707ee12953c7342922bbeb49c74ce69e"
+  },
+  "oss-tools/docker/reference.md": {
+    "mtime": 1786298506.445869,
+    "seen": 1786752659.2526479,
+    "ast_hash": "1cb236abc87f38d2ec393390f99a6f17",
+    "semantic_hash": "1cb236abc87f38d2ec393390f99a6f17"
+  },
+  "oss-tools/docker/runbook.md": {
+    "mtime": 1786298585.8303359,
+    "seen": 1786752659.252649,
+    "ast_hash": "28e76f538830d22e857c8f9a71e8fc30",
+    "semantic_hash": "28e76f538830d22e857c8f9a71e8fc30"
+  },
+  "oss-tools/openbao/learning.md": {
+    "mtime": 1786184666.3979807,
+    "seen": 1786752659.252649,
+    "ast_hash": "8f615a89f51a780f6bcd59c4a624f9b3",
+    "semantic_hash": "8f615a89f51a780f6bcd59c4a624f9b3"
+  },
+  "oss-tools/openbao/reference.md": {
+    "mtime": 1786175616.1816044,
+    "seen": 1786752659.25265,
+    "ast_hash": "b9d397a4fcad6a63eaa11a0c79fd63ce",
+    "semantic_hash": "b9d397a4fcad6a63eaa11a0c79fd63ce"
+  },
+  "oss-tools/openbao/runbook.md": {
+    "mtime": 1786184615.7712104,
+    "seen": 1786752659.25265,
+    "ast_hash": "104f912af255636d2b0919df45212d09",
+    "semantic_hash": "104f912af255636d2b0919df45212d09"
+  },
+  "oss-tools/opentofu/learning.md": {
+    "mtime": 1786186915.6207078,
+    "seen": 1786752659.252651,
+    "ast_hash": "90aa3a69098f42b76eb5937cafec715a",
+    "semantic_hash": "90aa3a69098f42b76eb5937cafec715a"
+  },
+  "oss-tools/opentofu/reference.md": {
+    "mtime": 1786187037.032193,
+    "seen": 1786752659.252652,
+    "ast_hash": "949ddaf1ecfbe614a65b3b6dfab99251",
+    "semantic_hash": "949ddaf1ecfbe614a65b3b6dfab99251"
+  },
+  "oss-tools/opentofu/runbook.md": {
+    "mtime": 1786187000.9302187,
+    "seen": 1786752659.252652,
+    "ast_hash": "a4801e3f167cc96f204179aa49febdcd",
+    "semantic_hash": "a4801e3f167cc96f204179aa49febdcd"
+  },
+  "oss-tools/postgres/learning.md": {
+    "mtime": 1786298206.1936805,
+    "seen": 1786752659.2526531,
+    "ast_hash": "1098d69f3cbccc77571ab2ef38b566c6",
+    "semantic_hash": "1098d69f3cbccc77571ab2ef38b566c6"
+  },
+  "oss-tools/postgres/reference.md": {
+    "mtime": 1786298270.3411913,
+    "seen": 1786752659.2526531,
+    "ast_hash": "c276c529c9a6cf342386c563e82ba4ab",
+    "semantic_hash": "c276c529c9a6cf342386c563e82ba4ab"
+  },
+  "oss-tools/postgres/runbook.md": {
+    "mtime": 1786298383.6293485,
+    "seen": 1786752659.252654,
+    "ast_hash": "1942b9f923e7836c68bbbdf1e83bd347",
+    "semantic_hash": "1942b9f923e7836c68bbbdf1e83bd347"
+  },
+  "performance-optimization/LEARNING-INDEX.md": {
+    "mtime": 1786262489.5848367,
+    "seen": 1786752659.252655,
+    "ast_hash": "fb46df1eb726f352eb535c7780a94a8d",
+    "semantic_hash": "fb46df1eb726f352eb535c7780a94a8d"
+  },
+  "performance-optimization/_template-learning.md": {
+    "mtime": 1786178187.3960614,
+    "seen": 1786752659.252655,
+    "ast_hash": "1a4c0de6b07fddeda3d9fd1eae9f1db4",
+    "semantic_hash": "1a4c0de6b07fddeda3d9fd1eae9f1db4"
+  },
+  "performance-optimization/_template-reference.md": {
+    "mtime": 1786172427.8396142,
+    "seen": 1786752659.2526562,
+    "ast_hash": "9d278a31640e7c8b60b773bd8ae806ce",
+    "semantic_hash": "9d278a31640e7c8b60b773bd8ae806ce"
+  },
+  "performance-optimization/allocation-strategies/learning.md": {
+    "mtime": 1786180053.5814748,
+    "seen": 1786752659.252657,
+    "ast_hash": "9080245581ade72e9b884d218fff913e",
+    "semantic_hash": "9080245581ade72e9b884d218fff913e"
+  },
+  "performance-optimization/allocation-strategies/reference.md": {
+    "mtime": 1786180077.7277422,
+    "seen": 1786752659.252657,
+    "ast_hash": "69b7774cfe6c25ef48f439dffaf32f3b",
+    "semantic_hash": "69b7774cfe6c25ef48f439dffaf32f3b"
+  },
+  "performance-optimization/async-and-io/learning.md": {
+    "mtime": 1786181920.4229553,
+    "seen": 1786752659.252658,
+    "ast_hash": "dcec981298ab6472db8ad3a2bd28edd7",
+    "semantic_hash": "dcec981298ab6472db8ad3a2bd28edd7"
+  },
+  "performance-optimization/async-and-io/reference.md": {
+    "mtime": 1786181943.908818,
+    "seen": 1786752659.252658,
+    "ast_hash": "c81d23e83178126ef042760b45a9394e",
+    "semantic_hash": "c81d23e83178126ef042760b45a9394e"
+  },
+  "performance-optimization/batching-and-amortization/learning.md": {
+    "mtime": 1786180599.750554,
+    "seen": 1786752659.2526588,
+    "ast_hash": "32c80719fb3ad5f7a24e3aeb32ae2f98",
+    "semantic_hash": "32c80719fb3ad5f7a24e3aeb32ae2f98"
+  },
+  "performance-optimization/batching-and-amortization/reference.md": {
+    "mtime": 1786180625.2627916,
+    "seen": 1786752659.25266,
+    "ast_hash": "55b1357b0fa496e454ef9850edb23652",
+    "semantic_hash": "55b1357b0fa496e454ef9850edb23652"
+  },
+  "performance-optimization/branch-prediction/learning.md": {
+    "mtime": 1786179325.4755623,
+    "seen": 1786752659.25266,
+    "ast_hash": "4124bf9e752c91ac266be4b2943b6442",
+    "semantic_hash": "4124bf9e752c91ac266be4b2943b6442"
+  },
+  "performance-optimization/branch-prediction/reference.md": {
+    "mtime": 1786179348.6478982,
+    "seen": 1786752659.252661,
+    "ast_hash": "548c910346ada5250f2672e60647ca96",
+    "semantic_hash": "548c910346ada5250f2672e60647ca96"
+  },
+  "performance-optimization/cache-locality/learning.md": {
+    "mtime": 1786178793.3254719,
+    "seen": 1786752659.252661,
+    "ast_hash": "013a7db0d2f3869258b56a09591a6fa8",
+    "semantic_hash": "013a7db0d2f3869258b56a09591a6fa8"
+  },
+  "performance-optimization/cache-locality/reference.md": {
+    "mtime": 1786178816.5789034,
+    "seen": 1786752659.252662,
+    "ast_hash": "becc22792be23f92fd3ee118e5d15914",
+    "semantic_hash": "becc22792be23f92fd3ee118e5d15914"
+  },
+  "performance-optimization/compiler-optimizations/learning.md": {
+    "mtime": 1786182570.2999144,
+    "seen": 1786752659.2526631,
+    "ast_hash": "ac845a57e9c111629afd10bc9bb07c5f",
+    "semantic_hash": "ac845a57e9c111629afd10bc9bb07c5f"
+  },
+  "performance-optimization/compiler-optimizations/reference.md": {
+    "mtime": 1786182598.25632,
+    "seen": 1786752659.2526631,
+    "ast_hash": "4f4d74e7670aeceff7e7f64283c608ad",
+    "semantic_hash": "4f4d74e7670aeceff7e7f64283c608ad"
+  },
+  "performance-optimization/data-oriented-design/learning.md": {
+    "mtime": 1786179523.129171,
+    "seen": 1786752659.252664,
+    "ast_hash": "d8ad8d1bf2f43f11980fe0d85801f53f",
+    "semantic_hash": "d8ad8d1bf2f43f11980fe0d85801f53f"
+  },
+  "performance-optimization/data-oriented-design/reference.md": {
+    "mtime": 1786179546.5720916,
+    "seen": 1786752659.252665,
+    "ast_hash": "29532e4b06738bf0d74725ce6f35a58e",
+    "semantic_hash": "29532e4b06738bf0d74725ce6f35a58e"
+  },
+  "performance-optimization/false-sharing/learning.md": {
+    "mtime": 1786181152.7628608,
+    "seen": 1786752659.252665,
+    "ast_hash": "70c71eeeda776f060cb9e1eb935ae603",
+    "semantic_hash": "70c71eeeda776f060cb9e1eb935ae603"
+  },
+  "performance-optimization/false-sharing/reference.md": {
+    "mtime": 1786181178.8243127,
+    "seen": 1786752659.252666,
+    "ast_hash": "a8c2821b2c30e305bbf82226fd8fc71c",
+    "semantic_hash": "a8c2821b2c30e305bbf82226fd8fc71c"
+  },
+  "performance-optimization/lock-free-concurrency/learning.md": {
+    "mtime": 1786181462.8740082,
+    "seen": 1786752659.252666,
+    "ast_hash": "a270c4c6b1089b40a8ef31d22062ddf1",
+    "semantic_hash": "a270c4c6b1089b40a8ef31d22062ddf1"
+  },
+  "performance-optimization/lock-free-concurrency/reference.md": {
+    "mtime": 1786181487.7940032,
+    "seen": 1786752659.252667,
+    "ast_hash": "ec38615768477a6e24ecf888f9edc5fa",
+    "semantic_hash": "ec38615768477a6e24ecf888f9edc5fa"
+  },
+  "performance-optimization/memory-layout/learning.md": {
+    "mtime": 1786179053.9049366,
+    "seen": 1786752659.252668,
+    "ast_hash": "7b9ad6a43b01ecfed06b176ed431136a",
+    "semantic_hash": "7b9ad6a43b01ecfed06b176ed431136a"
+  },
+  "performance-optimization/memory-layout/reference.md": {
+    "mtime": 1786179076.2224529,
+    "seen": 1786752659.252668,
+    "ast_hash": "c7706d27adc089cba65c70d4b8bb0f9e",
+    "semantic_hash": "c7706d27adc089cba65c70d4b8bb0f9e"
+  },
+  "performance-optimization/numa-awareness/learning.md": {
+    "mtime": 1786182358.2206676,
+    "seen": 1786752659.2526689,
+    "ast_hash": "f3791fccd69cb361e2c796d7c2b0809d",
+    "semantic_hash": "f3791fccd69cb361e2c796d7c2b0809d"
+  },
+  "performance-optimization/numa-awareness/reference.md": {
+    "mtime": 1786182380.5632176,
+    "seen": 1786752659.2526689,
+    "ast_hash": "62a7c4a6c61a47b209179772c8969a8f",
+    "semantic_hash": "62a7c4a6c61a47b209179772c8969a8f"
+  },
+  "performance-optimization/parallelism-and-work-stealing/learning.md": {
+    "mtime": 1786181689.0003476,
+    "seen": 1786752659.25267,
+    "ast_hash": "c9e3f1f40c012ac48fc749f0b2c15712",
+    "semantic_hash": "c9e3f1f40c012ac48fc749f0b2c15712"
+  },
+  "performance-optimization/parallelism-and-work-stealing/reference.md": {
+    "mtime": 1786181712.9056277,
+    "seen": 1786752659.252671,
+    "ast_hash": "d18e7a24353f93cf40b2a2c76de6560f",
+    "semantic_hash": "d18e7a24353f93cf40b2a2c76de6560f"
+  },
+  "performance-optimization/profiling-and-measurement/learning.md": {
+    "mtime": 1786178569.0783424,
+    "seen": 1786752659.252671,
+    "ast_hash": "4d4428aa0ad92cf443434ae9d8b80864",
+    "semantic_hash": "4d4428aa0ad92cf443434ae9d8b80864"
+  },
+  "performance-optimization/profiling-and-measurement/reference.md": {
+    "mtime": 1786178596.2914402,
+    "seen": 1786752659.252672,
+    "ast_hash": "9834fea25e2e9f60ada6bba0e7213ed7",
+    "semantic_hash": "9834fea25e2e9f60ada6bba0e7213ed7"
+  },
+  "performance-optimization/serialization-and-encoding/learning.md": {
+    "mtime": 1786182138.0461602,
+    "seen": 1786752659.252673,
+    "ast_hash": "74da6998f47803ed2f5dba7f5d31ee00",
+    "semantic_hash": "74da6998f47803ed2f5dba7f5d31ee00"
+  },
+  "performance-optimization/serialization-and-encoding/reference.md": {
+    "mtime": 1786182156.937392,
+    "seen": 1786752659.252674,
+    "ast_hash": "46c905e7d6c467a0db5f1a1896454dd5",
+    "semantic_hash": "46c905e7d6c467a0db5f1a1896454dd5"
+  },
+  "performance-optimization/simd/learning.md": {
+    "mtime": 1786180299.5119092,
+    "seen": 1786752659.252674,
+    "ast_hash": "912ff24f8e573bef833a30699806dbe1",
+    "semantic_hash": "912ff24f8e573bef833a30699806dbe1"
+  },
+  "performance-optimization/simd/reference.md": {
+    "mtime": 1786180325.5656989,
+    "seen": 1786752659.252675,
+    "ast_hash": "2839114a2d14c7ae8c59a81d4f104d9e",
+    "semantic_hash": "2839114a2d14c7ae8c59a81d4f104d9e"
+  },
+  "performance-optimization/zero-copy/learning.md": {
+    "mtime": 1786180964.3006256,
+    "seen": 1786752659.252676,
+    "ast_hash": "0966ad504c44d8809499d3a82d9547d9",
+    "semantic_hash": "0966ad504c44d8809499d3a82d9547d9"
+  },
+  "performance-optimization/zero-copy/reference.md": {
+    "mtime": 1786181048.1204748,
+    "seen": 1786752659.252676,
+    "ast_hash": "9c13f6d55915f608951adda29c2e5d2f",
+    "semantic_hash": "9c13f6d55915f608951adda29c2e5d2f"
+  }
+}
