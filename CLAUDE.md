@@ -13,7 +13,11 @@ This is a personal reference knowledge base — not a software project with a bu
 - `developer-tooling/` — CLI tools the user *uses* daily rather than *operates* (e.g. `git/`, `ripgrep-and-grep/`, `sed-and-text-processing/`): the mental model that makes the tool predictable, portability/variant differences (GNU vs BSD, versions — state what *this machine* has), and pitfalls. These get `recipes.md` instead of a runbook, because CLI tools have tasks rather than an install/harden/backup lifecycle.
 - `data-structures-and-algorithms/` — the structures and paradigms themselves (e.g. `hash-tables/`, `dynamic-programming/`, `graph-traversal/`): the invariant each maintains, complexity tables, idiomatic Rust implementations with the ownership story made explicit, when to use which against competing structures, and the transformation lenses that let a reader *derive* variants rather than memorize them. Rust-first, like `performance-optimization/`.
 
-There is no code to build or run here. Work in this repo is writing/organizing Markdown documentation.
+Outside those six categories there is one code directory:
+
+- `platform/` — a Rust workspace for the healthcare operations platform the notes serve. This is real code with a build and test pipeline, not documentation. Its first crate is `crates/fhir-core` (FHIR R5 foundational types and the `Patient` resource). Work there follows normal Rust practice — `cargo test`, `cargo clippy --all-targets`, `cargo fmt` from `platform/` — and the conventions in `language-best-practices/rust/`. Record non-obvious design decisions in the crate's `DESIGN.md` rather than in commit messages, and keep its "Deliberately not here yet" table current when a gap is closed or a new one is accepted.
+
+Apart from `platform/`, there is no code to build or run here. Work in this repo is writing/organizing Markdown documentation.
 
 ## Doc structure: learning vs. reference
 
