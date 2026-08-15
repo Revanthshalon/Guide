@@ -14,6 +14,14 @@ Every topic folder has two docs, scaffolded from its category's templates:
 - **learning.md** — study material: mental models, mechanisms, worked examples, the why behind everything.
 - **reference.md** — cheat sheet: tables, checklists, rules of thumb — scannable in under a minute.
 
+It also holds one piece of actual code, in [platform/](platform/README.md) — the healthcare operations platform these notes are being written in service of.
+
+## Platform (code, not notes)
+
+A Rust workspace under [platform/](platform/README.md). Everything else in this repository is reference material; this is the implementation.
+
+- **fhir-core** — FHIR R5 foundational types: validating newtype primitives, `Element`/`BackboneElement` base traits, the general-purpose datatypes, type-parameterised `Reference<T>`, and the `Patient` resource — [readme](platform/README.md) · [design decisions](platform/crates/fhir-core/DESIGN.md)
+
 ## Architecture Patterns
 
 Templates: [_template-learning.md](architecture-patterns/_template-learning.md) · [_template-reference.md](architecture-patterns/_template-reference.md)
