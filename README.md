@@ -239,6 +239,7 @@ CLI tools you *use* rather than *operate*, so they get **recipes** (a task-orien
 - Git — [learning](developer-tooling/git/learning.md) · [reference](developer-tooling/git/reference.md) · [recipes](developer-tooling/git/recipes.md)
 - ripgrep & grep — [learning](developer-tooling/ripgrep-and-grep/learning.md) · [reference](developer-tooling/ripgrep-and-grep/reference.md) · [recipes](developer-tooling/ripgrep-and-grep/recipes.md)
 - sed & Text Processing — [learning](developer-tooling/sed-and-text-processing/learning.md) · [reference](developer-tooling/sed-and-text-processing/reference.md) · [recipes](developer-tooling/sed-and-text-processing/recipes.md)
+- Regular Expressions — [learning](developer-tooling/regular-expressions/learning.md) · [reference](developer-tooling/regular-expressions/reference.md) · [recipes](developer-tooling/regular-expressions/recipes.md)
 
 ## Deferred Topics
 

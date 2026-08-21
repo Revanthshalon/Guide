@@ -107,3 +107,7 @@ Practical resolutions, in order of preference:
 - **Why it happens (the mechanism):** The delimiter is just the character after `s`, so any occurrence of it inside the pattern or replacement terminates the field early. Variables interpolated by the shell are inserted textually with no escaping.
 - **How to handle it, and why that works:** Change the delimiter to something absent from the data — `sed "s|$path|$new|"` for paths, or `#`, or `,`. For untrusted input, don't build `sed` scripts by interpolation at all; use `sd` (which takes pattern and replacement as separate arguments, so there's no delimiter to break) or a real programming language.
 - **Trade-offs of the fix:** Choosing a delimiter is still a guess about what the data contains. Passing pattern and replacement as arguments — as `sd` does — removes the class entirely, which is the strongest argument for it.
+
+## References
+
+- Related in this repo: [Regular Expressions](../regular-expressions/learning.md) (BRE vs. ERE in the wider context of every regex flavor, engine internals, ReDoS), [ripgrep & grep](../ripgrep-and-grep/learning.md)

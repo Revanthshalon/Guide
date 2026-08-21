@@ -98,4 +98,4 @@ The practical consequence of mechanism 1 is the thing that surprises people: **`
 - [ripgrep user guide](https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md) — genuinely worth reading end to end
 - Andrew Gallant, ["ripgrep is faster than…"](https://blog.burntsushi.net/ripgrep/) — the definitive benchmark-and-why writeup
 - [`regex` crate docs](https://docs.rs/regex/) — the syntax `rg` accepts, and the linear-time guarantee
-- Related in this repo: [String Matching](../../data-structures-and-algorithms/string-matching/learning.md) (the SIMD prefilter, measured), [sed & text processing](../sed-and-text-processing/learning.md)
+- Related in this repo: [String Matching](../../data-structures-and-algorithms/string-matching/learning.md) (the SIMD prefilter, measured), [sed & text processing](../sed-and-text-processing/learning.md), [Regular Expressions](../regular-expressions/learning.md) (engine internals and flavor differences in depth)
