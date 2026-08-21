@@ -3,6 +3,7 @@
 A personal reference library covering:
 
 - **Architecture patterns** — what they are, where they break in production, and how to handle it.
+- **Design patterns** — GoF and Rust-specific patterns at the code/module level: idiomatic Rust implementations, when a pattern dissolves into a language feature, and what replaces it.
 - **Open source tools** — especially open-source alternatives to vendor/licensed tools, how they compare, and what to watch for when adopting them.
 - **Language best practices** — per-language conventions, idioms, and anti-patterns. Rust is the primary focus.
 - **Performance optimization** — techniques for building high-performance applications, applied primarily through Rust.
@@ -49,6 +50,55 @@ Resilience & traffic management:
 Migration:
 
 - Strangler Fig — [learning](architecture-patterns/strangler-fig/learning.md) · [reference](architecture-patterns/strangler-fig/reference.md)
+## Design Patterns
+
+Templates: [_template-learning.md](design-patterns/_template-learning.md) · [_template-reference.md](design-patterns/_template-reference.md)
+
+**Study order: [LEARNING-INDEX.md](design-patterns/LEARNING-INDEX.md)** — the sequence to read these in, with prerequisites. The grouping below is by theme, not by order.
+
+Creational:
+
+- Builder — [learning](design-patterns/builder/learning.md) · [reference](design-patterns/builder/reference.md)
+- Factory Method & Abstract Factory — [learning](design-patterns/factory/learning.md) · [reference](design-patterns/factory/reference.md)
+- Singleton & Shared State — [learning](design-patterns/singleton-and-shared-state/learning.md) · [reference](design-patterns/singleton-and-shared-state/reference.md)
+- Prototype — [learning](design-patterns/prototype/learning.md) · [reference](design-patterns/prototype/reference.md)
+
+Structural:
+
+- Adapter — [learning](design-patterns/adapter/learning.md) · [reference](design-patterns/adapter/reference.md)
+- Decorator — [learning](design-patterns/decorator/learning.md) · [reference](design-patterns/decorator/reference.md)
+- Facade — [learning](design-patterns/facade/learning.md) · [reference](design-patterns/facade/reference.md)
+- Composite — [learning](design-patterns/composite/learning.md) · [reference](design-patterns/composite/reference.md)
+- Bridge — [learning](design-patterns/bridge/learning.md) · [reference](design-patterns/bridge/reference.md)
+- Proxy — [learning](design-patterns/proxy/learning.md) · [reference](design-patterns/proxy/reference.md)
+- Flyweight — [learning](design-patterns/flyweight/learning.md) · [reference](design-patterns/flyweight/reference.md)
+
+Behavioral:
+
+- Strategy — [learning](design-patterns/strategy/learning.md) · [reference](design-patterns/strategy/reference.md)
+- Observer & Publish-Subscribe — [learning](design-patterns/observer/learning.md) · [reference](design-patterns/observer/reference.md)
+- Command — [learning](design-patterns/command/learning.md) · [reference](design-patterns/command/reference.md)
+- Iterator — [learning](design-patterns/iterator/learning.md) · [reference](design-patterns/iterator/reference.md)
+- State Machine — [learning](design-patterns/state-machine/learning.md) · [reference](design-patterns/state-machine/reference.md)
+- Template Method — [learning](design-patterns/template-method/learning.md) · [reference](design-patterns/template-method/reference.md)
+- Chain of Responsibility — [learning](design-patterns/chain-of-responsibility/learning.md) · [reference](design-patterns/chain-of-responsibility/reference.md)
+- Visitor — [learning](design-patterns/visitor/learning.md) · [reference](design-patterns/visitor/reference.md)
+- Mediator — [learning](design-patterns/mediator/learning.md) · [reference](design-patterns/mediator/reference.md)
+- Memento — [learning](design-patterns/memento/learning.md) · [reference](design-patterns/memento/reference.md)
+
+Rust-specific patterns:
+
+- Enum Dispatch — [learning](design-patterns/enum-dispatch/learning.md) · [reference](design-patterns/enum-dispatch/reference.md)
+- Type State — [learning](design-patterns/type-state/learning.md) · [reference](design-patterns/type-state/reference.md)
+- Newtype & Zero-Cost Abstractions — [learning](design-patterns/newtype-and-zero-cost/learning.md) · [reference](design-patterns/newtype-and-zero-cost/reference.md)
+- RAII & Drop Guards — [learning](design-patterns/raii-and-drop-guards/learning.md) · [reference](design-patterns/raii-and-drop-guards/reference.md)
+- Extension Traits — [learning](design-patterns/extension-traits/learning.md) · [reference](design-patterns/extension-traits/reference.md)
+- Marker Traits & Phantom Types — [learning](design-patterns/marker-traits-and-phantom-types/learning.md) · [reference](design-patterns/marker-traits-and-phantom-types/reference.md)
+
+Architectural-boundary:
+
+- Repository & Unit of Work — [learning](design-patterns/repository-and-unit-of-work/learning.md) · [reference](design-patterns/repository-and-unit-of-work/reference.md)
+- Dependency Injection — [learning](design-patterns/dependency-injection/learning.md) · [reference](design-patterns/dependency-injection/reference.md)
 
 ## OSS Tools
 
